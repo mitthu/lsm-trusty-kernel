@@ -1,4 +1,29 @@
-linux-lts-utopic (3.16.0-16.22~14.04) trusty; urgency=low
+linux-lts-utopic (3.16.0-17.23~14.04) trusty; urgency=low
+
+  [ Tim Gardner ]
+
+  * Release Tracking Bug
+    - LP: #1371614
+  * [Config] CONFIG_USB_OHCI_HCD_PCI=y
+    - LP: #1244176
+
+  [ Andy Whitcroft ]
+
+  * rebase to v3.16.3
+  * updateconfigs following rebase to v3.16.3
+
+  [ John Johansen ]
+
+  * SAUCE: (no-up) apparmor: Sync to apparmor3 - RC1 snapshot
+    - LP: #1362199
+
+  [ Upstream Kernel Changes ]
+
+  * rebase to v3.16.3
+
+ -- Andy Whitcroft <apw@canonical.com>  Thu, 18 Sep 2014 13:09:25 +0100
+
+linux (3.16.0-16.22) utopic; urgency=low
 
   [ Andy Whitcroft ]
 
