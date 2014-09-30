@@ -1,4 +1,99 @@
-linux-lts-utopic (3.16.0-17.23~14.04) trusty; urgency=low
+linux-lts-utopic (3.16.0-19.26~14.04) trusty; urgency=low
+
+  [ Dave Hansen ]
+
+  * SAUCE: x86, sched: Add new topology for multi-NUMA-node CPUs
+    - LP: #1338919
+
+  [ Tim Gardner ]
+
+  * [Config] Correct annotation regarding CONFIG_DMA_CMA
+    - LP: #1362261
+  * [Config] CONFIG_SND_HDA_INTEL=n for ppc64el
+    - LP: #1374438
+  * [Config] CONFIG_HOTPLUG_PCI_SHPC=n for ppc64el
+    - LP: #1374440
+  * [Debian] Don't fail if a symlink already exists
+  * [Config] CONFIG_HOTPLUG_PCI_PCIE=n for ppc64el
+    - LP: #1374440
+  * Release Tracking Bug
+    - LP: #1375798
+
+  [ Tony Breeds ]
+
+  * SAUCE: powerpc/boot: Don't install zImage.* from make install
+    - LP: #1374470
+
+  [ Upstream Kernel Changes ]
+
+  * powercap / RAPL: change domain detection message
+    - LP: #1373943
+  * mptfusion: enable no_write_same for vmware scsi disks
+    - LP: #1371591
+
+ -- Tim Gardner <tim.gardner@canonical.com>  Mon, 29 Sep 2014 20:36:42 +0100
+
+linux (3.16.0-18.25) utopic; urgency=low
+
+  [ Tim Gardner ]
+
+  * Release Tracking Bug
+    - LP: #1373682
+
+ -- Tim Gardner <tim.gardner@canonical.com>  Wed, 24 Sep 2014 19:23:23 -0600
+
+linux (3.16.0-18.24) utopic; urgency=low
+
+  [ Andy Whitcroft ]
+
+  * Revert "SAUCE: scsi: hyper-v storsvc switch up to SPC-3"
+    - LP: #1354397
+
+  [ Tim Gardner ]
+
+  * [Config] CONFIG_RTC_DRV_XGENE=y for arm64
+  * SAUCE: usbip: Update include path
+  * [Debian] usbip tools packaging
+    - LP: #898003
+  * [Config] Enable usbip tools
+    - LP: #898003
+  * [Config] CONFIG_CRASH_DUMP=n for powerpc-smp
+    - LP: #1363180
+
+  [ Upstream Kernel Changes ]
+
+  * staging: usbip: usbip_host_driver.c: avoid assignment in if
+  * staging: usbip: usbip_host_driver.c: fix line over 80 characters
+  * staging: usbip: fixed a coding-style warning
+  * staging: usbip: stub_main.c: Cleaning up missing null-terminate in
+    conjunction with strncpy
+  * staging: usbip: remove redundant return statements
+  * usbip: move usbip userspace code out of staging
+  * usbip: move usbip kernel code out of staging
+  * HID: magicmouse: sanity check report size in raw_event() callback
+    - LP: #1370025
+    - CVE-2014-3181
+  * HID: picolcd: sanity check report size in raw_event() callback
+    - LP: #1370038
+    - CVE-2014-3186
+  * udf: Fold udf_fill_inode() into __udf_read_inode()
+    - LP: #1370042
+    - CVE-2014-6410
+  * udf: Avoid infinite loop when processing indirect ICBs
+    - LP: #1370042
+    - CVE-2014-6410
+  * Drivers: add blist flags
+    - LP: #1354397
+  * sd: don't use scsi_setup_blk_pc_cmnd for flush requests
+    - LP: #1354397
+  * sd: fix a bug in deriving the FLUSH_TIMEOUT from the basic I/O timeout
+    - LP: #1354397
+  * ipvs: fix ipv6 hook registration for local replies
+    - LP: #1349768
+
+ -- Tim Gardner <tim.gardner@canonical.com>  Mon, 22 Sep 2014 11:12:02 -0600
+
+linux (3.16.0-17.23) utopic; urgency=low
 
   [ Tim Gardner ]
 
