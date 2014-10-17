@@ -1,4 +1,20 @@
-linux-lts-utopic (3.16.0-22.29~14.04) trusty; urgency=low
+linux-lts-utopic (3.16.0-23.30~14.04) trusty; urgency=low
+
+  [ Andy Whitcroft ]
+
+  * Release Tracking Bug
+    - LP: #1381927
+  * [Config] CONFIG_DRM_BOCHS=n
+    - LP: #1378648
+
+  [ Paolo Pisati ]
+
+  * [Config] armhf: disable JUMP_LABEL
+    - LP: #1378856
+
+ -- Andy Whitcroft <apw@canonical.com>  Thu, 16 Oct 2014 10:09:49 +0200
+
+linux (3.16.0-22.29) utopic; urgency=low
 
   [ Tim Gardner ]
 
