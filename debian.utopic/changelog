@@ -1,4 +1,18 @@
-linux-lts-utopic (3.16.0-23.30~14.04) trusty; urgency=low
+linux-lts-utopic (3.16.0-23.31~14.04) trusty; urgency=low
+
+  [ Andy Whitcroft ]
+
+  * Release Tracking Bug
+    - LP: #1383784
+
+  [ Upstream Kernel Changes ]
+
+  * Input: synaptics - gate forcepad support by DMI check
+    - LP: #1381815
+
+ -- Andy Whitcroft <apw@canonical.com>  Tue, 21 Oct 2014 16:49:12 +0100
+
+linux (3.16.0-23.30) utopic; urgency=low
 
   [ Andy Whitcroft ]
 
