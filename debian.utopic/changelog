@@ -1,9 +1,19 @@
-linux-lts-utopic (3.16.0-31.41~14.04.1) trusty; urgency=low
+linux-lts-utopic (3.16.0-31.43~14.04.1) trusty; urgency=low
+
+  [ Upstream Kernel Changes ]
+
+  * IB/core: Prevent integer overflow in ib_umem_get address arithmetic
+    - LP: #1413741
+    - CVE-2015-8159
+
+ -- Luis Henriques <luis.henriques@canonical.com>  Mon, 09 Mar 2015 17:08:16 +0000
+
+linux (3.16.0-31.41) utopic; urgency=low
 
   [ Seth Forshee ]
 
   * Release Tracking Bug
-    - LP: #1420883
+    - LP: #1419961
 
   [ Andy Whitcroft ]
 
@@ -792,7 +802,7 @@ linux-lts-utopic (3.16.0-31.41~14.04.1) trusty; urgency=low
   * Linux 3.16.7-ckt5
     - LP: #1419125
 
- -- Seth Forshee <seth.forshee@canonical.com>  Wed, 11 Feb 2015 11:20:16 -0600
+ -- Seth Forshee <seth.forshee@canonical.com>  Mon, 09 Feb 2015 14:00:45 -0600
 
 linux (3.16.0-30.40) utopic; urgency=low
 
