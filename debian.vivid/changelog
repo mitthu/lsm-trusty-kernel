@@ -1,4 +1,14 @@
-linux-lts-vivid (3.19.0-14.14~14.04.1) trusty; urgency=low
+linux-lts-vivid (3.19.0-15.15~14.04.1) trusty; urgency=low
+
+  [ Andy Whitcroft ]
+
+  * Release Tracking Bug
+    - LP: #1445253
+  * update to vivid 3.19.0-15.15
+
+ -- Andy Whitcroft <apw@canonical.com>  Thu, 16 Apr 2015 23:03:58 +0100
+
+linux (3.19.0-14.14) vivid; urgency=low
 
   [ Upstream Kernel Changes ]
 
