@@ -1,9 +1,37 @@
-linux-lts-vivid (3.19.0-43.49~14.04.1) trusty; urgency=low
+linux-lts-vivid (3.19.0-44.50~14.04.1) trusty; urgency=low
+
+  [ Luis Henriques ]
+
+  * Release Tracking Bug
+    - LP: #1531056
+
+  [ Upstream Kernel Changes ]
+
+  * mwifiex: parse adhoc start/join result
+    - LP: #1528910
+  * mwifiex: handle start AP error paths correctly
+    - LP: #1528910
+  * mwifiex: set regulatory info from EEPROM
+    - LP: #1528910
+  * mwifiex: don't follow AP if country code received from EEPROM
+    - LP: #1528910
+  * mwifiex: add iw vendor command support
+    - LP: #1528910
+  * mwifiex: correction in region code to country mapping
+    - LP: #1528910
+  * mwifiex: update region_code_index array
+    - LP: #1528910
+  * mwifiex: use world for unidentified region code
+    - LP: #1528910
+
+ -- Luis Henriques <luis.henriques@canonical.com>  Tue, 05 Jan 2016 10:18:22 +0000
+
+linux (3.19.0-43.49) vivid; urgency=low
 
   [ Andy Whitcroft ]
 
   * Release Tracking Bug
-    - LP: #1529971
+    - LP: #1529362
 
   [ Upstream Kernel Changes ]
 
