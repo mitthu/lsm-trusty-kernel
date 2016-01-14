@@ -1,9 +1,30 @@
-linux-lts-vivid (3.19.0-45.51~14.04.1) trusty; urgency=low
+linux-lts-vivid (3.19.0-46.52~14.04.1) trusty; urgency=low
 
   [ Luis Henriques ]
 
   * Release Tracking Bug
-    - LP: #1533023
+    - LP: #1533914
+
+  [ Eric Dumazet ]
+
+  * SAUCE: (no-up) udp: properly support MSG_PEEK with truncated buffers
+    - LP: #1527902
+
+  [ Upstream Kernel Changes ]
+
+  * net: usb: cdc_ncm: Adding Dell DW5812 LTE Verizon Mobile Broadband Card
+    - LP: #1533118
+  * net: usb: cdc_ncm: Adding Dell DW5813 LTE AT&T Mobile Broadband Card
+    - LP: #1533118
+
+ -- Luis Henriques <luis.henriques@canonical.com>  Thu, 14 Jan 2016 10:14:06 +0000
+
+linux (3.19.0-45.51) vivid; urgency=low
+
+  [ Luis Henriques ]
+
+  * Release Tracking Bug
+    - LP: #1532815
 
   [ Gary Wang ]
 
@@ -633,7 +654,7 @@ linux-lts-vivid (3.19.0-45.51~14.04.1) trusty; urgency=low
   * xfs: give all workqueues rescuer threads
     - LP: #1527062
 
- -- Luis Henriques <luis.henriques@canonical.com>  Tue, 12 Jan 2016 12:11:31 +0000
+ -- Luis Henriques <luis.henriques@canonical.com>  Mon, 11 Jan 2016 14:30:35 +0000
 
 linux (3.19.0-44.50) vivid; urgency=low
 
