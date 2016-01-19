@@ -62,6 +62,26 @@ struct ovl_entry {
 
 const char *ovl_opaque_xattr = "trusted.overlay.opaque";
 
+/*
+ * Returns a set of credentials suitable for overlayfs internal
+ * operations which require elevated capabilities, equivalent to those
+ * of the user which mounted the superblock. Caller must put the
+ * returned credentials.
+ */
+struct cred *ovl_prepare_creds(struct super_block *sb)
+{
+	struct ovl_fs *ofs = sb->s_fs_info;
+	struct cred *new_cred;
+
+	if (sb->s_magic != OVERLAYFS_SUPER_MAGIC)
+		return NULL;
+
+	new_cred = clone_cred(ofs->mounter_creds);
+	if (!new_cred)
+		return NULL;
+
+	return new_cred;
+}
 
 enum ovl_path_type ovl_path_type(struct dentry *dentry)
 {
