@@ -813,6 +813,9 @@ static int ovl_fill_super(struct super_block *sb, void *data, int silent)
 		goto out_put_workpath;
 	}
 
+	if (ufs->upper_mnt->mnt_flags & MNT_NOSUID)
+		sb->s_iflags |= SB_I_NOSUID;
+
 	ufs->lower_mnt = clone_private_mount(&lowerpath);
 	err = PTR_ERR(ufs->lower_mnt);
 	if (IS_ERR(ufs->lower_mnt)) {
@@ -833,6 +836,9 @@ static int ovl_fill_super(struct super_block *sb, void *data, int silent)
 	 * will fail instead of modifying lower fs.
 	 */
 	ufs->lower_mnt->mnt_flags |= MNT_READONLY;
+
+	if (ufs->lower_mnt->mnt_flags & MNT_NOSUID)
+		sb->s_iflags |= SB_I_NOSUID;
 
 	/* If the upper fs is r/o, we mark overlayfs r/o too */
 	if (ufs->upper_mnt->mnt_sb->s_flags & MS_RDONLY)
