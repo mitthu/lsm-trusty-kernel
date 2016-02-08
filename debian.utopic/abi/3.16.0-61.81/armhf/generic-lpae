@@ -6449,6 +6449,7 @@ EXPORT_SYMBOL vmlinux 0x31674caa	abx500_event_registers_startup_state_get
 EXPORT_SYMBOL vmlinux 0x31805f80	__net_get_random_once
 EXPORT_SYMBOL vmlinux 0x3191f109	__krealloc
 EXPORT_SYMBOL vmlinux 0x31ad2bfa	tcf_em_tree_dump
+EXPORT_SYMBOL vmlinux 0x31b1063a	skb_copy_and_csum_datagram_iovec
 EXPORT_SYMBOL vmlinux 0x31b31f5c	csum_partial_copy_nocheck
 EXPORT_SYMBOL vmlinux 0x31cee75f	ip4_datagram_connect
 EXPORT_SYMBOL vmlinux 0x31d63d62	pci_bus_write_config_dword
@@ -9846,7 +9847,6 @@ EXPORT_SYMBOL vmlinux 0xf902aab9	__scsi_device_lookup
 EXPORT_SYMBOL vmlinux 0xf907632b	abort_creds
 EXPORT_SYMBOL vmlinux 0xf914f03a	tty_chars_in_buffer
 EXPORT_SYMBOL vmlinux 0xf91fda43	genphy_aneg_done
-EXPORT_SYMBOL vmlinux 0xf9258142	skb_copy_and_csum_datagram_iovec
 EXPORT_SYMBOL vmlinux 0xf9348cbc	xz_dec_run
 EXPORT_SYMBOL vmlinux 0xf9427374	dispc_request_irq
 EXPORT_SYMBOL vmlinux 0xf961eae3	thaw_bdev
@@ -11142,13 +11142,13 @@ EXPORT_SYMBOL_GPL drivers/misc/eeprom/eeprom_93cx6 0x27cb133b	eeprom_93cx6_multi
 EXPORT_SYMBOL_GPL drivers/misc/eeprom/eeprom_93cx6 0x63d2ff63	eeprom_93cx6_wren
 EXPORT_SYMBOL_GPL drivers/misc/eeprom/eeprom_93cx6 0x822222db	eeprom_93cx6_write
 EXPORT_SYMBOL_GPL drivers/misc/eeprom/eeprom_93cx6 0x98bb5a22	eeprom_93cx6_read
-EXPORT_SYMBOL_GPL drivers/misc/enclosure 0x0298a181	enclosure_add_device
-EXPORT_SYMBOL_GPL drivers/misc/enclosure 0x2766f458	enclosure_remove_device
-EXPORT_SYMBOL_GPL drivers/misc/enclosure 0x52351ff4	enclosure_register
-EXPORT_SYMBOL_GPL drivers/misc/enclosure 0x980fb8f0	enclosure_component_register
-EXPORT_SYMBOL_GPL drivers/misc/enclosure 0xdd1aab67	enclosure_unregister
-EXPORT_SYMBOL_GPL drivers/misc/enclosure 0xf3aa532e	enclosure_find
-EXPORT_SYMBOL_GPL drivers/misc/enclosure 0xfbab8dab	enclosure_for_each_device
+EXPORT_SYMBOL_GPL drivers/misc/enclosure 0x61af0352	enclosure_add_device
+EXPORT_SYMBOL_GPL drivers/misc/enclosure 0x6ff5275e	enclosure_remove_device
+EXPORT_SYMBOL_GPL drivers/misc/enclosure 0xab45ab55	enclosure_register
+EXPORT_SYMBOL_GPL drivers/misc/enclosure 0xc46f2f3e	enclosure_component_register
+EXPORT_SYMBOL_GPL drivers/misc/enclosure 0xc57f7525	enclosure_for_each_device
+EXPORT_SYMBOL_GPL drivers/misc/enclosure 0xd5b534cf	enclosure_unregister
+EXPORT_SYMBOL_GPL drivers/misc/enclosure 0xf9fec036	enclosure_find
 EXPORT_SYMBOL_GPL drivers/misc/lis3lv02d/lis3lv02d 0x04843267	lis3lv02d_init_device
 EXPORT_SYMBOL_GPL drivers/misc/lis3lv02d/lis3lv02d 0x653fb63e	lis3lv02d_init_dt
 EXPORT_SYMBOL_GPL drivers/misc/lis3lv02d/lis3lv02d 0x7c58628e	lis3lv02d_poweroff
