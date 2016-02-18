@@ -1,18 +1,136 @@
-linux-lts-xenial (4.4.0-4.19~14.04.2~beta1) trusty; urgency=low
+linux-lts-xenial (4.4.0-6.21~14.04.1~beta1) trusty; urgency=low
 
   [ Tim Gardner ]
 
   * Release Tracking Bug
-    - LP: #1543186
+    - LP: #1546283
 
-  * UBUNTU: Disable libbpf on arches without the __NR_bpf syscall
-  * update-from-xenial-master must remember to disable libbpf for
-    certain architectures.
-  * UBUNTU: [Config] Enable zfs for powerpc64-smp
+  *  Naples/Zen, NTB Driver  (LP: #1542071)
+    - [Config] CONFIG_NTB_AMD=m
+    - NTB: Add support for AMD PCI-Express Non-Transparent Bridge
 
- -- Tim Gardner <tim.gardner@canonical.com>  Mon, 08 Feb 2016 08:16:21 -0700
+  * [Hyper-V] kernel panic occurs when installing Ubuntu Server x32 (LP: #1495983)
+    - SAUCE: storvsc: use small sg_tablesize on x86
 
-linux-lts-xenial (4.4.0-4.19~14.04.1~beta1) trusty; urgency=low
+  * Enable arm64 emulation of removed ARMv7 instructions (LP: #1545542)
+    - [Config] CONFIG_ARMV8_DEPRECATED=y
+
+  * Surelock-GA2:kernel panic/ exception @ pcibios_set_pcie_reset_state+0x118/0x280 + cxl_reset+0x5c/0xc0 (LP: #1545037)
+    - powerpc/eeh: Fix stale cached primary bus
+
+  * Miscellaneous Ubuntu changes
+    - SAUCE: fs: Add user namesapace member to struct super_block
+    - SAUCE: fs: Limit file caps to the user namespace of the super block
+    - SAUCE: Smack: Add support for unprivileged mounts from user namespaces
+    - SAUCE: block_dev: Support checking inode permissions in lookup_bdev()
+    - SAUCE: block_dev: Check permissions towards block device inode when mounting
+    - SAUCE: fs: Treat foreign mounts as nosuid
+    - SAUCE: selinux: Add support for unprivileged mounts from user namespaces
+    - SAUCE: userns: Replace in_userns with current_in_userns
+    - SAUCE: Smack: Handle labels consistently in untrusted mounts
+    - SAUCE: fs: Check for invalid i_uid in may_follow_link()
+    - SAUCE: cred: Reject inodes with invalid ids in set_create_file_as()
+    - SAUCE: fs: Refuse uid/gid changes which don't map into s_user_ns
+    - SAUCE: fs: Update posix_acl support to handle user namespace mounts
+    - SAUCE: fs: Ensure the mounter of a filesystem is privileged towards its inodes
+    - SAUCE: fs: Don't remove suid for CAP_FSETID in s_user_ns
+    - SAUCE: fs: Allow superblock owner to access do_remount_sb()
+    - SAUCE: capabilities: Allow privileged user in s_user_ns to set security.* xattrs
+    - SAUCE: fuse: Add support for pid namespaces
+    - SAUCE: fuse: Support fuse filesystems outside of init_user_ns
+    - SAUCE: fuse: Restrict allow_other to the superblock's namespace or a descendant
+    - SAUCE: fuse: Allow user namespace mounts
+    - SAUCE: mtd: Check permissions towards mtd block device inode when mounting
+    - SAUCE: fs: Update i_[ug]id_(read|write) to translate relative to s_user_ns
+    - SAUCE: quota: Convert ids relative to s_user_ns
+    - SAUCE: evm: Translate user/group ids relative to s_user_ns when computing HMAC
+    - SAUCE: fs: Allow CAP_SYS_ADMIN in s_user_ns to freeze and thaw filesystems
+    - SAUCE: quota: Treat superblock owner as privilged
+    - SAUCE: ima/evm: Allow root in s_user_ns to set xattrs
+    - SAUCE: block_dev: Forbid unprivileged mounting when device is opened for writing
+    - SAUCE: ext4: Add support for unprivileged mounts from user namespaces
+    - SAUCE: ext4: Add module parameter to enable user namespace mounts
+    - SAUCE: fuse: Add module parameter to enable user namespace mounts
+
+  * Miscellaneous upstream changes
+    - megaraid: Fix possible NULL pointer deference in mraid_mm_ioctl
+    - libahci: Implement the capability to override the generic ahci interrupt handler.
+    - ata: Remove the AHCI_HFLAG_EDGE_IRQ support from libahci.
+    - ahci_xgene: Implement the workaround to fix the missing of the edge interrupt for the HOST_IRQ_STAT.
+
+ -- Tim Gardner <tim.gardner@canonical.com>  Fri, 12 Feb 2016 09:49:05 -0700
+
+linux (4.4.0-5.20) xenial; urgency=low
+
+  [ Tim Gardner ]
+
+  * Release Tracking Bug
+    - LP: #1544637
+
+  * s390/cio: update measurement characteristics (LP: #1541534)
+    - s390/cio: fix measurement characteristics memleak
+    - s390/cio: ensure consistent measurement state
+    - s390/cio: update measurement characteristics
+
+  * qeth: layer2 reports unknown state to network tools. (LP: #1541907)
+    - qeth: initialize net_device with carrier off
+
+  * Collateral damage due to kernel configuration change enabling CONFIG_ZONE_DEVICE (Kernel 4.4 amd64) (LP: #1534647)
+    - [Config] CONFIG_ZONE_DMA=y
+    - mm: CONFIG_NR_ZONES_EXTENDED
+
+  * perf enahancements for ppc64 (LP: #1521678)
+    - perf kvm/{x86,s390}: Remove dependency on uapi/kvm_perf.h
+    - perf kvm/{x86,s390}: Remove const from kvm_events_tp
+    - perf kvm/powerpc: Port perf kvm stat to powerpc
+    - perf kvm/powerpc: Add support for HCALL reasons
+
+  * Soft lockup with "block nbdX: Attempted send on closed socket" spam (LP: #1505564)
+    - SAUCE: nbd: ratelimit error msgs after socket close
+
+  * sleep from invalid context in aa_move_mount (LP: #1539349)
+    - SAUCE: apparmor: fix sleep from invalid context
+
+  * Introducing ConnectX-4 Ethernet SRIOV (LP: #1540435)
+    - net/mlx5_core: Modify enable/disable hca functions
+    - net/mlx5_core: Add base sriov support
+    - net/mlx5: Add HW capabilities and structs for SR-IOV E-Switch
+    - net/mlx5: Update access functions to Query/Modify vport MAC address
+    - net/mlx5: Introduce access functions to modify/query vport mac lists
+    - net/mlx5: Introduce access functions to modify/query vport state
+    - net/mlx5: Introduce access functions to modify/query vport promisc mode
+    - net/mlx5: Introduce access functions to modify/query vport vlans
+    - net/mlx5e: Write UC/MC list and promisc mode into vport context
+    - net/mlx5e: Write vlan list into vport context
+    - net/mlx5: Introducing E-Switch and l2 table
+    - net/mlx5: E-Switch, Introduce FDB hardware capabilities
+    - net/mlx5: E-Switch, Add SR-IOV (FDB) support
+    - net/mlx5: E-Switch, Introduce Vport administration functions
+    - net/mlx5: E-Switch, Introduce HCA cap and E-Switch vport context
+    - net/mlx5: E-Switch, Introduce set vport vlan (VST mode)
+    - net/mlx5: E-Switch, Introduce get vf statistics
+    - net/mlx5e: Add support for SR-IOV ndos
+    - net/mlx5: Fix query E-Switch capabilities
+    - net/mlx5e: Assign random MAC address if needed
+
+  * make wacom_w8001 work well in xenial (LP: #1542771)
+    - Input: wacom_w8001 - use __set_bit for evbits
+    - Input: wacom_w8001 - set BTN_TOOL_DOUBLETAP if we have 2fg support
+    - Input: wacom_w8001 - handle touch error case correctly
+    - Input: wacom_w8001 - split pen and touch initialization up
+    - Input: wacom_w8001 - split the touch and pen devices into two devices
+    - Input: wacom_w8001 - drop use of ABS_MT_TOOL_TYPE
+
+  * virtualbox: update to 5.0.14-dfsg-2 (LP: #1542728)
+    - ubuntu: vbox -- update to 5.0.14-dfsg-2
+
+  * Miscellaneous Ubuntu changes
+    - [Packaging] git-ubuntu-log -- fix empty section formatting
+    - SAUCE: (noup) Update spl to 0.6.5.4-0ubuntu2, zfs to 0.6.5.4-0ubuntu2
+
+ -- Andy Whitcroft <apw@canonical.com>  Sat, 06 Feb 2016 22:32:10 +0000
+
+linux (4.4.0-4.19) xenial; urgency=low
 
   * update ZFS and SPL to 0.6.5.4 (LP: #1542296)
     - [Config] update spl/zfs version
