@@ -1,9 +1,33 @@
-linux-lts-wily (4.2.0-29.34~14.04.1) trusty; urgency=low
+linux-lts-wily (4.2.0-30.35~14.04.1) trusty; urgency=low
+
+  [ Seth Forshee ]
+
+  * SAUCE: cred: Add clone_cred() interface
+    - LP: #1531747, #1534961, #1535150
+    - CVE-2016-1575 CVE-2016-1576
+  * SAUCE: overlayfs: Use mounter's credentials instead of selectively
+    raising caps
+    - LP: #1531747, #1534961, #1535150
+    - CVE-2016-1575 CVE-2016-1576
+  * SAUCE: overlayfs: Skip permission checking for trusted.overlayfs.*
+    xattrs
+    - LP: #1531747, #1534961, #1535150
+    - CVE-2016-1575 CVE-2016-1576
+  * SAUCE: overlayfs: Be more careful about copying up sxid files
+    - LP: #1534961, #1535150
+    - CVE-2016-1575 CVE-2016-1576
+  * SAUCE: overlayfs: Propogate nosuid from lower and upper mounts
+    - LP: #1534961, #1535150
+    - CVE-2016-1575 CVE-2016-1576
+
+ -- Luis Henriques <luis.henriques@canonical.com>  Fri, 19 Feb 2016 11:22:38 +0000
+
+linux (4.2.0-29.34) wily; urgency=low
 
   [ Luis Henriques ]
 
   * Release Tracking Bug
-    - LP: #1543520
+    - LP: #1543167
 
   [ Brad Figg ]
 
@@ -15,7 +39,7 @@ linux-lts-wily (4.2.0-29.34~14.04.1) trusty; urgency=low
   * Revert "af_unix: Revert 'lock_interruptible' in stream receive code"
     - LP: #1540731
 
- -- Luis Henriques <luis.henriques@canonical.com>  Tue, 09 Feb 2016 10:52:10 +0000
+ -- Luis Henriques <luis.henriques@canonical.com>  Mon, 08 Feb 2016 15:22:46 +0000
 
 linux (4.2.0-28.33) wily; urgency=low
 
