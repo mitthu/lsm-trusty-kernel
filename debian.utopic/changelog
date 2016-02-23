@@ -1,3 +1,409 @@
+linux-lts-utopic (3.16.0-63.83~14.04.1) trusty; urgency=low
+
+  [ Brad Figg ]
+
+  * Release Tracking Bug
+    - LP: #1548934
+
+  [ Dan Streetman ]
+
+  * SAUCE: nbd: ratelimit error msgs after socket close
+    - LP: #1505564
+
+  [ Upstream Kernel Changes ]
+
+  * Revert "workqueue: make sure delayed work run in local cpu"
+    - LP: #1546320
+  * drm/nouveau/nv46: Change mc subdev oclass from nv44 to nv4c
+    - LP: #1543126
+  * veth: don’t modify ip_summed; doing so treats packets with bad
+    checksums as good.
+    - LP: #1543126
+  * sctp: sctp should release assoc when sctp_make_abort_user return NULL
+    in sctp_close
+    - LP: #1543126
+  * connector: bump skb->users before callback invocation
+    - LP: #1543126
+  * unix: properly account for FDs passed over unix sockets
+    - LP: #1543126
+  * bridge: Only call /sbin/bridge-stp for the initial network namespace
+    - LP: #1543126
+  * vxlan: fix test which detect duplicate vxlan iface
+    - LP: #1543126
+  * net: sctp: prevent writes to cookie_hmac_alg from accessing invalid
+    memory
+    - LP: #1543126
+  * tcp_yeah: don't set ssthresh below 2
+    - LP: #1543126
+  * bonding: Prevent IPv6 link local address on enslaved devices
+    - LP: #1543126
+  * phonet: properly unshare skbs in phonet_rcv()
+    - LP: #1543126
+  * net: bpf: reject invalid shifts
+    - LP: #1543126
+  * ipv6: update skb->csum when CE mark is propagated
+    - LP: #1543126
+  * team: Replace rcu_read_lock with a mutex in team_vlan_rx_kill_vid
+    - LP: #1543126
+  * xen-netback: respect user provided max_queues
+    - LP: #1543126
+  * xen-netfront: respect user provided max_queues
+    - LP: #1543126
+  * xen-netfront: print correct number of queues
+    - LP: #1543126
+  * xen-netfront: update num_queues to real created
+    - LP: #1543126
+  * sctp: Prevent soft lockup when sctp_accept() is called during a timeout
+    event
+    - LP: #1543126
+  * sctp: convert sack_needed and sack_generation to bits
+    - LP: #1543126
+  * sctp: start t5 timer only when peer rwnd is 0 and local state is
+    SHUTDOWN_PENDING
+    - LP: #1543126
+  * nfs: Fix unused variable error
+    - LP: #1543126
+  * [media] gspca: ov534/topro: prevent a division by 0
+    - LP: #1543126
+  * [media] media: dvb-core: Don't force CAN_INVERSION_AUTO in oneshot mode
+    - LP: #1543126
+  * tools lib traceevent: Fix output of %llu for 64 bit values read on 32
+    bit machines
+    - LP: #1543126
+  * KVM: x86: expose MSR_TSC_AUX to userspace
+    - LP: #1543126
+  * KVM: x86: correctly print #AC in traces
+    - LP: #1543126
+  * drm/radeon: call hpd_irq_event on resume
+    - LP: #1543126
+  * xhci: refuse loading if nousb is used
+    - LP: #1543126
+  * arm64: Clear out any singlestep state on a ptrace detach operation
+    - LP: #1543126
+  * time: Avoid signed overflow in timekeeping_get_ns()
+    - LP: #1543126
+  * Bluetooth: Add support of Toshiba Broadcom based devices
+    - LP: #1522949, #1543126
+  * rtlwifi: fix memory leak for USB device
+    - LP: #1543126
+  * wlcore/wl12xx: spi: fix oops on firmware load
+    - LP: #1543126
+  * EDAC: Fix the leak of mci->bus->name when bus_register fails
+    - LP: #1543126
+  * EDAC, mc_sysfs: Fix freeing bus' name
+    - LP: #1543126
+  * EDAC: Robustify workqueues destruction
+    - LP: #1543126
+  * arm64: mm: ensure that the zero page is visible to the page table
+    walker
+    - LP: #1543126
+  * powerpc: Make value-returning atomics fully ordered
+    - LP: #1543126
+  * powerpc: Make {cmp}xchg* and their atomic_ versions fully ordered
+    - LP: #1543126
+  * dm space map metadata: remove unused variable in brb_pop()
+    - LP: #1543126
+  * dm thin: fix race condition when destroying thin pool workqueue
+    - LP: #1543126
+  * futex: Drop refcount if requeue_pi() acquired the rtmutex
+    - LP: #1543126
+  * arm64: mdscr_el1: avoid exposing DCC to userspace
+    - LP: #1543126
+  * arm64: kernel: enforce pmuserenr_el0 initialization and restore
+    - LP: #1543126
+  * drm/radeon: clean up fujitsu quirks
+    - LP: #1543126
+  * mmc: sdio: Fix invalid vdd in voltage switch power cycle
+    - LP: #1543126
+  * mmc: sdhci: Fix sdhci_runtime_pm_bus_on/off()
+    - LP: #1543126
+  * udf: limit the maximum number of indirect extents in a row
+    - LP: #1543126
+  * nfs: Fix race in __update_open_stateid()
+    - LP: #1543126
+  * USB: cp210x: add ID for ELV Marble Sound Board 1
+    - LP: #1543126
+  * posix-clock: Fix return code on the poll method's error path
+    - LP: #1543126
+  * rtlwifi: rtl8192de: Fix incorrect module parameter descriptions
+    - LP: #1543126
+  * rtlwifi: rtl8192se: Fix module parameter initialization
+    - LP: #1543126
+  * rtlwifi: rtl8192ce: Fix handling of module parameters
+    - LP: #1543126
+  * rtlwifi: rtl8192cu: Add missing parameter setup
+    - LP: #1543126
+  * NFSv4: Don't perform cached access checks before we've OPENed the file
+    - LP: #1543126
+  * NFS: Fix attribute cache revalidation
+    - LP: #1543126
+  * bcache: fix a livelock when we cause a huge number of cache misses
+    - LP: #1543126
+  * bcache: Add a cond_resched() call to gc
+    - LP: #1543126
+  * bcache: clear BCACHE_DEV_UNLINK_DONE flag when attaching a backing
+    device
+    - LP: #1543126
+  * bcache: fix a leak in bch_cached_dev_run()
+    - LP: #1543126
+  * bcache: unregister reboot notifier if bcache fails to unregister device
+    - LP: #1543126
+  * bcache: allows use of register in udev to avoid "device_busy" error.
+    - LP: #1543126
+  * bcache: Change refill_dirty() to always scan entire disk if necessary
+    - LP: #1543126
+  * wlcore/wl12xx: spi: fix NULL pointer dereference (Oops)
+    - LP: #1543126
+  * Input: i8042 - add Fujitsu Lifebook U745 to the nomux list
+    - LP: #1543126
+  * libxfs: pack the agfl header structure so XFS_AGFL_SIZE is correct
+    - LP: #1543126
+  * x86/xen: don't reset vcpu_info on a cancelled suspend
+    - LP: #1543126
+  * udf: Prevent buffer overrun with multi-byte characters
+    - LP: #1543126
+  * udf: Check output buffer length when converting name to CS0
+    - LP: #1543126
+  * PCI: Fix minimum allocation address overwrite
+    - LP: #1543126
+  * PCI: host: Mark PCIe/PCI (MSI) IRQ cascade handlers as IRQF_NO_THREAD
+    - LP: #1543126
+  * iwlwifi: update and fix 7265 series PCI IDs
+    - LP: #1543126
+  * locks: fix unlock when fcntl_setlk races with a close
+    - LP: #1543126
+  * ASoC: compress: Fix compress device direction check
+    - LP: #1543126
+  * dm snapshot: fix hung bios when copy error occurs
+    - LP: #1543126
+  * uml: fix hostfs mknod()
+    - LP: #1543126
+  * uml: flush stdout before forking
+    - LP: #1543126
+  * drm/nouveau/kms: take mode_config mutex in connector hotplug path
+    - LP: #1543126
+  * x86/mm: Add barriers and document switch_mm()-vs-flush synchronization
+    - LP: #1543126
+  * x86/boot: Double BOOT_HEAP_SIZE to 64KB
+    - LP: #1543126
+  * s390: fix normalization bug in exception table sorting
+    - LP: #1543126
+  * xfs: inode recovery readahead can race with inode buffer creation
+    - LP: #1543126
+  * xfs: handle dquot buffer readahead in log recovery correctly
+    - LP: #1543126
+  * clocksource/drivers/vt8500: Increase the minimum delta
+    - LP: #1543126
+  * Input: elantech - mark protocols v2 and v3 as semi-mt
+    - LP: #1543126
+  * x86/reboot/quirks: Add iMac10,1 to pci_reboot_dmi_table[]
+    - LP: #1543126
+  * ALSA: seq: Fix missing NULL check at remove_events ioctl
+    - LP: #1543126
+  * ALSA: seq: Fix race at timer setup and close
+    - LP: #1543126
+  * virtio_balloon: fix race by fill and leak
+    - LP: #1543126
+  * virtio_balloon: fix race between migration and ballooning
+    - LP: #1543126
+  * parisc: Fix __ARCH_SI_PREAMBLE_SIZE
+    - LP: #1543126
+  * scripts/recordmcount.pl: support data in text section on powerpc
+    - LP: #1543126
+  * powerpc/module: Handle R_PPC64_ENTRY relocations
+    - LP: #1543126
+  * x86/mm: Improve switch_mm() barrier comments
+    - LP: #1543126
+  * ALSA: timer: Fix double unlink of active_list
+    - LP: #1543126
+  * dmaengine: dw: fix cyclic transfer setup
+    - LP: #1543126
+  * dmaengine: dw: fix cyclic transfer callbacks
+    - LP: #1543126
+  * mmc: mmci: fix an ages old detection error
+    - LP: #1543126
+  * ALSA: timer: Fix race among timer ioctls
+    - LP: #1543126
+  * sparc64: fix incorrect sign extension in sys_sparc64_personality
+    - LP: #1543126
+  * cifs: fix race between call_async() and reconnect()
+    - LP: #1543126
+  * cifs_dbg() outputs an uninitialized buffer in cifs_readdir()
+    - LP: #1543126
+  * m32r: fix m32104ut_defconfig build fail
+    - LP: #1543126
+  * dma-debug: switch check from _text to _stext
+    - LP: #1543126
+  * scripts/bloat-o-meter: fix python3 syntax error
+    - LP: #1543126
+  * ocfs2/dlm: ignore cleaning the migration mle that is inuse
+    - LP: #1543126
+  * ALSA: timer: Harden slave timer list handling
+    - LP: #1543126
+  * zram/zcomp: use GFP_NOIO to allocate streams
+    - LP: #1543126
+  * zram: try vmalloc() after kmalloc()
+    - LP: #1543126
+  * mm: soft-offline: check return value in second __get_any_page() call
+    - LP: #1543126
+  * memcg: only free spare array when readers are done
+    - LP: #1543126
+  * panic: release stale console lock to always get the logbuf printed out
+    - LP: #1543126
+  * kernel/panic.c: turn off locks debug before releasing console lock
+    - LP: #1543126
+  * printk: do cond_resched() between lines while outputting to consoles
+    - LP: #1543126
+  * ALSA: hda - Fix bass pin fixup for ASUS N550JX
+    - LP: #1543126
+  * crypto: af_alg - Disallow bind/setkey/... after accept(2)
+    - LP: #1543126
+  * crypto: af_alg - Fix socket double-free when accept fails
+    - LP: #1543126
+  * crypto: af_alg - Add nokey compatibility path
+    - LP: #1543126
+  * crypto: hash - Add crypto_ahash_has_setkey
+    - LP: #1543126
+  * crypto: af_alg - Allow af_af_alg_release_parent to be called on nokey
+    path
+    - LP: #1543126
+  * crypto: af_alg - Forbid bind(2) when nokey child sockets are present
+    - LP: #1543126
+  * ALSA: hrtimer: Fix stall by hrtimer_cancel()
+    - LP: #1543126
+  * ALSA: pcm: Fix snd_pcm_hw_params struct copy in compat mode
+    - LP: #1543126
+  * ALSA: seq: Fix snd_seq_call_port_info_ioctl in compat mode
+    - LP: #1543126
+  * ALSA: control: Avoid kernel warnings from tlv ioctl with numid 0
+    - LP: #1543126
+  * crypto: algif_skcipher - Load TX SG list after waiting
+    - LP: #1543126
+  * crypto: crc32c - Fix crc32c soft dependency
+    - LP: #1543126
+  * IB/qib: fix mcast detach when qp not attached
+    - LP: #1543126
+  * IB/qib: Support creating qps with GFP_NOIO flag
+    - LP: #1543126
+  * ideapad-laptop: Add Lenovo ideapad Y700-17ISK to no_hw_rfkill dmi list
+    - LP: #1543126
+  * iscsi-target: Fix potential dead-lock during node acl delete
+    - LP: #1543126
+  * ALSA: timer: Handle disconnection more safely
+    - LP: #1543126
+  * ocfs2: NFS hangs in __ocfs2_cluster_lock due to race with
+    ocfs2_unblock_lock
+    - LP: #1543126
+  * MAINTAINERS: return arch/sh to maintained state, with new maintainers
+    - LP: #1543126
+  * ideapad-laptop: Add Lenovo Yoga 700 to no_hw_rfkill dmi list
+    - LP: #1543126
+  * drm/i915: avoid deadlock on failure paths in
+    __intel_framebuffer_create()
+    - LP: #1543126
+  * drm/i915: On fb alloc failure, unref gem object where it gets refed
+    - LP: #1543126
+  * [media] rc: allow rc modules to be loaded if rc-main is not a module
+    - LP: #1543126
+  * SCSI: initio: remove duplicate module device table
+    - LP: #1543126
+  * clk: xgene: Fix divider with non-zero shift value
+    - LP: #1543126
+  * clk: st: avoid uninitialized variable use
+    - LP: #1543126
+  * ath9k_htc: check for underflow in ath9k_htc_rx_msg()
+    - LP: #1543126
+  * mtd: nand: fix ONFI parameter page layout
+    - LP: #1543126
+  * mtd: nand: denali: add missing nand_release() call in denali_remove()
+    - LP: #1543126
+  * mtd: nand: remove unused and buggy get_platform_nandchip() helper
+    function
+    - LP: #1543126
+  * ALSA: fm801: propagate TUNER_ONLY bit when autodetected
+    - LP: #1543126
+  * pinctrl: bcm2835: Fix memory leak in error path
+    - LP: #1543126
+  * x86/LDT: Print the real LDT base address
+    - LP: #1543126
+  * sysrq: Fix warning in sysrq generated crash.
+    - LP: #1543126
+  * kconfig: return 'false' instead of 'no' in bool function
+    - LP: #1543126
+  * perf/x86: Fix filter_events() bug with event mappings
+    - LP: #1543126
+  * power: test_power: correctly handle empty writes
+    - LP: #1543126
+  * firmware: actually return NULL on failed request_firmware_nowait()
+    - LP: #1543126
+  * target: Fix a memory leak in target_dev_lba_map_store()
+    - LP: #1543126
+  * um: Fix build error and kconfig for i386
+    - LP: #1543126
+  * ipv6: tcp: add rcu locking in tcp_v6_send_synack()
+    - LP: #1543126
+  * mmc: sd: limit SD card power limit according to cards capabilities
+    - LP: #1543126
+  * Btrfs: clean up an error code in btrfs_init_space_info()
+    - LP: #1543126
+  * bridge: fix lockdep addr_list_lock false positive splat
+    - LP: #1543126
+  * batman-adv: Avoid recursive call_rcu for batadv_bla_claim
+    - LP: #1543126
+  * batman-adv: Avoid recursive call_rcu for batadv_nc_node
+    - LP: #1543126
+  * batman-adv: fix potential TT client + orig-node memory leak
+    - LP: #1543126
+  * batman-adv: Drop immediate batadv_orig_ifinfo free function
+    - LP: #1543126
+  * batman-adv: Drop immediate batadv_neigh_node free function
+    - LP: #1543126
+  * batman-adv: Drop immediate neigh_ifinfo free function
+    - LP: #1543126
+  * batman-adv: Drop immediate batadv_hard_iface free function
+    - LP: #1543126
+  * batman-adv: Drop immediate orig_node free function
+    - LP: #1543126
+  * printk: help pr_debug and pr_devel to optimize out arguments
+    - LP: #1543126
+  * mmc: debugfs: correct wrong voltage value
+    - LP: #1543126
+  * IB/mlx4: Initialize hop_limit when creating address handle
+    - LP: #1543126
+  * net/mlx4: Remove unused macro
+    - LP: #1543126
+  * arm64: fix building without CONFIG_UID16
+    - LP: #1543126
+  * mn10300: Select CONFIG_HAVE_UID16 to fix build failure
+    - LP: #1543126
+  * openrisc: fix CONFIG_UID16 setting
+    - LP: #1543126
+  * cifs: Ratelimit kernel log messages
+    - LP: #1543126
+  * HID: usbhid: fix recursive deadlock
+    - LP: #1543126
+  * Linux 3.16.7-ckt24
+    - LP: #1543126
+  * qeth: initialize net_device with carrier off
+    - LP: #1541907
+  * netfilter: bridge: don't use nf_bridge_info data to store mac header
+    - LP: #1463911
+  * netfilter: bridge: restore vlan tag when refragmenting
+    - LP: #1463911
+  * netfilter: bridge: forward IPv6 fragmented packets
+    - LP: #1463911
+  * netfilter: bridge: Use __in6_dev_get rather than in6_dev_get in
+    br_validate_ipv6
+    - LP: #1463911
+  * ALSA: usb-audio: avoid freeing umidi object twice
+    - LP: #1546177
+    - CVE-2016-2384
+  * vmstat: explicitly schedule per-cpu work on the CPU we need it to run
+    on
+    - LP: #1546320
+
+ -- Brad Figg <brad.figg@canonical.com>  Tue, 23 Feb 2016 10:16:26 -0800
+
 linux-lts-utopic (3.16.0-62.83~14.04.1) trusty; urgency=high
 
   [ Kamal Mostafa ]
