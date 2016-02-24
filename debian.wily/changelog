@@ -1,9 +1,9 @@
-linux-lts-wily (4.2.0-31.36~14.04.1) trusty; urgency=low
+linux-lts-wily (4.2.0-31.36~14.04.2) trusty; urgency=low
 
   [ Brad Figg ]
 
   * Release Tracking Bug
-    - LP: #1548579
+    - LP: #1549008
 
   [ Andy Whitcroft ]
 
