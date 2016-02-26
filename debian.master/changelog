@@ -1,3 +1,16 @@
+linux (4.2.0-32.37) wily; urgency=low
+
+  [ Kamal Mostafa ]
+
+  * Release Tracking Bug
+    - LP: #1550045
+
+  [ Kamal Mostafa ]
+
+  * Merged back Ubuntu-4.2.0-31.36
+
+ -- Kamal Mostafa <kamal@canonical.com>  Thu, 25 Feb 2016 17:47:15 -0800
+
 linux (4.2.0-31.36) wily; urgency=low
 
   [ Brad Figg ]
