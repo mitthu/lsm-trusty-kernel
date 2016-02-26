@@ -1,4 +1,18 @@
-linux-lts-vivid (3.19.0-51.57~14.04.1) trusty; urgency=low
+linux-lts-vivid (3.19.0-51.58~14.04.1) trusty; urgency=high
+
+  [ Kamal Mostafa ]
+
+  * Release Tracking Bug
+    - LP: #1550511
+
+  [ Upstream Kernel Changes ]
+
+  * drm/vmwgfx: Fix an fb unlocking bug
+    - LP: #1548587
+
+ -- Kamal Mostafa <kamal@canonical.com>  Fri, 26 Feb 2016 12:22:50 -0800
+
+linux (3.19.0-51.57) vivid; urgency=low
 
   [ Seth Forshee ]
 
@@ -20,7 +34,7 @@ linux-lts-vivid (3.19.0-51.57~14.04.1) trusty; urgency=low
     - LP: #1534961, #1535150
     - CVE-2016-1575 CVE-2016-1576
 
- -- Luis Henriques <luis.henriques@canonical.com>  Fri, 19 Feb 2016 12:07:00 +0000
+ -- Luis Henriques <luis.henriques@canonical.com>  Fri, 19 Feb 2016 11:12:52 +0000
 
 linux (3.19.0-50.56) vivid; urgency=low
 
