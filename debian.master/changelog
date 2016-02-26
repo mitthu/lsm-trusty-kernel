@@ -1,3 +1,16 @@
+linux (3.19.0-53.59) vivid; urgency=low
+
+  [ Kamal Mostafa ]
+
+  * Release Tracking Bug
+    - LP: #1550576
+
+  [ Kamal Mostafa ]
+
+  * Merged back 3.19.0-52.58
+
+ -- Kamal Mostafa <kamal@canonical.com>  Fri, 26 Feb 2016 15:40:04 -0800
+
 linux (3.19.0-52.58) vivid; urgency=low
 
   [ Brad Figg ]
