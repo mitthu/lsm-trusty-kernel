@@ -1,4 +1,18 @@
-linux-lts-wily (4.2.0-30.35~14.04.1) trusty; urgency=low
+linux-lts-wily (4.2.0-30.36~14.04.1) trusty; urgency=high
+
+  [ Kamal Mostafa ]
+
+  * Release Tracking Bug
+    - LP: #1550410
+
+  [ Upstream Kernel Changes ]
+
+  * drm/vmwgfx: Fix an fb unlocking bug
+    - LP: #1548587
+
+ -- Kamal Mostafa <kamal@canonical.com>  Thu, 25 Feb 2016 15:02:05 -0800
+
+linux (4.2.0-30.35) wily; urgency=low
 
   [ Seth Forshee ]
 
@@ -20,7 +34,7 @@ linux-lts-wily (4.2.0-30.35~14.04.1) trusty; urgency=low
     - LP: #1534961, #1535150
     - CVE-2016-1575 CVE-2016-1576
 
- -- Luis Henriques <luis.henriques@canonical.com>  Fri, 19 Feb 2016 11:22:38 +0000
+ -- Luis Henriques <luis.henriques@canonical.com>  Fri, 19 Feb 2016 10:25:02 +0000
 
 linux (4.2.0-29.34) wily; urgency=low
 
