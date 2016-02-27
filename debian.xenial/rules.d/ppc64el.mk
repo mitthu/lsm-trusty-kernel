@@ -17,4 +17,3 @@ do_tools_perf	  = true
 
 #do_flavour_image_package = false
 do_zfs		= true
-no_libbpf	= NO_LIBBPF=1
