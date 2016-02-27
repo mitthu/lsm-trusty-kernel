@@ -1,4 +1,17 @@
-linux-lts-vivid (3.19.0-52.58~14.04.1) trusty; urgency=low
+linux-lts-vivid (3.19.0-53.59~14.04.1) trusty; urgency=low
+
+  [ Kamal Mostafa ]
+
+  * Release Tracking Bug
+    - LP: #1550591
+
+  [ Kamal Mostafa ]
+
+  * Merged back 3.19.0-52.58
+
+ -- Kamal Mostafa <kamal@canonical.com>  Fri, 26 Feb 2016 15:40:04 -0800
+
+linux (3.19.0-52.58) vivid; urgency=low
 
   [ Brad Figg ]
 
@@ -557,6 +570,20 @@ linux-lts-vivid (3.19.0-52.58~14.04.1) trusty; urgency=low
     - LP: #1546320
 
  -- Brad Figg <brad.figg@canonical.com>  Mon, 22 Feb 2016 15:18:15 -0800
+
+linux (3.19.0-51.58) vivid; urgency=high
+
+  [ Kamal Mostafa ]
+
+  * Release Tracking Bug
+    - LP: #1550511
+
+  [ Upstream Kernel Changes ]
+
+  * drm/vmwgfx: Fix an fb unlocking bug
+    - LP: #1548587
+
+ -- Kamal Mostafa <kamal@canonical.com>  Fri, 26 Feb 2016 12:22:50 -0800
 
 linux (3.19.0-51.57) vivid; urgency=low
 
