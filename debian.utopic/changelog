@@ -1,3 +1,16 @@
+linux-lts-utopic (3.16.0-64.84~14.04.1) trusty; urgency=low
+
+  [ Kamal Mostafa ]
+
+  * Release Tracking Bug
+    - LP: #1550605
+
+  [ Kamal Mostafa ]
+
+  * Merged back 3.16.0-63.83~14.04.1
+
+ -- Kamal Mostafa <kamal@canonical.com>  Fri, 26 Feb 2016 17:52:02 -0800
+
 linux-lts-utopic (3.16.0-63.83~14.04.1) trusty; urgency=low
 
   [ Brad Figg ]
