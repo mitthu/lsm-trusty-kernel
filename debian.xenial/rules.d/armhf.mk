@@ -15,4 +15,3 @@ do_tools_cpupower = true
 do_tools_perf	= true
 
 do_dtbs		= true
-no_libbpf	= NO_LIBBPF=1
