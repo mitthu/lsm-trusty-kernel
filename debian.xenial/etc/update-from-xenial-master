@@ -114,6 +114,8 @@ sed -i 's/CONFIG_CC_STACKPROTECTOR_STRONG/CONFIG_CC_STACKPROTECTOR_REGULAR/' ${D
 # Update package and DTB settings from master.
 #
 rsync -av ${DEBIAN_SOURCE}/rules.d/*.mk ${DEBIAN_TARGET}/rules.d/
+# Disable ZFS as we have no tooling in trusty to mount these.
+sed -i -e 's/^do_zfs[ \t]*=[ \t]true.*$/do_zfs = false/' debian.xenial/rules.d/*.mk
 
 #
 # Update modprobe.d from master
