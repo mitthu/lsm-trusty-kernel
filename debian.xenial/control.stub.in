@@ -71,7 +71,7 @@ Description: Header files related to Linux kernel version PKGVER
 # version PGKVER.
 
 Package: SRCPKGNAME-tools-PKGVER-ABINUM
-Architecture: i386 amd64 armhf arm64 powerpc ppc64el
+Architecture: i386 amd64 armhf arm64 powerpc ppc64el s390x
 Section: devel
 Priority: optional
 Depends: ${misc:Depends}, ${shlibs:Depends}, linux-tools-common
