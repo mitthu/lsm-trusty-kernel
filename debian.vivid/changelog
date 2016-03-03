@@ -1,9 +1,23 @@
-linux-lts-vivid (3.19.0-53.59~14.04.1) trusty; urgency=low
+linux-lts-vivid (3.19.0-54.60~14.04.1) trusty; urgency=low
+
+  [ Luis Henriques ]
+
+  * Release Tracking Bug
+    - LP: #1552515
+
+  [ Upstream Kernel Changes ]
+
+  * Revert "firmware: dmi_scan: Fix UUID endianness for SMBIOS >= 2.6"
+    - LP: #1551419
+
+ -- Luis Henriques <luis.henriques@canonical.com>  Thu, 03 Mar 2016 10:19:26 +0000
+
+linux (3.19.0-53.59) vivid; urgency=low
 
   [ Kamal Mostafa ]
 
   * Release Tracking Bug
-    - LP: #1550591
+    - LP: #1550576
 
   [ Kamal Mostafa ]
 
@@ -16,7 +30,7 @@ linux (3.19.0-52.58) vivid; urgency=low
   [ Brad Figg ]
 
   * Release Tracking Bug
-    - LP: #1548785
+    - LP: #1548548
 
   [ Dan Streetman ]
 
