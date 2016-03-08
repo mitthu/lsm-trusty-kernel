@@ -1,9 +1,9 @@
 repo_list=(
-	"http://archive.ubuntu.com/ubuntu/pool/main/l/linux"
-	"http://ports.ubuntu.com/ubuntu-ports/pool/main/l/linux"
-	"http://archive.ubuntu.com/ubuntu/pool/universe/l/linux"
-	"http://ports.ubuntu.com/ubuntu-ports/pool/universe/l/linux"
-	"http://ppa.launchpad.net/canonical-kernel-team/ppa/ubuntu/pool/main/l/linux"
+	"http://archive.ubuntu.com/ubuntu/pool/main/l/linux-lts-xenial"
+	"http://ports.ubuntu.com/ubuntu-ports/pool/main/l/linux-lts-xenial"
+	"http://archive.ubuntu.com/ubuntu/pool/universe/l/linux-lts-xenial"
+	"http://ports.ubuntu.com/ubuntu-ports/pool/universe/l/linux-lts-xenial"
+	"http://ppa.launchpad.net/canonical-kernel-team/ppa/ubuntu/pool/main/l/linux-lts-xenial"
 )
 
 package_prefixes linux-image linux-image-extra
