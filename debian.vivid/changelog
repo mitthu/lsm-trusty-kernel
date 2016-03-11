@@ -1,16 +1,45 @@
-linux-lts-vivid (3.19.0-54.60~14.04.1) trusty; urgency=low
+linux-lts-vivid (3.19.0-56.62~14.04.1) trusty; urgency=low
+
+  [ Brad Figg ]
+
+  * Release Tracking Bug
+    - LP: #1555970
+
+  [ Florian Westphal ]
+
+  * SAUCE: [nf,v2] netfilter: x_tables: don't rely on well-behaving
+    userspace
+    - LP: #1555338
+
+ -- Luis Henriques <luis.henriques@canonical.com>  Fri, 11 Mar 2016 10:19:00 +0000
+
+linux (3.19.0-55.61) vivid; urgency=low
+
+  [ Brad Figg ]
+
+  * Release Tracking Bug
+    - LP: #1554708
+
+  [ Upstream Kernel Changes ]
+
+  * Revert "drm/radeon: call hpd_irq_event on resume"
+    - LP: #1554608
+
+ -- Brad Figg <brad.figg@canonical.com>  Tue, 08 Mar 2016 12:15:57 -0800
+
+linux (3.19.0-54.60) vivid; urgency=low
 
   [ Luis Henriques ]
 
   * Release Tracking Bug
-    - LP: #1552515
+    - LP: #1552337
 
   [ Upstream Kernel Changes ]
 
   * Revert "firmware: dmi_scan: Fix UUID endianness for SMBIOS >= 2.6"
     - LP: #1551419
 
- -- Luis Henriques <luis.henriques@canonical.com>  Thu, 03 Mar 2016 10:19:26 +0000
+ -- Luis Henriques <luis.henriques@canonical.com>  Wed, 02 Mar 2016 16:49:24 +0000
 
 linux (3.19.0-53.59) vivid; urgency=low
 
