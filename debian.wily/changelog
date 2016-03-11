@@ -1,9 +1,42 @@
-linux-lts-wily (4.2.0-32.37~14.04.1) trusty; urgency=low
+linux-lts-wily (4.2.0-34.39~14.04.1) trusty; urgency=low
+
+  [ Brad Figg ]
+
+  * Release Tracking Bug
+    - LP: #1555995
+
+  [ Florian Westphal ]
+
+  * SAUCE: [nf] netfilter: x_tables: check for size overflow
+    - LP: #1555353
+  * SAUCE: [nf,v2] netfilter: x_tables: don't rely on well-behaving
+    userspace
+    - LP: #1555338
+
+ -- Luis Henriques <luis.henriques@canonical.com>  Fri, 11 Mar 2016 11:16:01 +0000
+
+linux (4.2.0-33.38) wily; urgency=low
+
+  [ Brad Figg ]
+
+  * Release Tracking Bug
+    - LP: #1554649
+
+  [ Upstream Kernel Changes ]
+
+  * Revert "drm/radeon: call hpd_irq_event on resume"
+    - LP: #1554608
+  * cxl: Fix PSL timebase synchronization detection
+    - LP: #1532914
+
+ -- Brad Figg <brad.figg@canonical.com>  Tue, 08 Mar 2016 10:32:44 -0800
+
+linux (4.2.0-32.37) wily; urgency=low
 
   [ Kamal Mostafa ]
 
   * Release Tracking Bug
-    - LP: #1550463
+    - LP: #1550045
 
   [ Kamal Mostafa ]
 
