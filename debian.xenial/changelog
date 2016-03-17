@@ -1,4 +1,4 @@
-linux-lts-xenial (4.4.0-14.30~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-14.30~14.04.2) trusty; urgency=low
 
   * Release Tracking Bug (LP: #1558247)
 
@@ -22,9 +22,9 @@ linux-lts-xenial (4.4.0-14.30~14.04.1) trusty; urgency=low
   * Miscellaneous Ubuntu changes
     - SAUCE: Dump stack when X.509 certificates cannot be loaded
 
- -- Brad Figg <brad.figg@canonical.com>  Wed, 16 Mar 2016 12:55:40 -0700
+ -- Brad Figg <brad.figg@canonical.com>  Thu, 17 Mar 2016 09:18:22 -0700
 
-linux-lts-xenial (4.4.0-13.29~14.04.1) trusty; urgency=low
+linux (4.4.0-13.29) xenial; urgency=low
 
   [ Tim Gardner ]
 
