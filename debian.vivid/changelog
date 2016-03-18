@@ -1,9 +1,23 @@
-linux-lts-vivid (3.19.0-57.63~14.04.1) trusty; urgency=low
+linux-lts-vivid (3.19.0-58.64~14.04.1) trusty; urgency=low
 
   [ Brad Figg ]
 
   * Release Tracking Bug
     - LP: #1557870
+
+  [ Upstream Kernel Changes ]
+
+  * Revert "Revert "af_unix: Revert 'lock_interruptible' in stream receive
+    code""
+
+ -- Brad Figg <brad.figg@canonical.com>  Thu, 17 Mar 2016 10:18:03 -0700
+
+linux (3.19.0-57.63) vivid; urgency=low
+
+  [ Brad Figg ]
+
+  * Release Tracking Bug
+    - LP: #1557623
 
   [ Kamal Mostafa ]
 
