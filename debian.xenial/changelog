@@ -1,9 +1,311 @@
-linux-lts-xenial (4.4.0-16.32~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-18.34~14.04.1) trusty; urgency=low
 
   [ Tim Gardner ]
 
   * Release Tracking Bug
-    - LP: #1563145
+    - LP: #1567538
+
+  * [i915_bpo] Fix RC6 on SKL GT3 & GT4 (LP: #1564759)
+    - SAUCE: i915_bpo: drm/i915/skl: Fix rc6 based gpu/system hang
+    - SAUCE: i915_bpo: drm/i915/skl: Fix spurious gpu hang with gt3/gt4 revs
+
+  * CONFIG_ARCH_ROCKCHIP not enabled in armhf generic kernel (LP: #1566283)
+    - [Config] CONFIG_ARCH_ROCKCHIP=y
+
+  * [Feature] Memory Bandwidth Monitoring (LP: #1397880)
+    - perf/x86/cqm: Fix CQM handling of grouping events into a cache_group
+    - perf/x86/cqm: Fix CQM memory leak and notifier leak
+    - x86/cpufeature: Carve out X86_FEATURE_*
+    - Merge branch 'timers-core-for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+    - x86/topology: Create logical package id
+    - perf/x86/mbm: Add Intel Memory B/W Monitoring enumeration and init
+    - perf/x86/mbm: Add memory bandwidth monitoring event management
+    - perf/x86/mbm: Implement RMID recycling
+    - perf/x86/mbm: Add support for MBM counter overflow handling
+
+  * User namespace mount updates (LP: #1566505)
+    - SAUCE: quota: Require that qids passed to dqget() be valid and map into s_user_ns
+    - SAUCE: fs: Allow superblock owner to change ownership of inodes with unmappable ids
+    - SAUCE: fuse: Don't initialize user_id or group_id in mount options
+    - SAUCE: cgroup: Use a new super block when mounting in a cgroup namespace
+    - SAUCE: fs: fix a posible leak of allocated superblock
+
+  * [arm64] kernel BUG at /build/linux-StrpB2/linux-4.4.0/fs/ext4/inode.c:2394!
+    (LP: #1566518)
+    - arm64: Honour !PTE_WRITE in set_pte_at() for kernel mappings
+    - arm64: Update PTE_RDONLY in set_pte_at() for PROT_NONE permission
+
+  * [Feature]USB core and xHCI tasks for USB 3.1 SuperSpeedPlus (SSP) support
+    for Alpine Ridge on SKL (LP: #1519623)
+    - usb: define USB_SPEED_SUPER_PLUS speed for SuperSpeedPlus USB3.1 devices
+    - usb: set USB 3.1 roothub device speed to USB_SPEED_SUPER_PLUS
+    - usb: show speed "10000" in sysfs for USB 3.1 SuperSpeedPlus devices
+    - usb: add device descriptor for usb 3.1 root hub
+    - usb: Support USB 3.1 extended port status request
+    - xhci: Make sure xhci handles USB_SPEED_SUPER_PLUS devices.
+    - xhci: set roothub speed to USB_SPEED_SUPER_PLUS for USB3.1 capable controllers
+    - xhci: USB 3.1 add default Speed Attributes to SuperSpeedPlus device capability
+    - xhci: set slot context speed field to SuperSpeedPlus for USB 3.1 SSP devices
+    - usb: Add USB3.1 SuperSpeedPlus Isoc Endpoint Companion descriptor
+    - usb: Parse the new USB 3.1 SuperSpeedPlus Isoc endpoint companion descriptor
+    - usb: Add USB 3.1 Precision time measurement capability descriptor support
+    - xhci: refactor and cleanup endpoint initialization.
+    - xhci: Add SuperSpeedPlus high bandwidth isoc support to xhci endpoints
+    - xhci: cleanup isoc tranfers queuing code
+    - xhci: Support extended burst isoc TRB structure used by xhci 1.1 for USB 3.1
+    - SAUCE: (noup) usb: fix regression in SuperSpeed endpoint descriptor parsing
+
+  * wrong/missing permissions for device file /dev/prandom (prng.ko)
+    (LP: #1558275)
+    - s390/crypto: provide correct file mode at device register.
+
+  * The Front MIC jack can't work on a HP desktop machine (LP: #1564712)
+    - ALSA: hda - fix front mic problem for a HP desktop
+
+  * HP Notebook Probook 440 G3  HDA Intel PCH horrible sounds while booting
+    (LP: #1556228)
+    - ALSA: hda - Apply reboot D3 fix for CX20724 codec, too
+
+  * please provide mmc-modules udeb (LP: #1565765)
+    - [Config] Add mmc block drivers to d-i
+
+  * linux: Enforce signed module loading when UEFI secure boot (LP: #1566221)
+    - Add secure_modules() call
+    - PCI: Lock down BAR access when module security is enabled
+    - x86: Lock down IO port access when module security is enabled
+    - ACPI: Limit access to custom_method
+    - asus-wmi: Restrict debugfs interface when module loading is restricted
+    - Restrict /dev/mem and /dev/kmem when module loading is restricted
+    - acpi: Ignore acpi_rsdp kernel parameter when module loading is restricted
+    - kexec: Disable at runtime if the kernel enforces module loading restrictions
+    - x86: Restrict MSR access when module loading is restricted
+    - [Config] CONFIG_EFI_SECURE_BOOT_SIG_ENFORCE=n
+    - Add option to automatically enforce module signatures when in Secure Boot mode
+    - efi: Make EFI_SECURE_BOOT_SIG_ENFORCE depend on EFI
+    - efi: Add EFI_SECURE_BOOT bit
+    - hibernate: Disable in a signed modules environment
+
+  * [Hyper-V] Additional PCI passthrough commits (LP: #1565967)
+    - PCI: Add fwnode_handle to x86 pci_sysdata
+    - PCI: Look up IRQ domain by fwnode_handle
+    - [Config] CONFIG_PCI_HYPERV=m
+    - PCI: hv: Add paravirtual PCI front-end for Microsoft Hyper-V VMs
+
+  * [Bug]Lenovo Yoga 260 and Carbon X1 4th gen freeze on HWP enable
+    (LP: #1559923)
+    - ACPI / processor: Request native thermal interrupt handling via _OSC
+
+  * Sync kernel zfs 0.6.5.6 - align with zfsutils-linux and spl packages
+    (LP: #1564591)
+    - SAUCE: (noup) Update spl to 0.6.5.6-0ubuntu1, zfs to 0.6.5.6-0ubuntu3
+
+  * [Ubuntu 16.04.1] RELEASE and ACQUIRE atomics on Power (LP: #1556096)
+    - atomics: Allow architectures to define their own __atomic_op_* helpers
+    - powerpc: atomic: Implement atomic{, 64}_*_return_* variants
+    - powerpc: atomic: Implement acquire/release/relaxed variants for xchg
+    - powerpc: atomic: Implement acquire/release/relaxed variants for cmpxchg
+
+  * fix for do_tools_cpupower when cross-compiling (LP: #1564206)
+    - [Debian] cpupower uses non-standard CROSS
+
+  * ISST:LTE: Regression: roselp2 Oops in kernel during setup io (LP: #1546439)
+    - SAUCE: block: partition: initialize percpuref before sending out KOBJ_ADD
+
+  * Unable to migrate container (LP: #1563921)
+    - SAUCE: cgroup mount: ignore nsroot=
+
+  * [Hyper-V] patch inclusion in 16.04 for NIC hot add/remove (LP: #1563688)
+    - hv_netvsc: Move subchannel waiting to rndis_filter_device_remove()
+
+  * /proc/$pid/maps performance regression (LP: #1547231)
+    - proc: revert /proc/<pid>/maps [stack:TID] annotation
+
+  * TPM2.0 trusted keys fixes (LP: #1398274)
+    - tpm: remove unneeded include of actbl2.h
+    - tpm: fix checks for policy digest existence in tpm2_seal_trusted()
+    - tpm_crb: Use the common ACPI definition of struct acpi_tpm2
+    - tpm_tis: Disable interrupt auto probing on a per-device basis
+    - tpm_tis: Do not fall back to a hardcoded address for TPM2
+    - tpm_tis: Use devm_ioremap_resource
+    - tpm_tis: Clean up the force=1 module parameter
+    - tpm_crb: Drop le32_to_cpu(ioread32(..))
+    - tpm_crb: Use devm_ioremap_resource
+    - tpm: fix the rollback in tpm_chip_register()
+    - tpm: fix the cleanup of struct tpm_chip
+    - tpm: fix: set continueSession attribute for the unseal operation
+    - tpm: fix: return rc when devm_add_action() fails
+    - tpm_eventlog.c: fix binary_bios_measurements
+    - tpm_crb/tis: fix: use dev_name() for /proc/iomem
+    - tpm_crb: tpm2_shutdown() must be called before tpm_chip_unregister()
+    - tpm_tis: fix build warning with tpm_tis_resume
+
+  * [Feature]intel_idle driver support for Knights Landing (LP: #1461365)
+    - intel_idle: Support for Intel Xeon Phi Processor x200 Product Family
+
+  * cxlflash: Backport upstream cxlflash commits and submitting a noup patch to
+    Xenial (LP: #1563485)
+    - cxlflash: Fix to avoid unnecessary scan with internal LUNs
+    - cxlflash: Increase cmd_per_lun for better throughput
+    - SAUCE: (noup) cxlflash: Move to exponential back-off when cmd_room is not available
+
+  * Miscellaneous Ubuntu changes
+    - [Config] do_zfs_powerpc64-smp  = true
+    - [Debian] fix linux_tools when cross-compiling
+    - [Config] do_zfs_powerpc64-smp use default value
+    - SAUCE: apparmor: Fix FTBFS due to bad include path
+    - SAUCE: i915_bpo: Disable preliminary hw support
+
+ -- Kamal Mostafa <kamal@canonical.com>  Thu, 07 Apr 2016 11:00:36 -0700
+
+linux (4.4.0-17.33) xenial; urgency=low
+
+  [ Tim Gardner ]
+
+  * Release Tracking Bug
+    - LP: #1563441
+
+  * ISST-LTE: pVM:high cpus number need a high crashkernel value in kdump
+    (LP: #1560552)
+    - SAUCE: (noup) ppc64 boot: Wait for boot cpu to show up if nr_cpus limit is
+      about to hit.
+
+  * Predictable naming mechanism is leading to issues in DLPAR operations of
+    NICs (LP: #1560514)
+    - SAUCE: (noup) powerpc/pci: Assign fixed PHB number based on device-tree
+      properties
+
+  * ThunderX: support alternative phy implementations (LP: #1562968)
+    - net: thunderx: Cleanup PHY probing code.
+    - [Config] CONFIG_MDIO_CAVIUM=m
+    - phy: mdio-octeon: Refactor into two files/modules
+    - [Config] CONFIG_MDIO_THUNDER=m
+    - phy: mdio-thunder: Add driver for Cavium Thunder SoC MDIO buses.
+    - phy: mdio-cavium: Add missing MODULE_* annotations.
+    - net: cavium: For Kconfig THUNDER_NIC_BGX, select MDIO_THUNDER.
+    - phy: mdio-thunder: Fix some Kconfig typos
+    - [d-i] Add phy drivers for Cavium ThunderX to nic-modules udeb
+
+  * linux: exclude ZONE_DEVICE from GFP_ZONE_TABLE (LP: #1563293)
+    - Revert "mm: CONFIG_NR_ZONES_EXTENDED"
+    - mm: exclude ZONE_DEVICE from GFP_ZONE_TABLE
+
+  * lots of printk to serial console can hang system for long time
+    (LP: #1534216)
+    - printk: set may_schedule for some of console_trylock() callers
+
+  * [i915_bpo] Update i915 backport driver (LP: #1560395)
+    - SAUCE: i915_bpo: Update to drm-intel-next-fixes-2016-03-16
+    - PM / runtime: Add new helper for conditional usage count incrementation
+    - drm/core: Add drm_for_each_encoder_mask, v2.
+    - drm/atomic-helper: Implement subsystem-level suspend/resume
+
+  * [Hyper-V] VM Sockets (LP: #1541585)
+    - Drivers: hv: vmbus: Cleanup vmbus_set_event()
+    - Drivers: hv: vmbus: Add vendor and device atttributes
+    - Drivers: hv: vmbus: avoid infinite loop in init_vp_index()
+    - Drivers: hv: vmbus: avoid scheduling in interrupt context in vmbus_initiate_unload()
+    - Drivers: hv: vmbus: don't manipulate with clocksources on crash
+    - Drivers: hv: vmbus: add a helper function to set a channel's pending send size
+    - Drivers: hv: vmbus: define the new offer type for Hyper-V socket (hvsock)
+    - Drivers: hv: vmbus: vmbus_sendpacket_ctl: hvsock: avoid unnecessary signaling
+    - Drivers: hv: vmbus: define a new VMBus message type for hvsock
+    - Drivers: hv: vmbus: add a hvsock flag in struct hv_driver
+    - Drivers: hv: vmbus: add a per-channel rescind callback
+    - Drivers: hv: vmbus: add an API vmbus_hvsock_device_unregister()
+    - Drivers: hv: vmbus: Eliminate the spin lock on the read path
+    - Drivers: hv: vmbus: Give control over how the ring access is serialized
+    - drivers/hv: Move VMBus hypercall codes into Hyper-V UAPI header
+    - Drivers: hv: vmbus: don't loose HVMSG_TIMER_EXPIRED messages
+    - Drivers: hv: vmbus: avoid wait_for_completion() on crash
+    - Drivers: hv: vmbus: remove code duplication in message handling
+    - Drivers: hv: vmbus: avoid unneeded compiler optimizations in vmbus_wait_for_unload()
+    - Drivers: hv: util: Pass the channel information during the init call
+    - Drivers: hv: utils: Remove util transport handler from list if registration fails
+    - Revert "Drivers: hv: vmbus: Support handling messages on multiple CPUs"
+    - Drivers: hv: vmbus: Support handling messages on multiple CPUs
+
+  * [Bug]SKL-H boot hang when c8+c9+c10 enabled by intel_idle driver
+    (LP: #1559918)
+    - intel_idle: prevent SKL-H boot failure when C8+C9+C10 enabled
+
+  * ixgbe: Update to Fortville SW5 release (LP: #1562326)
+    - net: add tc offload feature flag
+    - net: tc: helper functions to query action types
+    - sctp: Rename NETIF_F_SCTP_CSUM to NETIF_F_SCTP_CRC
+    - net: rework ndo tc op to consume additional qdisc handle parameter
+    - net: rework setup_tc ndo op to consume general tc operand
+    - net: sched: add cls_u32 offload hooks for netdevs
+    - net: ixgbe: add support for tc_u32 offload
+    - net: ixgbe: abort with cls u32 divisor groups greater than 1
+
+  * Bring fm10k up to Fortville SW5 (LP: #1562310)
+    - net: add netif_is_team_master helper
+    - net: add netif_is_team_port helper
+    - net: add netif_is_lag_master helper
+    - net: add netif_is_lag_port helper
+    - ethtool: correctly ensure {GS}CHANNELS doesn't conflict with GS{RXFH}
+    - fm10k: don't reinitialize RSS flow table when RXFH configured
+
+  * [Feature]Always Running Timer (ART) to System Time translation
+    (LP: #1519625)
+    - time: Verify time values in adjtimex ADJ_SETOFFSET to avoid overflow
+    - timekeeping: Provide internal function __ktime_get_real_seconds
+    - timekeeping: Cap adjustments so they don't exceed the maxadj value
+    - clocksource: Make clocksource validation work for all clocksources
+    - time: Add cycles to nanoseconds translation
+    - time: Add timekeeping snapshot code capturing system time and counter
+    - time: Remove duplicated code in ktime_get_raw_and_real()
+    - time: Add driver cross timestamp interface for higher precision time synchronization
+    - time: Add history to cross timestamp interface supporting slower devices
+    - time/timekeeping: Work around false positive GCC warning
+    - x86/tsc: Always Running Timer (ART) correlated clocksource
+    - ptp: Add PTP_SYS_OFFSET_PRECISE for driver crosstimestamping
+    - [Config] CONFIG_E1000E_HWTS=y
+    - e1000e: Adds hardware supported cross timestamp on e1000e nic
+
+  * x-gene2: add SoC v2 support to clock (LP: #1561604)
+    - clk: xgene: Add SoC and PMD PLL clocks with v2 hardware
+
+  * [Bug]Disable multi-record PEBS on Merom (LP: #1559914)
+    - perf/x86: Move perf_event.c ............... => x86/events/core.c
+    - perf/x86: Move perf_event_amd.c ........... => x86/events/amd/core.c
+    - perf/x86: Move perf_event_amd_ibs.c ....... => x86/events/amd/ibs.c
+    - perf/x86: Move perf_event_amd_iommu.[ch] .. => x86/events/amd/iommu.[ch]
+    - perf/x86: Move perf_event_amd_uncore.c .... => x86/events/amd/uncore.c
+    - perf/x86: Move perf_event_intel_bts.c ........ => x86/events/intel/bts.c
+    - perf/x86: Move perf_event_intel.c ............ => x86/events/intel/core.c
+    - perf/x86: Move perf_event_intel_cqm.c ........ => x86/events/intel/cqm.c
+    - perf/x86: Move perf_event_intel_cstate.c ..... => x86/events/intel/cstate.c
+    - perf/x86: Move perf_event_intel_ds.c ......... => x86/events/intel/ds.c
+    - perf/x86: Move perf_event_intel_lbr.c ........ => x86/events/intel/lbr.c
+    - perf/x86: Move perf_event_intel_pt.[ch] ...... => x86/events/intel/pt.[ch]
+    - perf/x86: Move perf_event_intel_rapl.c ....... => x86/events/intel/rapl.c
+    - perf/x86: Move perf_event_intel_uncore.[ch] .. =>
+      x86/events/intel/uncore.[ch]
+    - perf/x86: Move perf_event_intel_uncore_nhmex.c =>
+      x86/events/intel/uncore_nmhex.c
+    - perf/x86: Move perf_event_intel_uncore_snb.c =>
+      x86/events/intel/uncore_snb.c
+    - perf/x86: Move perf_event_intel_uncore_snbep.c =>
+      x86/events/intel/uncore_snbep.c
+    - perf/x86: Move perf_event_knc.c .............. => x86/events/intel/knc.c
+    - perf/x86: Move perf_event_p4.c ............... => x86/events/intel/p4.c
+    - perf/x86: Move perf_event_p6.c ............... => x86/events/intel/p6.c
+    - perf/x86: Move perf_event_msr.c .............. => x86/events/msr.c
+    - perf/x86: Move perf_event.h to its new home
+    - perf/x86/intel: Use PAGE_SIZE for PEBS buffer size on Core2
+
+  * [Feature] Enable I2C on Broxton-P (LP: #1520139)
+    - mfd: intel-lpss: Pass I2C configuration via properties on BXT
+
+ -- Tim Gardner <tim.gardner@canonical.com>  Thu, 24 Mar 2016 20:40:27 -0600
+
+linux (4.4.0-16.32) xenial; urgency=low
+
+  [ Tim Gardner ]
+
+  * Release Tracking Bug
+    - LP: #1561727
 
   * fix thermal throttling due to commit "Thermal: initialize thermal zone
     device correctly"  (LP: #1561676)
