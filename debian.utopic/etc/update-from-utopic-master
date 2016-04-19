@@ -6,7 +6,7 @@
 # the Raring master branch changelog with the correct release names.
 #
 SOURCE_RELEASE=utopic
-SOURCE_RELEASE_BRANCH=${_SOURCE_RELEASE_BRANCH:=master}
+SOURCE_RELEASE_BRANCH=${_SOURCE_RELEASE_BRANCH:=master-next}
 SOURCE_RELEASE_NUMBER=14.04
 DEBIAN_SOURCE=debian.master
 
