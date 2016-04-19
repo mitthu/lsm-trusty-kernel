@@ -6,7 +6,7 @@
 # the Raring master branch changelog with the correct release names.
 #
 SOURCE_RELEASE=xenial
-SOURCE_RELEASE_BRANCH=${_SOURCE_RELEASE_BRANCH:=master}
+SOURCE_RELEASE_BRANCH=${_SOURCE_RELEASE_BRANCH:=master-next}
 DEBIAN_SOURCE=debian.master
 
 TARGET_RELEASE=trusty
