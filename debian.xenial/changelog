@@ -1,9 +1,104 @@
-linux-lts-xenial (4.4.0-18.34~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-21.37~14.04.1) trusty; urgency=low
 
   [ Tim Gardner ]
 
   * Release Tracking Bug
-    - LP: #1567538
+    - LP: #1572647
+
+  * linux: MokSBState is ignored (LP: #1571691)
+    - SAUCE: (noup) MODSIGN: Import certificates from UEFI Secure Boot
+    - SAUCE: (noup) efi: Disable secure boot if shim is in insecure mode
+    - SAUCE: (noup) Display MOKSBState when disabled
+
+ -- Tim Gardner <tim.gardner@canonical.com>  Mon, 18 Apr 2016 07:00:22 -0600
+
+linux (4.4.0-20.36) xenial; urgency=low
+
+  [ Tim Gardner ]
+
+  * Release Tracking Bug
+    - LP: #1571069
+
+  * sysfs mount failure during stateful lxd snapshots (LP: #1570906)
+    - SAUCE: kernfs: Do not match superblock in another user namespace when
+      mounting
+
+  * Kernel Panic in Ubuntu 16.04 netboot installer (LP: #1570441)
+    - x86/topology: Fix logical package mapping
+    - x86/topology: Fix Intel HT disable
+    - x86/topology: Use total_cpus not nr_cpu_ids for logical packages
+    - xen/apic: Provide Xen-specific version of cpu_present_to_apicid APIC op
+    - x86/topology: Fix AMD core count
+
+  * [regression]: Failed to call clock_adjtime(): Invalid argument
+    (LP: #1566465)
+    - ntp: Fix ADJ_SETOFFSET being used w/ ADJ_NANO
+
+ -- Tim Gardner <tim.gardner@canonical.com>  Thu, 14 Apr 2016 06:31:56 -0600
+
+linux (4.4.0-19.35) xenial; urgency=low
+
+  [ Tim Gardner ]
+
+  * Release Tracking Bug
+    - LP: #1570348
+
+  * CVE-2016-2847 (LP: #1554260)
+    - pipe: limit the per-user amount of pages allocated in pipes
+
+  * xenial kernel crash on HP BL460c G7 (qla24xx problem?) (LP: #1554003)
+    - SAUCE: (noup) qla2xxx: Add irq affinity notification V2
+
+  * arm64: guest hangs when ntpd is running (LP: #1549494)
+    - SAUCE: (noup) KVM: arm/arm64: Handle forward time correction gracefully
+
+  * linux: Enforce signed module loading when UEFI secure boot (LP: #1566221)
+    - [Config] CONFIG_EFI_SECURE_BOOT_SIG_ENFORCE=y
+
+  * s390/cpumf: Fix lpp detection (LP: #1555344)
+    - s390/facilities: use stfl mnemonic instead of insn magic
+    - s390/facilities: always use lowcore's stfle field for storing facility bits
+    - s390/cpumf: Fix lpp detection
+
+  * s390x kernel image needs weightwatchers (LP: #1536245)
+    - [Config] s390x: Use compressed kernel bzImage
+
+  * Surelock GA2 SP1: surelock02p05: Not seeing sgX devices for LUNs after
+    upgrading to Ubuntu 16.04 (LP: #1567581)
+    - Revert "UBUNTU: SAUCE: (noup) powerpc/pci: Assign fixed PHB number based on
+      device-tree properties"
+
+  * Backport upstream bugfixes to ubuntu-16.04 (LP: #1555765)
+    - cpufreq: powernv: Define per_cpu chip pointer to optimize hot-path
+    - Revert "cpufreq: postfix policy directory with the first CPU in related_cpus"
+    - cpufreq: powernv: Add sysfs attributes to show throttle stats
+
+  * systemd-modules-load.service: Failing due to missing module 'ib_iser' (LP: #1566468)
+    - [Config] Add ib_iser to generic inclusion list
+
+  * thunderx nic performance improvements (LP: #1567093)
+    - net: thunderx: Set recevie buffer page usage count in bulk
+    - net: thunderx: Adjust nicvf structure to reduce cache misses
+
+  * fixes for thunderx nic in multiqueue mode (LP: #1567091)
+    - net: thunderx: Fix for multiqset not configured upon interface toggle
+    - net: thunderx: Fix for HW TSO not enabled for secondary qsets
+    - net: thunderx: Fix receive packet stats
+
+  * Miscellaneous Ubuntu changes
+    - [Config] updateconfigs after CONFIG_DRM_I915_BPO_PRELIMINARY_HW_SUPPORT=n
+
+  * Miscellaneous upstream changes (LP: #1564901)
+    - Input: xpad - correctly handle concurrent LED and FF requests
+
+ -- Tim Gardner <tim.gardner@canonical.com>  Thu, 07 Apr 2016 07:32:16 +0100
+
+linux (4.4.0-18.34) xenial; urgency=low
+
+  [ Tim Gardner ]
+
+  * Release Tracking Bug
+    - LP: #1566868
 
   * [i915_bpo] Fix RC6 on SKL GT3 & GT4 (LP: #1564759)
     - SAUCE: i915_bpo: drm/i915/skl: Fix rc6 based gpu/system hang
@@ -155,7 +250,7 @@ linux-lts-xenial (4.4.0-18.34~14.04.1) trusty; urgency=low
     - SAUCE: apparmor: Fix FTBFS due to bad include path
     - SAUCE: i915_bpo: Disable preliminary hw support
 
- -- Kamal Mostafa <kamal@canonical.com>  Thu, 07 Apr 2016 11:00:36 -0700
+ -- Tim Gardner <tim.gardner@canonical.com>  Tue, 29 Mar 2016 15:31:33 -0600
 
 linux (4.4.0-17.33) xenial; urgency=low
 
