@@ -1,9 +1,21 @@
-linux-lts-xenial (4.4.0-22.38~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-22.39~14.04.1) trusty; urgency=low
 
   [ Kamal Mostafa ]
 
   * Release Tracking Bug
-    - LP: #1574868
+    - LP: #1578775
+
+  * LP: #1578705
+    - bpf: fix double-fdput in replace_map_fd_with_map_ptr()
+
+ -- Kamal Mostafa <kamal@canonical.com>  Thu, 05 May 2016 09:30:58 -0700
+
+linux (4.4.0-22.38) xenial; urgency=low
+
+  [ Kamal Mostafa ]
+
+  * Release Tracking Bug
+    - LP: #1573817
 
   * autoreconstruct: need to also generate extend-diff-ignore options for links
     (LP: #1574362)
