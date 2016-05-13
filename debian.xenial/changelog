@@ -1,9 +1,21 @@
-linux-lts-xenial (4.4.0-22.39~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-22.40~14.04.1) trusty; urgency=low
+
+  [ Kamal Mostafa ]
+
+  * CVE-2016-3713 (LP: #1581201)
+    - SAUCE: KVM: MTRR: remove MSR 0x2f8
+
+  * CVE-2016-0758 (LP: #1581202)
+    - SAUCE: KEYS: Fix ASN.1 indefinite length object parsing
+
+ -- Kamal Mostafa <kamal@canonical.com>  Thu, 12 May 2016 13:38:45 -0700
+
+linux (4.4.0-22.39) xenial; urgency=low
 
   [ Kamal Mostafa ]
 
   * Release Tracking Bug
-    - LP: #1578775
+    - LP: #1578721
 
   * LP: #1578705
     - bpf: fix double-fdput in replace_map_fd_with_map_ptr()
