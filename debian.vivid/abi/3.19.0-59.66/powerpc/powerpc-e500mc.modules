@@ -149,6 +149,7 @@ adl_pci6208
 adl_pci7x3x
 adl_pci8164
 adl_pci9111
+adl_pci9118
 adm1021
 adm1025
 adm1026
@@ -181,7 +182,10 @@ adt7475
 adt7x10
 adummy
 adutux
+adv7170
+adv7175
 adv7511
+advansys
 adv_pci1710
 adv_pci1723
 adv_pci1724
@@ -228,6 +232,7 @@ altera_tse
 altera_uart
 alx
 am53c974
+ambassador
 amc6821
 amd
 amd5536udc
@@ -363,6 +368,7 @@ b43legacy
 b44
 bas_gigaset
 batman-adv
+baycom_epp
 baycom_par
 baycom_ser_fdx
 baycom_ser_hdx
@@ -416,6 +422,7 @@ bnx2x
 bonding
 bpa10x
 bpck
+bpck6
 bpqether
 bq2415x_charger
 bq24190_charger
@@ -431,6 +438,9 @@ broadcom
 broadsheetfb
 bsd_comp
 bt3c_cs
+bt819
+bt856
+bt866
 bt878
 btcoexist
 btcx-risc
@@ -448,6 +458,7 @@ budget-av
 budget-ci
 budget-core
 budget-patch
+BusLogic
 bw-qcam
 c4
 c67x00
@@ -584,8 +595,9 @@ contec_pci_dio
 cordic
 core
 cp210x
-cpc925_edac
 cpia2
+cpm_uart
+cpu-notifier-error-inject
 c-qcam
 cramfs
 crc32
@@ -688,6 +700,7 @@ das08_isa
 das08_pci
 das16
 das16m1
+das1800
 das6402
 das800
 davicom
@@ -764,6 +777,8 @@ dnet
 dn_rtmsg
 docg3
 docg4
+donauboe
+dpt_i2o
 drbd
 drbg
 drm
@@ -796,6 +811,7 @@ dt2811
 dt2814
 dt2815
 dt2817
+dt282x
 dt3000
 dt3155v4l
 dt9812
@@ -971,6 +987,7 @@ fealnx
 ff-memless
 fid
 firedtv
+firestream
 firewire-core
 firewire-net
 firewire-ohci
@@ -1002,6 +1019,7 @@ friq
 frpw
 fsa9480
 fscache
+fs_enet
 fsl-corenet-cf
 fsl-diu-fb
 fsldma
@@ -1011,6 +1029,8 @@ fsl_hypervisor
 fsl_ifc_nand
 fsl_lpuart
 fsl_pq_mdio
+fsl_qe_udc
+fsl_upm
 fsl_usb2_udc
 ft1000
 ft1000_pcmcia
@@ -1047,7 +1067,6 @@ generic_bl
 genet
 geneve
 gen_probe
-genwqe_card
 g_ether
 gf128mul
 gf2k
@@ -1192,7 +1211,6 @@ g_zero
 hackrf
 hamachi
 hampshire
-hangcheck-timer
 hanwang
 hci
 hci_uart
@@ -1317,6 +1335,7 @@ hmc5843_i2c
 hmc5843_spi
 hmc6352
 hopper
+horizon
 hostap
 hostap_cs
 hostap_pci
@@ -1351,6 +1370,7 @@ i2c-amd756
 i2c-amd8111
 i2c-arb-gpio-challenge
 i2c-cbus-gpio
+i2c-cpm
 i2c-cros-ec-tunnel
 i2c-designware-core
 i2c-designware-pci
@@ -1390,6 +1410,7 @@ i2c-viperboard
 i2c-xiic
 i2o_block
 i2o_bus
+i2o_config
 i2o_core
 i2o_proc
 i2o_scsi
@@ -1409,7 +1430,6 @@ ib_mad
 ibmaem
 ibmpex
 ib_mthca
-ib_qib
 ib_sa
 ib_srp
 ib_srpt
@@ -1653,6 +1673,7 @@ kl5kusb105
 ko2iblnd
 kobil_sct
 ks0108
+ks0127
 ks8842
 ks8851
 ks8851_mll
@@ -1804,6 +1825,7 @@ lm93
 lm95234
 lm95241
 lm95245
+lmc
 lms283gf05
 lms501kf03
 lmv
@@ -2010,6 +2032,7 @@ microread
 microread_i2c
 microtek
 mii
+mii-bitbang
 minix
 mip6
 mISDN_core
@@ -2032,7 +2055,6 @@ mmc_block
 mmcc-apq8084
 mmcc-msm8960
 mmcc-msm8974
-mmc_spi
 mms114
 mn88472
 mn88473
@@ -2040,6 +2062,7 @@ mos7720
 mos7840
 moxa
 mpc624
+mpc85xx_edac
 mpl115
 mpl3115
 mpls_gso
@@ -2091,6 +2114,7 @@ mtouch
 multipath
 multiq3
 musb_hdrc
+mv643xx_eth
 mv88e6060
 mv88e6xxx_drv
 mvmdio
@@ -2243,6 +2267,7 @@ ni_6527
 ni_65xx
 ni_660x
 ni_670x
+ni_at_a2150
 ni_at_ao
 ni_atmio
 ni_atmio16d
@@ -2252,6 +2277,7 @@ ni_daq_dio24
 ni_labpc
 ni_labpc_common
 ni_labpc_cs
+ni_labpc_isadma
 ni_labpc_pci
 nilfs2
 ni_mio_cs
@@ -2310,6 +2336,8 @@ n_r3964
 ns558
 ns83820
 nsc-ircc
+nsp32
+nsp_cs
 ntc_thermistor
 ntfs
 n_tracerouter
@@ -2317,9 +2345,6 @@ n_tracesink
 null_blk
 nvidiafb
 nvme
-nx-compress
-nx-compress-crypto
-nx-compress-platform
 nxt200x
 nxt6000
 obdclass
@@ -2334,7 +2359,6 @@ ocfs2_stackglue
 ocfs2_stack_o2cb
 ocfs2_stack_user
 ocrdma
-of_mmc_spi
 ofpart
 of_xilinx_wdt
 old_belkin-sir
@@ -2372,7 +2396,6 @@ ov9640
 ov9740
 overlay
 oxu210hp-hcd
-ozwpan
 p54common
 p54pci
 p54spi
@@ -2456,6 +2479,9 @@ pcl711
 pcl724
 pcl726
 pcl730
+pcl812
+pcl816
+pcl818
 pcm3724
 pcmad
 pcmcia
@@ -2929,6 +2955,7 @@ s6e63m0
 s921
 saa6588
 saa6752hs
+saa7110
 saa7115
 saa7127
 saa7134
@@ -2940,6 +2967,7 @@ saa7146
 saa7146_vv
 saa7164
 saa717x
+saa7185
 saa7191
 saa7706h
 safe_serial
@@ -3026,6 +3054,7 @@ serpent_generic
 serport
 ses
 sfc
+sgy_cts1000
 sha1-powerpc
 shark2
 shpchp
@@ -3056,7 +3085,6 @@ sit
 sja1000
 sja1000_isa
 sja1000_platform
-skd
 skfp
 skge
 sky2
@@ -3625,6 +3653,7 @@ twofish_common
 twofish_generic
 typhoon
 u132-hcd
+uartlite
 uas
 ubi
 ubifs
@@ -3675,6 +3704,7 @@ unioxx5
 unix_diag
 upd64031a
 upd64083
+uPD98402
 usb3503
 usb_8dev
 usb8xxx
@@ -3762,6 +3792,7 @@ videobuf-core
 videobuf-dma-sg
 videobuf-dvb
 videobuf-vmalloc
+videocodec
 videodev
 vim2m
 viperboard
@@ -3775,7 +3806,9 @@ vitesse
 vivid
 vlsi_ir
 vmac
+vme_ca91cx42
 vme_pio2
+vme_tsi148
 vme_user
 vme_vmivme7805
 vmk80xx
@@ -3785,6 +3818,7 @@ vp27smpx
 vport-geneve
 vport-gre
 vport-vxlan
+vpx3220
 vringh
 vsock
 vsxxxaa
@@ -3899,6 +3933,7 @@ xfrm_user
 xfs
 xgifb
 xhci-plat-hcd
+xilinx_emaclite
 xilinx_ps2
 xilinx_uartps
 xillybus_core
@@ -3991,6 +4026,7 @@ yealink
 yellowfin
 yenta_socket
 yurex
+zatm
 zaurus
 zd1201
 zd1211rw
@@ -4001,5 +4037,9 @@ zl10039
 zl10353
 zl6100
 zlib
+zr36016
+zr36050
+zr36060
+zr36067
 zr364xx
 zram
