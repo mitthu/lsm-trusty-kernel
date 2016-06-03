@@ -14,7 +14,6 @@
 8255
 8255_pci
 8390
-842
 88pm800
 88pm805
 88pm80x
@@ -215,7 +214,6 @@ aiptek
 aircable
 airo
 airo_cs
-airport
 ak8975
 algif_hash
 algif_skcipher
@@ -233,9 +231,6 @@ amc6821
 amd
 amd5536udc
 amd8111e
-amd8111_edac
-amd8131_edac
-amd-rng
 amd-xgbe
 amd-xgbe-phy
 amplc_dio200
@@ -421,7 +416,6 @@ bridge
 broadcom
 broadsheetfb
 bsd_comp
-bsr
 bt3c_cs
 bt878
 btcoexist
@@ -445,6 +439,11 @@ bypass
 c4
 c67x00
 c6xdigio
+caam
+caamalg
+caamhash
+caam_jr
+caamrng
 cachefiles
 cafe_ccic
 cafe_nand
@@ -519,6 +518,13 @@ cirrus
 cirrusfb
 clearpad_tm1217
 clip
+clk-max77686
+clk-qcom
+clk-s2mps11
+clk-si5351
+clk-si570
+clk-twl6040
+clk-wm831x
 cls_basic
 cls_bpf
 cls_cgroup
@@ -560,8 +566,6 @@ core
 cp210x
 cpc925_edac
 cpia2
-cpufreq_spudemand
-cpu-notifier-error-inject
 c-qcam
 cramfs
 crc32
@@ -621,7 +625,6 @@ cxgb3i
 cxgb4
 cxgb4i
 cxgb4vf
-cxl
 cxt1e1
 cy8ctmg110_ts
 cyapa
@@ -682,8 +685,10 @@ decnet
 deflate
 defxx
 denali
+denali_dt
 denali_pci
 des_generic
+designware_i2s
 dgap
 dgnc
 dgrp
@@ -869,7 +874,6 @@ eeti_ts
 efs
 egalax_ts
 ehset
-electra_cf
 elo
 elsa_cs
 em28xx
@@ -969,9 +973,15 @@ friq
 frpw
 fsa9480
 fscache
+fsl-diu-fb
+fsldma
 fsl-edma
 fsl_elbc_nand
+fsl_hypervisor
+fsl_ifc_nand
 fsl_lpuart
+fsl_pq_mdio
+fsl_usb2_udc
 ft1000
 ft1000_pcmcia
 ftdi-elan
@@ -989,6 +999,9 @@ gameport
 garmin_gps
 garp
 g_audio
+gcc-msm8660
+gcc-msm8960
+gcc-msm8974
 g_cdc
 gcm
 g_dbgp
@@ -1009,6 +1022,8 @@ g_ffs
 gfs2
 ghash-generic
 g_hid
+gianfar_driver
+gianfar_ptp
 gigaset
 girbil-sir
 gl518sm
@@ -1054,7 +1069,6 @@ gpio-max730x
 gpio-max732x
 gpio-mc33880
 gpio-mcp23s08
-gpio_mdio
 gpio-ml-ioh
 gpio_mouse
 gpio-pca953x
@@ -1275,12 +1289,9 @@ hsr
 htc-pasic3
 htu21
 huawei_cdc_ncm
-hvcs
-hvcserver
 hwa-hc
 hwa-rc
 hwmon-vid
-hwpoison-inject
 hx8357
 hysdn
 i1480-dfu-usb
@@ -1315,10 +1326,8 @@ i2c-mux-pca9541
 i2c-mux-pca954x
 i2c-nforce2
 i2c-ocores
-i2c-opal
 i2c-parport
 i2c-parport-light
-i2c-pasemi
 i2c-pca-platform
 i2c-piix4
 i2c-rk3x
@@ -1355,10 +1364,7 @@ ib_isert
 ib_mad
 ibmaem
 ibmpex
-ibmpowernv
 ib_mthca
-ibmveth
-ibmvfc
 ib_qib
 ib_sa
 ib_srp
@@ -1366,7 +1372,6 @@ ib_srpt
 ib_ucm
 ib_umad
 ib_uverbs
-icom
 icplus
 icp_multi
 ics932s401
@@ -1606,9 +1611,6 @@ ksz884x
 ktti
 kvaser_pci
 kvaser_usb
-kvm
-kvm-hv
-kvm-pr
 kxsd9
 kxtj9
 kyrofb
@@ -1929,7 +1931,6 @@ megaraid_mbox
 megaraid_mm
 megaraid_sas
 mem2mem_testdev
-memory-notifier-error-inject
 memstick
 mena21_wdt
 men_z135_uart
@@ -1965,6 +1966,8 @@ mlx90614
 mma8450
 mma8452
 mmc_block
+mmcc-msm8960
+mmcc-msm8974
 mmc_spi
 mms114
 mos7720
@@ -2226,8 +2229,6 @@ n_tracesink
 null_blk
 nvidiafb
 nvme
-nx-compress
-nx-crypto
 nxt200x
 nxt6000
 obdclass
@@ -2280,7 +2281,6 @@ ov9640
 ov9740
 overlayfs
 oxu210hp-hcd
-ozwpan
 p54common
 p54pci
 p54spi
@@ -2297,9 +2297,6 @@ parport_ax88796
 parport_cs
 parport_pc
 parport_serial
-pasemi_edac
-pasemi_nand
-pasemi-rng
 pata_ali
 pata_amd
 pata_artop
@@ -2378,7 +2375,6 @@ pcmuio
 pcnet32
 pcnet_cs
 pcrypt
-pcspkr
 pcwd_pci
 pcwd_usb
 pd
@@ -2435,8 +2431,8 @@ pn_pep
 port100
 poseidon
 powermate
-powernv-rng
 ppa
+ppc-corenet-cpufreq
 ppdev
 ppp_async
 ppp_deflate
@@ -2452,15 +2448,6 @@ pps_parport
 pptp
 prism2_usb
 ps2mult
-ps3disk
-ps3flash
-ps3_gelic
-ps3-lpm
-ps3rom
-ps3stor_lib
-ps3vram
-pseries_energy
-pseries-rng
 psmouse
 psnap
 pt
@@ -2516,7 +2503,6 @@ r8712u
 r8723au
 r8a66597-hcd
 r8a66597-udc
-rack-meter
 radeon
 radeonfb
 radio-bcm2048
@@ -2690,8 +2676,6 @@ romfs
 rose
 rotary_encoder
 rp2
-rpadlpar_io
-rpaphp
 rpcsec_gss_krb5
 rsi_91x
 rsi_sdio
@@ -2710,7 +2694,6 @@ rt2x00pci
 rt2x00usb
 rt61pci
 rt73usb
-rtas_flash
 rtc-88pm80x
 rtc-88pm860x
 rtc-ab3100
@@ -2734,7 +2717,6 @@ rtc-ds1553
 rtc-ds1672
 rtc-ds1742
 rtc-ds2404
-rtc-ds3232
 rtc-ds3234
 rtc-em3027
 rtc-fm3130
@@ -2770,7 +2752,6 @@ rtc-pcf50633
 rtc-pcf8523
 rtc-pcf8563
 rtc-pcf8583
-rtc-ps3
 rtc-r9701
 rtc-rc5t583
 rtc-rp5c01
@@ -2858,7 +2839,9 @@ saa717x
 saa7706h
 safe_serial
 salsa20_generic
+samsung-keypad
 samsung-sxgbe
+sata_fsl
 sata_inic162x
 sata_mv
 sata_nv
@@ -2878,7 +2861,6 @@ sbs-battery
 sc16is7xx
 sc92031
 sca3000
-scanlog
 sch_atm
 sch_cbq
 sch_choke
@@ -2915,6 +2897,7 @@ scsi_transport_fc
 scsi_transport_iscsi
 scsi_transport_sas
 scsi_transport_spi
+scsi_transport_srp
 sctp
 sctp_probe
 sdhci
@@ -2923,6 +2906,8 @@ sdhci-of-esdhc
 sdhci-of-hlwd
 sdhci-pci
 sdhci-pltfm
+sdhci-pxav2
+sdhci-pxav3
 sdio_uart
 sdricoh_cs
 sdr-msi3101
@@ -2943,6 +2928,8 @@ sfc
 sha1-powerpc
 shark2
 sh_eth
+sh_mobile_ceu_camera
+sh_mobile_csi2
 shpchp
 sht15
 sht21
@@ -3009,13 +2996,6 @@ snd-ali5451
 snd-aloop
 snd-als300
 snd-als4000
-snd-aoa
-snd-aoa-codec-onyx
-snd-aoa-codec-tas
-snd-aoa-codec-toonie
-snd-aoa-fabric-layout
-snd-aoa-i2sbus
-snd-aoa-soundbus
 snd-atiixp
 snd-atiixp-modem
 snd-au8810
@@ -3107,8 +3087,6 @@ snd-pcm-dmaengine
 snd-pcxhr
 snd-pdaudiocf
 snd-portman2x4
-snd-powermac
-snd_ps3
 snd-pt2258
 snd-rawmidi
 snd-riptide
@@ -3248,7 +3226,6 @@ spi-sc18is602
 spi-tle62x0
 spi-xcomm
 spmi
-spufs
 squashfs
 sr9700
 sr9800
@@ -3326,6 +3303,7 @@ synclink_gt
 synclinkmp
 sysv
 t1pci
+talitos
 target_core_file
 target_core_iblock
 target_core_mod
@@ -3399,7 +3377,6 @@ test-string_helpers
 test_user_copy
 tg3
 tgr192
-therm_pm72
 thmc50
 ti-adc081c
 ti_am335x_adc
@@ -3530,7 +3507,6 @@ uda1342
 udc-core
 udf
 udl
-udlfb
 udp_diag
 ueagle-atm
 u_ether
@@ -3564,7 +3540,6 @@ ums-realtek
 ums-sddr09
 ums-sddr55
 ums-usbat
-uninorth-agp
 unioxx5
 unix_diag
 upd64031a
@@ -3629,9 +3604,6 @@ ves1820
 ves1x93
 veth
 vf610_adc
-vfio
-vfio_iommu_spapr_tce
-vfio-pci
 vga16fb
 vgastate
 vgg2432a4
@@ -3721,7 +3693,6 @@ wanxl
 warrior
 wbsd
 wcn36xx
-wdrtas
 wdt_pci
 whci
 whci-hcd
@@ -3730,23 +3701,7 @@ whiteheat
 wil6210
 wimax
 winbond-840
-windfarm_ad7417_sensor
 windfarm_core
-windfarm_cpufreq_clamp
-windfarm_fcu_controls
-windfarm_lm75_sensor
-windfarm_lm87_sensor
-windfarm_max6690_sensor
-windfarm_pid
-windfarm_pm112
-windfarm_pm121
-windfarm_pm72
-windfarm_pm81
-windfarm_pm91
-windfarm_rm31
-windfarm_smu_controls
-windfarm_smu_sat
-windfarm_smu_sensors
 wire
 wishbone-serial
 wl1251
