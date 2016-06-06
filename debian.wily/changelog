@@ -1,4 +1,16 @@
-linux-lts-wily (4.2.0-37.43~14.04.1) trusty; urgency=low
+linux-lts-wily (4.2.0-38.45~14.04.1) trusty; urgency=low
+
+  [ Kamal Mostafa ]
+
+  * CVE-2016-1583 (LP: #1588871)
+    - ecryptfs: fix handling of directory opening
+    - SAUCE: proc: prevent stacking filesystems on top
+    - SAUCE: ecryptfs: forbid opening files without mmap handler
+    - SAUCE: sched: panic on corrupted stack end
+
+ -- Andy Whitcroft <apw@canonical.com>  Thu, 09 Jun 2016 10:11:57 +0100
+
+linux (4.2.0-37.43) wily; urgency=low
 
   [ Kamal Mostafa ]
 
