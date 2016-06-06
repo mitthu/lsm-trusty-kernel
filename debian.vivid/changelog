@@ -1,4 +1,16 @@
-linux-lts-vivid (3.19.0-60.67~14.04.1) trusty; urgency=low
+linux-lts-vivid (3.19.0-61.69~14.04.1) trusty; urgency=low
+
+  [ Kamal Mostafa ]
+
+  * CVE-2016-1583 (LP: #1588871)
+    - ecryptfs: fix handling of directory opening
+    - SAUCE: proc: prevent stacking filesystems on top
+    - SAUCE: ecryptfs: forbid opening files without mmap handler
+    - SAUCE: sched: panic on corrupted stack end
+
+ -- Andy Whitcroft <apw@canonical.com>  Thu, 09 Jun 2016 09:55:44 +0100
+
+linux (3.19.0-60.67) vivid; urgency=low
 
   [ Kamal Mostafa ]
 
