@@ -1,4 +1,19 @@
-linux-lts-xenial (4.4.0-25.44~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-26.45~14.04.1) trusty; urgency=low
+
+  [ Kamal Mostafa ]
+
+  * Release Tracking Bug
+    - LP: #1594483
+
+  * linux: Implement secure boot state variables (LP: #1593075)
+    - SAUCE: UEFI: Add secure boot and MOK SB State disabled sysctl
+
+  * failures building userspace packages that include ethtool.h (LP: #1592930)
+    - ethtool.h: define INT_MAX for userland
+
+ -- Kamal Mostafa <kamal@canonical.com>  Mon, 20 Jun 2016 09:43:47 -0700
+
+linux (4.4.0-25.44) xenial; urgency=low
 
   [ Kamal Mostafa ]
 
