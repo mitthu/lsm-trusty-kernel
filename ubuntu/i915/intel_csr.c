@@ -253,6 +253,12 @@ void intel_csr_load_program(struct drm_device *dev)
 	}
 
 	mutex_lock(&dev_priv->csr_lock);
+
+	if ((!dev_priv->csr.dmc_payload) || (I915_READ(CSR_PROGRAM_BASE))) {
+		mutex_unlock(&dev_priv->csr_lock);
+		return;
+	}
+
 	fw_size = dev_priv->csr.dmc_fw_size;
 	for (i = 0; i < fw_size; i++)
 		I915_WRITE(CSR_PROGRAM_BASE + i * 4,
