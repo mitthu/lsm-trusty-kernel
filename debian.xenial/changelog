@@ -1,4 +1,16 @@
-linux-lts-xenial (4.4.0-26.45~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-27.46~14.04.1) trusty; urgency=low
+
+  [ Kamal Mostafa ]
+
+  * Release Tracking Bug
+    - LP: #1594931
+
+  * Support Edge Gateway's Bluetooth LED (LP: #1512999)
+    - Revert "UBUNTU: SAUCE: Bluetooth: Support for LED on Marvell modules"
+
+ -- Kamal Mostafa <kamal@canonical.com>  Tue, 21 Jun 2016 10:17:00 -0700
+
+linux (4.4.0-26.45) xenial; urgency=low
 
   [ Kamal Mostafa ]
 
