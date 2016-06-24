@@ -1,9 +1,41 @@
-linux-lts-xenial (4.4.0-27.46~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-28.47~14.04.1) trusty; urgency=low
+
+  [ Luis Henriques ]
+
+  * Release Tracking Bug
+    - LP: #1595884
+
+  * Linux netfilter local privilege escalation issues (LP: #1595350)
+    - netfilter: x_tables: don't move to non-existent next rule
+    - netfilter: x_tables: validate targets of jumps
+    - netfilter: x_tables: add and use xt_check_entry_offsets
+    - netfilter: x_tables: kill check_entry helper
+    - netfilter: x_tables: assert minimum target size
+    - netfilter: x_tables: add compat version of xt_check_entry_offsets
+    - netfilter: x_tables: check standard target size too
+    - netfilter: x_tables: check for bogus target offset
+    - netfilter: x_tables: validate all offsets and sizes in a rule
+    - netfilter: x_tables: don't reject valid target size on some architectures
+    - netfilter: arp_tables: simplify translate_compat_table args
+    - netfilter: ip_tables: simplify translate_compat_table args
+    - netfilter: ip6_tables: simplify translate_compat_table args
+    - netfilter: x_tables: xt_compat_match_from_user doesn't need a retval
+    - netfilter: x_tables: do compat validation via translate_table
+    - netfilter: x_tables: introduce and use xt_copy_counters_from_user
+
+  * Linux netfilter IPT_SO_SET_REPLACE memory corruption (LP: #1555338)
+    - netfilter: x_tables: validate e->target_offset early
+    - netfilter: x_tables: make sure e->next_offset covers remaining blob size
+    - netfilter: x_tables: fix unconditional helper
+
+ -- Kamal Mostafa <kamal@canonical.com>  Fri, 24 Jun 2016 09:08:43 -0700
+
+linux (4.4.0-27.46) xenial; urgency=low
 
   [ Kamal Mostafa ]
 
   * Release Tracking Bug
-    - LP: #1594931
+    - LP: #1594906
 
   * Support Edge Gateway's Bluetooth LED (LP: #1512999)
     - Revert "UBUNTU: SAUCE: Bluetooth: Support for LED on Marvell modules"
@@ -15,7 +47,7 @@ linux (4.4.0-26.45) xenial; urgency=low
   [ Kamal Mostafa ]
 
   * Release Tracking Bug
-    - LP: #1594483
+    - LP: #1594442
 
   * linux: Implement secure boot state variables (LP: #1593075)
     - SAUCE: UEFI: Add secure boot and MOK SB State disabled sysctl
@@ -30,7 +62,7 @@ linux (4.4.0-25.44) xenial; urgency=low
   [ Kamal Mostafa ]
 
   * Release Tracking Bug
-    - LP: #1591463
+    - LP: #1591289
 
   * Xenial update to v4.4.13 stable release (LP: #1590455)
     - MIPS64: R6: R2 emulation bugfix
