@@ -5262,9 +5262,11 @@ EXPORT_SYMBOL net/netfilter/x_tables 0x3ef7bc63	xt_register_match
 EXPORT_SYMBOL net/netfilter/x_tables 0x54b7b06e	xt_register_target
 EXPORT_SYMBOL net/netfilter/x_tables 0x56597721	xt_unregister_matches
 EXPORT_SYMBOL net/netfilter/x_tables 0x73822691	xt_register_matches
+EXPORT_SYMBOL net/netfilter/x_tables 0xa25fc115	xt_compat_check_entry_offsets
 EXPORT_SYMBOL net/netfilter/x_tables 0xb0f5da60	xt_unregister_target
 EXPORT_SYMBOL net/netfilter/x_tables 0xb28f5ef1	xt_free_table_info
 EXPORT_SYMBOL net/netfilter/x_tables 0xd696ed3a	xt_register_targets
+EXPORT_SYMBOL net/netfilter/x_tables 0xd87ae60d	xt_check_entry_offsets
 EXPORT_SYMBOL net/netfilter/x_tables 0xf2e26e42	xt_unregister_match
 EXPORT_SYMBOL net/nfc/hci/hci 0x0ee79018	nfc_hci_unregister_device
 EXPORT_SYMBOL net/nfc/hci/hci 0x19b1be8d	nfc_hci_recv_frame
@@ -13191,6 +13193,7 @@ EXPORT_SYMBOL_GPL net/netfilter/nft_reject 0xa2db3c7f	nft_reject_policy
 EXPORT_SYMBOL_GPL net/netfilter/nft_reject 0xf6f4e315	nft_reject_dump
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x1441a61d	xt_request_find_target
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x161d1417	xt_compat_unlock
+EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x24c8e482	xt_copy_counters_from_user
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x2951cdce	xt_table_unlock
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x307d51e7	xt_proto_fini
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x329c165c	xt_proto_init
@@ -13205,7 +13208,6 @@ EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x68c05532	xt_compat_match_to_user
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x691a6d69	xt_compat_calc_jump
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x6da763f0	xt_unregister_table
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x807d2b2c	xt_recseq
-EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x88b25cb6	xt_compat_match_from_user
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0xa579d78c	xt_compat_target_from_user
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0xa74d6226	xt_check_match
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0xa8abbe3a	xt_register_table
@@ -13215,6 +13217,7 @@ EXPORT_SYMBOL_GPL net/netfilter/x_tables 0xd77647a8	xt_hook_link
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0xe0b4971b	xt_compat_lock
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0xe2f0924f	xt_check_target
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0xec24fd82	xt_compat_add_offset
+EXPORT_SYMBOL_GPL net/netfilter/x_tables 0xf385a488	xt_compat_match_from_user
 EXPORT_SYMBOL_GPL net/netfilter/xt_RATEEST 0x00204983	xt_rateest_put
 EXPORT_SYMBOL_GPL net/netfilter/xt_RATEEST 0x482b6a12	xt_rateest_lookup
 EXPORT_SYMBOL_GPL net/nfc/nci/nci 0x3eabdc5d	nci_spi_allocate_spi

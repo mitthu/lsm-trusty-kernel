@@ -5298,10 +5298,12 @@ EXPORT_SYMBOL net/netfilter/x_tables 0x253e8b44	xt_compat_init_offsets
 EXPORT_SYMBOL net/netfilter/x_tables 0x611b0a70	xt_register_match
 EXPORT_SYMBOL net/netfilter/x_tables 0x790dc500	xt_unregister_match
 EXPORT_SYMBOL net/netfilter/x_tables 0x913b9f7b	xt_find_match
+EXPORT_SYMBOL net/netfilter/x_tables 0xa25fc115	xt_compat_check_entry_offsets
 EXPORT_SYMBOL net/netfilter/x_tables 0xb28f5ef1	xt_free_table_info
 EXPORT_SYMBOL net/netfilter/x_tables 0xb6253818	xt_register_matches
 EXPORT_SYMBOL net/netfilter/x_tables 0xc703d24a	xt_find_target
 EXPORT_SYMBOL net/netfilter/x_tables 0xcd4e5638	xt_unregister_target
+EXPORT_SYMBOL net/netfilter/x_tables 0xd87ae60d	xt_check_entry_offsets
 EXPORT_SYMBOL net/netfilter/x_tables 0xe9aae8f9	xt_register_target
 EXPORT_SYMBOL net/netfilter/x_tables 0xf644b332	xt_unregister_targets
 EXPORT_SYMBOL net/nfc/hci/hci 0x23fbba2b	nfc_hci_get_param
@@ -13803,6 +13805,7 @@ EXPORT_SYMBOL_GPL net/netfilter/nft_meta 0xfe813ac0	nft_meta_set_dump
 EXPORT_SYMBOL_GPL net/netfilter/nft_reject 0x64f05160	nft_reject_init
 EXPORT_SYMBOL_GPL net/netfilter/nft_reject 0x657cd64f	nft_reject_dump
 EXPORT_SYMBOL_GPL net/netfilter/nft_reject 0xa2db3c7f	nft_reject_policy
+EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x0468dde3	xt_compat_match_from_user
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x06037195	xt_compat_target_from_user
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x0809b6ea	xt_proto_fini
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x15932b7c	xt_table_unlock
@@ -13810,6 +13813,7 @@ EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x161d1417	xt_compat_unlock
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x1b3338c8	xt_register_table
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x234a1a83	xt_hook_unlink
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x24c7ae05	xt_request_find_match
+EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x24c8e482	xt_copy_counters_from_user
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x40728a63	xt_find_revision
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x593170e2	xt_check_match
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x5f82f1f7	xt_compat_flush_offsets
@@ -13822,7 +13826,6 @@ EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x7c566080	xt_replace_table
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x807d2b2c	xt_recseq
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0x9b528f5b	xt_compat_match_offset
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0xb57600a4	xt_compat_match_to_user
-EXPORT_SYMBOL_GPL net/netfilter/x_tables 0xc8b75459	xt_compat_match_from_user
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0xe0b4971b	xt_compat_lock
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0xe2d530ad	xt_compat_target_offset
 EXPORT_SYMBOL_GPL net/netfilter/x_tables 0xec24fd82	xt_compat_add_offset
