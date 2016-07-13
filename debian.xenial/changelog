@@ -1,9 +1,22 @@
-linux-lts-xenial (4.4.0-30.49~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-31.50~14.04.1) trusty; urgency=low
 
   [ Kamal Mostafa ]
 
   * Release Tracking Bug
-    - LP: #1597904
+    - LP: #1602462
+
+  * nouveau: boot hangs at blank screen with unsupported graphics cards
+    (LP: #1602340)
+    - SAUCE: drm: check for supported chipset before booting fbdev off the hw
+
+ -- Kamal Mostafa <kamal@canonical.com>  Tue, 12 Jul 2016 16:28:12 -0700
+
+linux (4.4.0-30.49) xenial; urgency=low
+
+  [ Kamal Mostafa ]
+
+  * Release Tracking Bug
+    - LP: #1597897
 
   * FCP devices are not detected correctly nor deterministically (LP: #1567602)
     - scsi_dh_alua: Disable ALUA handling for non-disk devices
