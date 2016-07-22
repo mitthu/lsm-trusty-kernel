@@ -1,9 +1,22 @@
-linux-lts-xenial (4.4.0-32.51~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-33.52~14.04.1) trusty; urgency=low
 
   [ Seth Forshee ]
 
   * Release Tracking Bug
-    - LP: #1604459
+    - LP: #1605717
+
+  * [regression] NFS client: access problems after updating to kernel
+    4.4.0-31-generic (LP: #1603719)
+    - SAUCE: (namespace) Bypass sget() capability check for nfs
+
+ -- Seth Forshee <seth.forshee@canonical.com>  Fri, 22 Jul 2016 14:46:20 -0500
+
+linux (4.4.0-32.51) xenial; urgency=low
+
+  [ Seth Forshee ]
+
+  * Release Tracking Bug
+    - LP: #1604443
 
   * thinkpad yoga 260 wacom touchscreen not working (LP: #1603975)
     - HID: wacom: break out parsing of device and registering of input
@@ -284,7 +297,7 @@ linux-lts-xenial (4.4.0-32.51~14.04.1) trusty; urgency=low
     - Drivers: hv: vmbus: Fix signaling logic in hv_need_to_signal_on_read()
     - Drivers: hv: kvp: fix IP Failover
 
- -- Seth Forshee <seth.forshee@canonical.com>  Tue, 19 Jul 2016 14:53:29 -0500
+ -- Seth Forshee <seth.forshee@canonical.com>  Tue, 19 Jul 2016 11:18:32 -0500
 
 linux (4.4.0-31.50) xenial; urgency=low
 
