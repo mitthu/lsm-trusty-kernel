@@ -1,15 +1,29 @@
-linux-lts-xenial (4.4.0-33.52~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-34.53~14.04.1) trusty; urgency=low
 
   [ Seth Forshee ]
 
   * Release Tracking Bug
-    - LP: #1605717
+    - LP: #1606965
+
+  * [APL][SAUCE] Slow system response time due to a monitor bug (LP: #1606147)
+    - x86/cpu/intel: Introduce macros for Intel family numbers
+    - SAUCE: x86/cpu: Add workaround for MONITOR instruction erratum on Goldmont
+      based CPUs
+
+ -- Seth Forshee <seth.forshee@canonical.com>  Wed, 27 Jul 2016 11:09:51 -0500
+
+linux (4.4.0-33.52) xenial; urgency=low
+
+  [ Seth Forshee ]
+
+  * Release Tracking Bug
+    - LP: #1605709
 
   * [regression] NFS client: access problems after updating to kernel
     4.4.0-31-generic (LP: #1603719)
     - SAUCE: (namespace) Bypass sget() capability check for nfs
 
- -- Seth Forshee <seth.forshee@canonical.com>  Fri, 22 Jul 2016 14:46:20 -0500
+ -- Seth Forshee <seth.forshee@canonical.com>  Fri, 22 Jul 2016 13:10:08 -0500
 
 linux (4.4.0-32.51) xenial; urgency=low
 
