@@ -1,9 +1,36 @@
-linux-lts-vivid (3.19.0-66.74~14.04.1) trusty; urgency=low
+linux-lts-vivid (3.19.0-67.75~14.04.1) trusty; urgency=low
+
+  [ Stefan Bader ]
+
+  * Release Tracking Bug
+    - LP: #1611259
+
+  * CVE-2016-5828
+    - powerpc/tm: Always reclaim in start_thread() for exec() class syscalls
+
+  * CVE-2016-5829
+    - HID: hiddev: validate num_values for HIDIOCGUSAGES, HIDIOCSUSAGES commands
+
+  * CVE-2016-5400
+    - media: fix airspy usb probe error path
+
+  * changelog: add CVEs as first class citizens (LP: #1604344)
+    - avoid duplicate CVE numbers in changelog
+
+  * CVE-2016-5728
+    - misc: mic: Fix for double fetch security bug in VOP driver
+
+  * CVE-2016-5244 (LP: #1589041)
+    - rds: fix an infoleak in rds_inc_info_copy
+
+ -- Stefan Bader <stefan.bader@canonical.com>  Wed, 10 Aug 2016 11:21:35 +0200
+
+linux (3.19.0-66.74) vivid; urgency=low
 
   [ Seth Forshee ]
 
   * Release Tracking Bug
-    - LP: #1604159
+    - LP: #1604153
 
   * CVE-2016-1237
     - posix_acl: Add set_posix_acl
@@ -66,7 +93,7 @@ linux-lts-vivid (3.19.0-66.74~14.04.1) trusty; urgency=low
     - SAUCE: i915_bpo: drm/i915: Make turning on/off PW1 and Misc I/O part of the
       init/fini sequences
 
- -- Seth Forshee <seth.forshee@canonical.com>  Tue, 19 Jul 2016 13:55:32 -0500
+ -- Seth Forshee <seth.forshee@canonical.com>  Tue, 19 Jul 2016 09:07:26 -0500
 
 linux (3.19.0-65.73) vivid; urgency=low
 
