@@ -1,9 +1,24 @@
-linux-lts-xenial (4.4.0-35.54~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-36.55~14.04.1) trusty; urgency=low
 
   [ Stefan Bader ]
 
   * Release Tracking Bug
-    - LP: #1611240
+    - LP: #1612350
+
+  * I2C touchpad does not work on AMD platform (LP: #1612006)
+    - SAUCE: pinctrl/amd: Remove the default de-bounce time
+
+  * CVE-2016-5696
+    - tcp: make challenge acks less predictable
+
+ -- Stefan Bader <stefan.bader@canonical.com>  Fri, 12 Aug 2016 09:23:32 +0200
+
+linux (4.4.0-35.54) xenial; urgency=low
+
+  [ Stefan Bader ]
+
+  * Release Tracking Bug
+    - LP: #1611215
 
   * [i915_bpo] Sync with v4.7 (LP: #1609742)
     - SAUCE: i915_bpo: Sync with v4.7
@@ -263,7 +278,7 @@ linux-lts-xenial (4.4.0-35.54~14.04.1) trusty; urgency=low
     - Added Snapcraft files
     - SAUCE: snapcraft: cleanup and remove unnecessary elements
 
- -- Stefan Bader <stefan.bader@canonical.com>  Wed, 10 Aug 2016 10:26:57 +0200
+ -- Stefan Bader <stefan.bader@canonical.com>  Tue, 09 Aug 2016 15:11:33 +0200
 
 linux (4.4.0-34.53) xenial; urgency=low
 
