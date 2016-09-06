@@ -1,9 +1,26 @@
-linux-lts-xenial (4.4.0-37.56~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-38.57~14.04.1) trusty; urgency=low
 
   [ Tim Gardner ]
 
   * Release Tracking Bug
-    - LP: #1618196
+    - LP: #1620725
+
+  * CIFS client: access problems after updating to kernel 4.4.0-29-generic
+    (LP: #1612135)
+    - Revert "UBUNTU: SAUCE: (namespace) Bypass sget() capability check for nfs"
+    - fs: Call d_automount with the filesystems creds
+
+  * apt-key add fails in overlayfs (LP: #1618572)
+    - SAUCE: overlayfs: fix regression in whiteout detection
+
+ -- Tim Gardner <tim.gardner@canonical.com>  Tue, 30 Aug 2016 12:24:30 -0600
+
+linux (4.4.0-37.56) xenial; urgency=low
+
+  [ Tim Gardner ]
+
+  * Release Tracking Bug
+    - LP: #1618040
 
   * [Feature] Instruction decoder support for new SKX instructions- AVX512
     (LP: #1591655)
