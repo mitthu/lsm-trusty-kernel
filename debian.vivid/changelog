@@ -1,9 +1,32 @@
-linux-lts-vivid (3.19.0-69.77~14.04.1) trusty; urgency=low
+linux-lts-vivid (3.19.0-70.78~14.04.1) trusty; urgency=low
+
+  [ Joseph Salisbury ]
+
+  * Release Tracking Bug
+    - LP: #1625794
+
+  * CVE-2016-6136
+    - audit: fix a double fetch in audit_log_single_execve_arg()
+
+  * CVE-2016-6480
+    - aacraid: Check size values after double-fetch from user
+
+  * CVE-2016-6828
+    - tcp: fix use after free in tcp_xmit_retransmit_queue()
+
+  * lsattr 32bit does not work on 64bit kernel (Inappropriate ioctl error)
+    (LP: #1619918)
+    - btrfs: bugfix: handle FS_IOC32_{GETFLAGS, SETFLAGS, GETVERSION} in
+      btrfs_ioctl
+
+ -- Joseph Salisbury <joseph.salisbury@canonical.com>  Tue, 20 Sep 2016 15:59:16 -0400
+
+linux (3.19.0-69.77) vivid; urgency=low
 
   [ Tim Gardner ]
 
   * Release Tracking Bug
-    - LP: #1618251
+    - LP: #1618167
 
   * MacBookPro11,4 fails to poweroff or suspend (LP: #1587714)
     - SAUCE: PCI: Workaround to enable poweroff on Mac Pro 11
