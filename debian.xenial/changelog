@@ -1,9 +1,18 @@
-linux-lts-xenial (4.4.0-40.60~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-41.61~14.04.1) trusty; urgency=low
 
   [ Kamal Mostafa ]
 
   * Release Tracking Bug
-    - LP: #1627079
+    - LP: #1628229
+
+  * nvme drive probe failure (LP: #1626894)
+    - (fix) NVMe: Don't unmap controller registers on reset
+
+ -- Kamal Mostafa <kamal@canonical.com>  Tue, 27 Sep 2016 09:40:42 -0700
+
+linux (4.4.0-40.60) xenial; urgency=low
+
+  [ Kamal Mostafa ]
 
   * Permission denied in CIFS with kernel 4.4.0-38 (LP: #1626112)
     - Fix memory leaks in cifs_do_mount()
