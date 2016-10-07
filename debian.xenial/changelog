@@ -1,9 +1,20 @@
-linux-lts-xenial (4.4.0-41.61~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-42.62~14.04.1) trusty; urgency=low
+
+  * Fix GRO recursion overflow for tunneling protocols (LP: #1631287)
+    - tunnels: Don't apply GRO to multiple layers of encapsulation.
+    - gro: Allow tunnel stacking in the case of FOU/GUE
+
+  * CVE-2016-7039
+    - SAUCE: net: add recursion limit to GRO
+
+ -- Seth Forshee <seth.forshee@canonical.com>  Fri, 07 Oct 2016 14:57:39 -0500
+
+linux (4.4.0-41.61) xenial; urgency=low
 
   [ Kamal Mostafa ]
 
   * Release Tracking Bug
-    - LP: #1628229
+    - LP: #1628204
 
   * nvme drive probe failure (LP: #1626894)
     - (fix) NVMe: Don't unmap controller registers on reset
@@ -13,6 +24,9 @@ linux-lts-xenial (4.4.0-41.61~14.04.1) trusty; urgency=low
 linux (4.4.0-40.60) xenial; urgency=low
 
   [ Kamal Mostafa ]
+
+  * Release Tracking Bug
+    - LP: #1627074
 
   * Permission denied in CIFS with kernel 4.4.0-38 (LP: #1626112)
     - Fix memory leaks in cifs_do_mount()
@@ -31,6 +45,9 @@ linux (4.4.0-40.60) xenial; urgency=low
 linux (4.4.0-39.59) xenial; urgency=low
 
   [ Joseph Salisbury ]
+
+  * Release Tracking Bug
+    - LP: #1625303
 
   * thunder: chip errata w/ multiple CQEs for a TSO packet (LP: #1624569)
     - net: thunderx: Fix for issues with multiple CQEs posted for a TSO packet
