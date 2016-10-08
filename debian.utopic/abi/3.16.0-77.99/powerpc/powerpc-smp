@@ -5880,6 +5880,7 @@ EXPORT_SYMBOL vmlinux 0x02d9e097	__insert_inode_hash
 EXPORT_SYMBOL vmlinux 0x02de7780	skb_flow_dissect
 EXPORT_SYMBOL vmlinux 0x02ee26c1	free_pages_exact
 EXPORT_SYMBOL vmlinux 0x02f7e714	free_user_ns
+EXPORT_SYMBOL vmlinux 0x02f82446	migrate_page
 EXPORT_SYMBOL vmlinux 0x030256a7	jbd2_journal_start_commit
 EXPORT_SYMBOL vmlinux 0x0313a1a7	dquot_commit_info
 EXPORT_SYMBOL vmlinux 0x03234265	balance_dirty_pages_ratelimited
@@ -6119,6 +6120,7 @@ EXPORT_SYMBOL vmlinux 0x12b44685	blk_alloc_queue_node
 EXPORT_SYMBOL vmlinux 0x12ba22d5	pm860x_page_reg_read
 EXPORT_SYMBOL vmlinux 0x12da5bb2	__kmalloc
 EXPORT_SYMBOL vmlinux 0x12e5ef0c	rtas_set_power_level
+EXPORT_SYMBOL vmlinux 0x1319449d	secure_modules
 EXPORT_SYMBOL vmlinux 0x13243d4b	wl1251_get_platform_data
 EXPORT_SYMBOL vmlinux 0x132b53da	pci_unmap_rom
 EXPORT_SYMBOL vmlinux 0x132f75f1	input_unregister_handler
@@ -7057,7 +7059,6 @@ EXPORT_SYMBOL vmlinux 0x4cdb3178	ns_to_timeval
 EXPORT_SYMBOL vmlinux 0x4cf144f0	devm_devfreq_remove_device
 EXPORT_SYMBOL vmlinux 0x4cf18f8f	genlmsg_multicast_allns
 EXPORT_SYMBOL vmlinux 0x4cf4b606	flush_signals
-EXPORT_SYMBOL vmlinux 0x4cfbcc1b	migrate_page
 EXPORT_SYMBOL vmlinux 0x4d1c8182	capable_wrt_inode_uidgid
 EXPORT_SYMBOL vmlinux 0x4d3c153f	sigprocmask
 EXPORT_SYMBOL vmlinux 0x4d45d89e	udp_memory_allocated
@@ -7946,6 +7947,7 @@ EXPORT_SYMBOL vmlinux 0x8304733a	blk_set_stacking_limits
 EXPORT_SYMBOL vmlinux 0x83276ca7	swiotlb_map_sg
 EXPORT_SYMBOL vmlinux 0x832bd718	tcp_sendpage
 EXPORT_SYMBOL vmlinux 0x835d12ee	netdev_lower_get_first_private_rcu
+EXPORT_SYMBOL vmlinux 0x838b175a	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0x839233cb	dst_cow_metrics_generic
 EXPORT_SYMBOL vmlinux 0x8392e3e8	pcie_port_service_register
 EXPORT_SYMBOL vmlinux 0x839430b2	__register_cpu_notifier
@@ -9549,7 +9551,6 @@ EXPORT_SYMBOL vmlinux 0xe5d26265	agp_generic_create_gatt_table
 EXPORT_SYMBOL vmlinux 0xe5ed5467	xfrm_policy_walk_init
 EXPORT_SYMBOL vmlinux 0xe5f19434	of_find_compatible_node
 EXPORT_SYMBOL vmlinux 0xe6488a10	swiotlb_sync_sg_for_cpu
-EXPORT_SYMBOL vmlinux 0xe6687285	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0xe679026d	remove_arg_zero
 EXPORT_SYMBOL vmlinux 0xe693a6ce	vme_get_size
 EXPORT_SYMBOL vmlinux 0xe697d108	__blk_iopoll_complete

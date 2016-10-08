@@ -6327,6 +6327,7 @@ EXPORT_SYMBOL vmlinux 0x12eae0d0	block_write_full_page
 EXPORT_SYMBOL vmlinux 0x12eee40b	netlink_kernel_release
 EXPORT_SYMBOL vmlinux 0x12f1bc61	phy_ethtool_sset
 EXPORT_SYMBOL vmlinux 0x1308e86b	blk_queue_invalidate_tags
+EXPORT_SYMBOL vmlinux 0x1319449d	secure_modules
 EXPORT_SYMBOL vmlinux 0x13243d4b	wl1251_get_platform_data
 EXPORT_SYMBOL vmlinux 0x13307fde	vsscanf
 EXPORT_SYMBOL vmlinux 0x13315729	flex_array_alloc
@@ -6430,6 +6431,7 @@ EXPORT_SYMBOL vmlinux 0x1aa53f19	pnp_stop_dev
 EXPORT_SYMBOL vmlinux 0x1ace138d	bitmap_allocate_region
 EXPORT_SYMBOL vmlinux 0x1ad00adf	pci_try_set_mwi
 EXPORT_SYMBOL vmlinux 0x1ae0fd22	ns_capable
+EXPORT_SYMBOL vmlinux 0x1ae15f34	migrate_page
 EXPORT_SYMBOL vmlinux 0x1afb1aaa	acpi_mark_gpe_for_wake
 EXPORT_SYMBOL vmlinux 0x1afbfd18	scsi_rescan_device
 EXPORT_SYMBOL vmlinux 0x1b015d25	bitmap_parselist
@@ -6783,6 +6785,7 @@ EXPORT_SYMBOL vmlinux 0x2f03fc4b	security_secmark_refcount_inc
 EXPORT_SYMBOL vmlinux 0x2f064b55	allocate_resource
 EXPORT_SYMBOL vmlinux 0x2f0e8c64	set_pages_array_uc
 EXPORT_SYMBOL vmlinux 0x2f139072	scsi_register_interface
+EXPORT_SYMBOL vmlinux 0x2f202f33	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0x2f287056	new_sync_read
 EXPORT_SYMBOL vmlinux 0x2f376c99	dquot_operations
 EXPORT_SYMBOL vmlinux 0x2f384db3	acpi_is_video_device
@@ -8169,7 +8172,6 @@ EXPORT_SYMBOL vmlinux 0x7fde2edb	vme_master_read
 EXPORT_SYMBOL vmlinux 0x7fe32873	rb_replace_node
 EXPORT_SYMBOL vmlinux 0x7ff70cd4	__fib6_flush_trees
 EXPORT_SYMBOL vmlinux 0x800fe383	done_path_create
-EXPORT_SYMBOL vmlinux 0x80128780	migrate_page
 EXPORT_SYMBOL vmlinux 0x802ab09d	cookie_check_timestamp
 EXPORT_SYMBOL vmlinux 0x8042d876	padata_remove_cpu
 EXPORT_SYMBOL vmlinux 0x80550a98	pv_mmu_ops
@@ -8285,7 +8287,6 @@ EXPORT_SYMBOL vmlinux 0x86a2f0ae	dmam_declare_coherent_memory
 EXPORT_SYMBOL vmlinux 0x86a4889a	kmalloc_order_trace
 EXPORT_SYMBOL vmlinux 0x86ca3699	agp_generic_remove_memory
 EXPORT_SYMBOL vmlinux 0x86ec9971	alloc_file
-EXPORT_SYMBOL vmlinux 0x86f2ae77	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0x86f872d5	__devm_request_region
 EXPORT_SYMBOL vmlinux 0x86fb9b05	bitmap_parse_user
 EXPORT_SYMBOL vmlinux 0x8700ff56	bio_integrity_alloc

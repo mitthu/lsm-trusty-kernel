@@ -6196,6 +6196,7 @@ EXPORT_SYMBOL vmlinux 0x12e58cd9	input_mt_report_pointer_emulation
 EXPORT_SYMBOL vmlinux 0x12f7d6e9	jbd2_journal_dirty_metadata
 EXPORT_SYMBOL vmlinux 0x1305d532	ucs2_strncmp
 EXPORT_SYMBOL vmlinux 0x13158f46	dquot_drop
+EXPORT_SYMBOL vmlinux 0x1319449d	secure_modules
 EXPORT_SYMBOL vmlinux 0x131e977c	tcp_syn_ack_timeout
 EXPORT_SYMBOL vmlinux 0x13243d4b	wl1251_get_platform_data
 EXPORT_SYMBOL vmlinux 0x132da82a	drop_super
@@ -7296,6 +7297,7 @@ EXPORT_SYMBOL vmlinux 0x54240e4b	tty_port_hangup
 EXPORT_SYMBOL vmlinux 0x54245b39	kstrtoull_from_user
 EXPORT_SYMBOL vmlinux 0x542fd958	scsi_ioctl
 EXPORT_SYMBOL vmlinux 0x54306bb7	pci_clear_master
+EXPORT_SYMBOL vmlinux 0x54328378	migrate_page
 EXPORT_SYMBOL vmlinux 0x543ef284	seq_hlist_start
 EXPORT_SYMBOL vmlinux 0x544b0c11	acpi_lid_notifier_register
 EXPORT_SYMBOL vmlinux 0x54573453	ipv6_skip_exthdr
@@ -7435,7 +7437,6 @@ EXPORT_SYMBOL vmlinux 0x5b424341	lockref_put_or_lock
 EXPORT_SYMBOL vmlinux 0x5b56860c	vm_munmap
 EXPORT_SYMBOL vmlinux 0x5b5a7057	agp_enable
 EXPORT_SYMBOL vmlinux 0x5b6040d6	dquot_release
-EXPORT_SYMBOL vmlinux 0x5b8541cd	migrate_page
 EXPORT_SYMBOL vmlinux 0x5ba7053b	writeback_in_progress
 EXPORT_SYMBOL vmlinux 0x5bc10524	printk_emit
 EXPORT_SYMBOL vmlinux 0x5bc8d583	copy_from_user_overflow
@@ -7847,6 +7848,7 @@ EXPORT_SYMBOL vmlinux 0x730e6056	ndo_dflt_fdb_add
 EXPORT_SYMBOL vmlinux 0x7315a4e9	twl6030_mmc_card_detect_config
 EXPORT_SYMBOL vmlinux 0x73310cf3	blk_queue_softirq_done
 EXPORT_SYMBOL vmlinux 0x733a656b	path_get
+EXPORT_SYMBOL vmlinux 0x733a976c	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0x733c3b54	kasprintf
 EXPORT_SYMBOL vmlinux 0x73408e1e	pid_task
 EXPORT_SYMBOL vmlinux 0x735a0bd5	native_io_delay
@@ -9396,7 +9398,6 @@ EXPORT_SYMBOL vmlinux 0xd07c1f02	scsi_device_lookup_by_target
 EXPORT_SYMBOL vmlinux 0xd082a559	blk_free_tags
 EXPORT_SYMBOL vmlinux 0xd0835000	dst_cow_metrics_generic
 EXPORT_SYMBOL vmlinux 0xd08d87d4	pci_set_dma_max_seg_size
-EXPORT_SYMBOL vmlinux 0xd0928a1a	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0xd0a0fcad	blk_get_queue
 EXPORT_SYMBOL vmlinux 0xd0a91bab	skip_spaces
 EXPORT_SYMBOL vmlinux 0xd0b40ab3	alloc_buffer_head

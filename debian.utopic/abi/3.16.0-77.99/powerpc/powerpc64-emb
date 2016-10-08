@@ -6114,6 +6114,7 @@ EXPORT_SYMBOL vmlinux 0x12dfeb12	vprintk_emit
 EXPORT_SYMBOL vmlinux 0x12edc24a	sock_no_listen
 EXPORT_SYMBOL vmlinux 0x12f8b990	scsi_get_command
 EXPORT_SYMBOL vmlinux 0x130d8d79	abx500_register_ops
+EXPORT_SYMBOL vmlinux 0x1319449d	secure_modules
 EXPORT_SYMBOL vmlinux 0x131c8ace	dev_crit
 EXPORT_SYMBOL vmlinux 0x13243d4b	wl1251_get_platform_data
 EXPORT_SYMBOL vmlinux 0x1329133a	generic_write_end
@@ -7377,7 +7378,6 @@ EXPORT_SYMBOL vmlinux 0x64533ba0	netlink_rcv_skb
 EXPORT_SYMBOL vmlinux 0x64999478	congestion_wait
 EXPORT_SYMBOL vmlinux 0x64a1be95	vga_client_register
 EXPORT_SYMBOL vmlinux 0x64a4b84d	cpu_rmap_update
-EXPORT_SYMBOL vmlinux 0x64a51c30	migrate_page
 EXPORT_SYMBOL vmlinux 0x64bbc288	string_unescape
 EXPORT_SYMBOL vmlinux 0x64d9ec4c	pci_restore_state
 EXPORT_SYMBOL vmlinux 0x64e99db9	seq_lseek
@@ -7462,6 +7462,7 @@ EXPORT_SYMBOL vmlinux 0x69d94c7a	inet_add_offload
 EXPORT_SYMBOL vmlinux 0x69e27c7a	bitmap_copy_le
 EXPORT_SYMBOL vmlinux 0x6a037cf1	mempool_kfree
 EXPORT_SYMBOL vmlinux 0x6a0fe9c1	skb_mac_gso_segment
+EXPORT_SYMBOL vmlinux 0x6a120c25	migrate_page
 EXPORT_SYMBOL vmlinux 0x6a1305ef	inet_twsk_deschedule
 EXPORT_SYMBOL vmlinux 0x6a2b601b	agp_generic_create_gatt_table
 EXPORT_SYMBOL vmlinux 0x6a5ecb18	unregister_module_notifier
@@ -8409,7 +8410,6 @@ EXPORT_SYMBOL vmlinux 0xa303d1ff	dm_ratelimit_state
 EXPORT_SYMBOL vmlinux 0xa31bdf07	vme_master_set
 EXPORT_SYMBOL vmlinux 0xa3277d5c	seq_puts
 EXPORT_SYMBOL vmlinux 0xa341140d	sock_init_data
-EXPORT_SYMBOL vmlinux 0xa348abaa	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0xa35dde53	tcf_action_dump_1
 EXPORT_SYMBOL vmlinux 0xa363fdf1	sock_recvmsg
 EXPORT_SYMBOL vmlinux 0xa365e673	skb_copy
@@ -9397,6 +9397,7 @@ EXPORT_SYMBOL vmlinux 0xdea7cf0e	pci_bus_read_config_word
 EXPORT_SYMBOL vmlinux 0xdeb80fcf	sk_stop_timer
 EXPORT_SYMBOL vmlinux 0xdecd1dc4	vfs_mknod
 EXPORT_SYMBOL vmlinux 0xded956db	__xfrm_state_destroy
+EXPORT_SYMBOL vmlinux 0xdef7afba	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0xdefbfa96	inet_getname
 EXPORT_SYMBOL vmlinux 0xdf0a382f	rtnl_create_link
 EXPORT_SYMBOL vmlinux 0xdf0b42fa	mach_qemu_e500

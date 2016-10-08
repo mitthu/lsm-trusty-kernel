@@ -5893,6 +5893,7 @@ EXPORT_SYMBOL vmlinux 0x12da5bb2	__kmalloc
 EXPORT_SYMBOL vmlinux 0x12db9ac4	PDE_DATA
 EXPORT_SYMBOL vmlinux 0x12edb59f	dquot_claim_space_nodirty
 EXPORT_SYMBOL vmlinux 0x130c01bf	unregister_netdev
+EXPORT_SYMBOL vmlinux 0x1319449d	secure_modules
 EXPORT_SYMBOL vmlinux 0x13243d4b	wl1251_get_platform_data
 EXPORT_SYMBOL vmlinux 0x132c1a42	sock_update_memcg
 EXPORT_SYMBOL vmlinux 0x13307fde	vsscanf
@@ -7102,6 +7103,7 @@ EXPORT_SYMBOL vmlinux 0x58b73bc7	match_wildcard
 EXPORT_SYMBOL vmlinux 0x58ba6bcd	crypto_sha1_update
 EXPORT_SYMBOL vmlinux 0x58c77d50	of_find_node_with_property
 EXPORT_SYMBOL vmlinux 0x58ca187d	dev_getbyhwaddr_rcu
+EXPORT_SYMBOL vmlinux 0x58cda90c	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0x58d633c7	neigh_proc_dointvec_jiffies
 EXPORT_SYMBOL vmlinux 0x58f5a11d	unlock_buffer
 EXPORT_SYMBOL vmlinux 0x59034fb9	snd_ctl_boolean_mono_info
@@ -8689,6 +8691,7 @@ EXPORT_SYMBOL vmlinux 0xb4482ec3	padata_set_cpumasks
 EXPORT_SYMBOL vmlinux 0xb4707472	dquot_mark_dquot_dirty
 EXPORT_SYMBOL vmlinux 0xb4709322	scsi_dev_info_add_list
 EXPORT_SYMBOL vmlinux 0xb480f4a7	netif_carrier_off
+EXPORT_SYMBOL vmlinux 0xb4835ec2	migrate_page
 EXPORT_SYMBOL vmlinux 0xb4919b69	sget
 EXPORT_SYMBOL vmlinux 0xb4b76de9	xfrm4_protocol_register
 EXPORT_SYMBOL vmlinux 0xb4b94377	__nand_correct_data
@@ -9497,7 +9500,6 @@ EXPORT_SYMBOL vmlinux 0xe50bd980	security_inode_init_security
 EXPORT_SYMBOL vmlinux 0xe50d1146	sync_mapping_buffers
 EXPORT_SYMBOL vmlinux 0xe5164bc2	cap_mmap_file
 EXPORT_SYMBOL vmlinux 0xe523ad75	synchronize_irq
-EXPORT_SYMBOL vmlinux 0xe54cf797	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0xe55100ee	ip_mc_join_group
 EXPORT_SYMBOL vmlinux 0xe554b0ca	ps2_begin_command
 EXPORT_SYMBOL vmlinux 0xe5574361	pci_get_slot
@@ -9671,7 +9673,6 @@ EXPORT_SYMBOL vmlinux 0xeed3635b	proc_dostring
 EXPORT_SYMBOL vmlinux 0xeed53004	neigh_event_ns
 EXPORT_SYMBOL vmlinux 0xeef161aa	groups_free
 EXPORT_SYMBOL vmlinux 0xef0120cc	skb_vlan_untag
-EXPORT_SYMBOL vmlinux 0xef24fb4c	migrate_page
 EXPORT_SYMBOL vmlinux 0xef28ab82	tcf_exts_validate
 EXPORT_SYMBOL vmlinux 0xef562cde	snd_timer_open
 EXPORT_SYMBOL vmlinux 0xefb66a95	omap_request_dma_chain

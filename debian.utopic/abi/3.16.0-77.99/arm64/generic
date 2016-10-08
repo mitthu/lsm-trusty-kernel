@@ -6026,6 +6026,7 @@ EXPORT_SYMBOL vmlinux 0x12dfeb12	vprintk_emit
 EXPORT_SYMBOL vmlinux 0x12e3fd5e	coherent_swiotlb_dma_ops
 EXPORT_SYMBOL vmlinux 0x130074f3	pci_fixup_cardbus
 EXPORT_SYMBOL vmlinux 0x1305d532	ucs2_strncmp
+EXPORT_SYMBOL vmlinux 0x1319449d	secure_modules
 EXPORT_SYMBOL vmlinux 0x131b5407	input_mt_report_pointer_emulation
 EXPORT_SYMBOL vmlinux 0x1322fed4	bio_put
 EXPORT_SYMBOL vmlinux 0x13243d4b	wl1251_get_platform_data
@@ -6155,6 +6156,7 @@ EXPORT_SYMBOL vmlinux 0x1c96a498	pcim_pin_device
 EXPORT_SYMBOL vmlinux 0x1c9f7aa9	of_clk_get
 EXPORT_SYMBOL vmlinux 0x1cacc8a2	init_buffer
 EXPORT_SYMBOL vmlinux 0x1cca7606	security_inode_permission
+EXPORT_SYMBOL vmlinux 0x1cd5627b	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0x1cf4943b	pcie_capability_read_word
 EXPORT_SYMBOL vmlinux 0x1d194543	cdrom_media_changed
 EXPORT_SYMBOL vmlinux 0x1d21b9b8	elv_unregister_queue
@@ -7058,7 +7060,6 @@ EXPORT_SYMBOL vmlinux 0x5604549f	neigh_ifdown
 EXPORT_SYMBOL vmlinux 0x561457e9	skb_make_writable
 EXPORT_SYMBOL vmlinux 0x561a8d5e	nf_reinject
 EXPORT_SYMBOL vmlinux 0x561efee1	drop_nlink
-EXPORT_SYMBOL vmlinux 0x562b514c	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0x562f0f22	ida_simple_remove
 EXPORT_SYMBOL vmlinux 0x56312f9c	sk_stream_wait_connect
 EXPORT_SYMBOL vmlinux 0x56342ce1	down_timeout
@@ -7780,7 +7781,6 @@ EXPORT_SYMBOL vmlinux 0x85061b76	_raw_write_lock_bh
 EXPORT_SYMBOL vmlinux 0x8509c540	prandom_bytes_state
 EXPORT_SYMBOL vmlinux 0x85119af0	rfkill_alloc
 EXPORT_SYMBOL vmlinux 0x8518eca9	param_get_short
-EXPORT_SYMBOL vmlinux 0x852e6e53	migrate_page
 EXPORT_SYMBOL vmlinux 0x853bf7c1	param_set_int
 EXPORT_SYMBOL vmlinux 0x8563aae2	inc_nlink
 EXPORT_SYMBOL vmlinux 0x85645bab	scsi_execute
@@ -8810,6 +8810,7 @@ EXPORT_SYMBOL vmlinux 0xc7a6740a	tso_start
 EXPORT_SYMBOL vmlinux 0xc7ed0d0a	generic_write_end
 EXPORT_SYMBOL vmlinux 0xc7ed73fd	sync_inode_metadata
 EXPORT_SYMBOL vmlinux 0xc80b5edd	set_page_dirty
+EXPORT_SYMBOL vmlinux 0xc81fc58c	migrate_page
 EXPORT_SYMBOL vmlinux 0xc82c91f7	lockref_get_not_dead
 EXPORT_SYMBOL vmlinux 0xc83b4d5b	posix_acl_from_mode
 EXPORT_SYMBOL vmlinux 0xc83f5cfc	cmdline_parts_find

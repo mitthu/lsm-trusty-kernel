@@ -5871,6 +5871,7 @@ EXPORT_SYMBOL vmlinux 0x0245cf07	vfs_statfs
 EXPORT_SYMBOL vmlinux 0x024bf827	radix_tree_gang_lookup_tag_slot
 EXPORT_SYMBOL vmlinux 0x024d4a1b	bio_copy_kern
 EXPORT_SYMBOL vmlinux 0x02649054	security_sock_rcv_skb
+EXPORT_SYMBOL vmlinux 0x02718b1d	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0x0274dc2b	netif_get_num_default_rss_queues
 EXPORT_SYMBOL vmlinux 0x027d5499	_lv1_did_update_interrupt_mask
 EXPORT_SYMBOL vmlinux 0x027e6e4c	read_cache_page_gfp
@@ -6158,6 +6159,7 @@ EXPORT_SYMBOL vmlinux 0x12cb6622	_lv1_map_device_dma_region
 EXPORT_SYMBOL vmlinux 0x12cfc529	xfrm4_rcv_encap
 EXPORT_SYMBOL vmlinux 0x12dfeb12	vprintk_emit
 EXPORT_SYMBOL vmlinux 0x12e5ef0c	rtas_set_power_level
+EXPORT_SYMBOL vmlinux 0x1319449d	secure_modules
 EXPORT_SYMBOL vmlinux 0x132161d8	skb_kill_datagram
 EXPORT_SYMBOL vmlinux 0x13243d4b	wl1251_get_platform_data
 EXPORT_SYMBOL vmlinux 0x13307fde	vsscanf
@@ -7270,7 +7272,6 @@ EXPORT_SYMBOL vmlinux 0x56c2b95b	rtas_progress
 EXPORT_SYMBOL vmlinux 0x56c8799d	scsi_kunmap_atomic_sg
 EXPORT_SYMBOL vmlinux 0x56d03e68	kblockd_schedule_delayed_work_on
 EXPORT_SYMBOL vmlinux 0x56ddd997	smp_call_function_many
-EXPORT_SYMBOL vmlinux 0x56e4e7d5	migrate_page
 EXPORT_SYMBOL vmlinux 0x5703ba70	simple_write_begin
 EXPORT_SYMBOL vmlinux 0x5704e1b7	blk_mq_alloc_tag_set
 EXPORT_SYMBOL vmlinux 0x571d3589	locks_mandatory_area
@@ -8727,6 +8728,7 @@ EXPORT_SYMBOL vmlinux 0xaa2f37d5	security_old_inode_init_security
 EXPORT_SYMBOL vmlinux 0xaa3c34d0	input_unregister_handler
 EXPORT_SYMBOL vmlinux 0xaa46e87e	lg_local_unlock
 EXPORT_SYMBOL vmlinux 0xaa5e5986	down_write_trylock
+EXPORT_SYMBOL vmlinux 0xaa63c0a7	migrate_page
 EXPORT_SYMBOL vmlinux 0xaa6e4df5	_raw_write_lock_irqsave
 EXPORT_SYMBOL vmlinux 0xaa6f23ad	rfkill_get_led_trigger_name
 EXPORT_SYMBOL vmlinux 0xaa750bf5	skb_coalesce_rx_frag
@@ -9035,7 +9037,6 @@ EXPORT_SYMBOL vmlinux 0xbccd23e9	eth_header
 EXPORT_SYMBOL vmlinux 0xbcce6126	tcp_sendmsg
 EXPORT_SYMBOL vmlinux 0xbcd342f0	inode_init_always
 EXPORT_SYMBOL vmlinux 0xbcd6565e	ip6_find_1stfragopt
-EXPORT_SYMBOL vmlinux 0xbcda168f	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0xbcebe66f	register_framebuffer
 EXPORT_SYMBOL vmlinux 0xbcf150f9	xor_altivec_5
 EXPORT_SYMBOL vmlinux 0xbd2a4d8f	agp_backend_release
