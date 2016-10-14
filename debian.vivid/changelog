@@ -1,4 +1,20 @@
-linux-lts-vivid (3.19.0-71.79~14.04.1) trusty; urgency=low
+linux-lts-vivid (3.19.0-72.80~14.04.1) trusty; urgency=low
+
+  [ Seth Forshee ]
+
+  * Release Tracking Bug
+    - LP: #1632369
+
+  * CVE-2015-7833
+    - usbvision: revert commit 588afcc1
+
+  * CVE-2015-7837
+    - SAUCE: (no-up) kexec/uefi: copy secure_boot flag in boot params across kexec
+      reboot
+
+ -- Stefan Bader <stefan.bader@canonical.com>  Fri, 14 Oct 2016 15:25:21 +0200
+
+linux (3.19.0-71.79) vivid; urgency=low
 
   * Fix GRO recursion overflow for tunneling protocols (LP: #1631287)
     - tunnels: Don't apply GRO to multiple layers of encapsulation.
