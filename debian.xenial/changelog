@@ -1,4 +1,27 @@
-linux-lts-xenial (4.4.0-42.62~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-45.66~14.04.1) trusty; urgency=low
+
+  * CVE-2016-5195
+    - SAUCE: mm: remove gup_flags FOLL_WRITE games from __get_user_pages()
+
+  * srcname from mount rule corrupted under load (LP: #1634753)
+    - SAUCE: apparmor: fix sleep in critical section
+
+ -- Stefan Bader <stefan.bader@canonical.com>  Wed, 19 Oct 2016 11:24:20 +0200
+
+linux (4.4.0-43.63) xenial; urgency=low
+
+  [ Seth Forshee ]
+
+  * Release Tracking Bug
+    - LP: #1632375
+
+  * kswapd0 100% CPU usage (LP: #1518457)
+    - SAUCE: (no-up) If zone is so small that watermarks are the same, stop zone
+      balance.
+
+ -- Seth Forshee <seth.forshee@canonical.com>  Tue, 11 Oct 2016 07:54:56 -0500
+
+linux (4.4.0-42.62) xenial; urgency=low
 
   * Fix GRO recursion overflow for tunneling protocols (LP: #1631287)
     - tunnels: Don't apply GRO to multiple layers of encapsulation.
@@ -7,7 +30,7 @@ linux-lts-xenial (4.4.0-42.62~14.04.1) trusty; urgency=low
   * CVE-2016-7039
     - SAUCE: net: add recursion limit to GRO
 
- -- Seth Forshee <seth.forshee@canonical.com>  Fri, 07 Oct 2016 14:57:39 -0500
+ -- Seth Forshee <seth.forshee@canonical.com>  Fri, 07 Oct 2016 12:03:55 -0500
 
 linux (4.4.0-41.61) xenial; urgency=low
 
