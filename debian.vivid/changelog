@@ -1,9 +1,29 @@
-linux-lts-vivid (3.19.0-73.81~14.04.1) trusty; urgency=low
+linux-lts-vivid (3.19.0-74.82~14.04.1) trusty; urgency=low
+
+  [ Seth Forshee ]
+
+  * Release Tracking Bug
+    - LP: #1635428
+
+  * proc_keys_show crash when reading /proc/keys (LP: #1634496)
+    - SAUCE: KEYS: ensure xbuf is large enough to fix buffer overflow in
+      proc_keys_show (LP: #1634496)
+
+  * CVE-2015-7833
+    - usbvision: revert commit 588afcc1
+
+  * CVE-2015-7837
+    - SAUCE: (no-up) kexec/uefi: copy secure_boot flag in boot params across kexec
+      reboot
+
+ -- Seth Forshee <seth.forshee@canonical.com>  Fri, 21 Oct 2016 10:02:02 -0500
+
+linux (3.19.0-73.81) vivid; urgency=low
 
   * CVE-2016-5195
     - SAUCE: mm: remove gup_flags FOLL_WRITE games from __get_user_pages()
 
- -- Seth Forshee <seth.forshee@canonical.com>  Tue, 18 Oct 2016 16:06:08 -0500
+ -- Stefan Bader <stefan.bader@canonical.com>  Tue, 18 Oct 2016 10:24:22 +0200
 
 linux (3.19.0-71.79) vivid; urgency=low
 
