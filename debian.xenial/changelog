@@ -1,9 +1,27 @@
-linux-lts-xenial (4.4.0-46.67~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-47.68~14.04.1) trusty; urgency=low
+
+  [ Kamal Mostafa ]
+
+  * Release Tracking Bug
+    - LP: #1636951
+
+  * Add a driver for Amazon Elastic Network Adapters (ENA) (LP: #1635721)
+    - lib/bitmap.c: conversion routines to/from u32 array
+    - net: ethtool: add new ETHTOOL_xLINKSETTINGS API
+    - net: ena: Add a driver for Amazon Elastic Network Adapters (ENA)
+    - [config] enable CONFIG_ENA_ETHERNET=m (Amazon ENA driver)
+
+  * unexpectedly large memory usage of mounted snaps (LP: #1636847)
+    - [Config] switch squashfs to single threaded decode
+
+ -- Kamal Mostafa <kamal@canonical.com>  Wed, 26 Oct 2016 10:47:55 -0700
+
+linux (4.4.0-46.67) xenial; urgency=low
 
   [ Seth Forshee ]
 
   * Release Tracking Bug
-    - LP: #1635249
+    - LP: #1635242
 
   * proc_keys_show crash when reading /proc/keys (LP: #1634496)
     - SAUCE: KEYS: ensure xbuf is large enough to fix buffer overflow in
@@ -374,7 +392,7 @@ linux-lts-xenial (4.4.0-46.67~14.04.1) trusty; urgency=low
   * nvme: Missing patch in Ubuntu-4.4.0-41.61 (LP: #1628520)
     - nvme: Call pci_disable_device on the error path.
 
- -- Seth Forshee <seth.forshee@canonical.com>  Fri, 21 Oct 2016 10:44:57 -0500
+ -- Seth Forshee <seth.forshee@canonical.com>  Thu, 20 Oct 2016 08:09:34 -0500
 
 linux (4.4.0-45.66) xenial; urgency=low
 
