@@ -1,9 +1,59 @@
-linux-lts-xenial (4.4.0-49.70~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-50.71~14.04.1) trusty; urgency=low
 
   [ Luis Henriques ]
 
   * Release Tracking Bug
-    - LP: #1640929
+    - LP: #1644185
+
+  * xenial 4.4.0-49.70 kernel breaks LXD userspace (LP: #1644165)
+    - Revert "UBUNTU: SAUCE: (namespace) fuse: Allow user namespace mounts by
+      default"
+    - Revert "UBUNTU: SAUCE: (namespace) fs: Don't remove suid for CAP_FSETID for
+      userns root"
+    - Revert "(namespace) Revert "UBUNTU: SAUCE: fs: Don't remove suid for
+      CAP_FSETID in s_user_ns""
+    - Revert "UBUNTU: SAUCE: (namespace) fs: Allow superblock owner to change
+      ownership of inodes"
+    - Revert "(namespace) Revert "UBUNTU: SAUCE: fs: Allow superblock owner to
+      change ownership of inodes with unmappable ids""
+    - Revert "UBUNTU: SAUCE: (namespace) security/integrity: Harden against
+      malformed xattrs"
+    - Revert "(namespace) Revert "UBUNTU: SAUCE: ima/evm: Allow root in s_user_ns
+      to set xattrs""
+    - Revert "(namespace) dquot: For now explicitly don't support filesystems
+      outside of init_user_ns"
+    - Revert "(namespace) quota: Handle quota data stored in s_user_ns in
+      quota_setxquota"
+    - Revert "(namespace) quota: Ensure qids map to the filesystem"
+    - Revert "(namespace) Revert "UBUNTU: SAUCE: quota: Convert ids relative to
+      s_user_ns""
+    - Revert "(namespace) Revert "UBUNTU: SAUCE: quota: Require that qids passed
+      to dqget() be valid and map into s_user_ns""
+    - Revert "(namespace) vfs: Don't create inodes with a uid or gid unknown to
+      the vfs"
+    - Revert "(namespace) vfs: Don't modify inodes with a uid or gid unknown to
+      the vfs"
+    - Revert "UBUNTU: SAUCE: (namespace) fuse: Translate ids in posix acl xattrs"
+    - Revert "UBUNTU: SAUCE: (namespace) posix_acl: Export
+      posix_acl_fix_xattr_userns() to modules"
+    - Revert "(namespace) vfs: Verify acls are valid within superblock's
+      s_user_ns."
+    - Revert "(namespace) Revert "UBUNTU: SAUCE: fs: Update posix_acl support to
+      handle user namespace mounts""
+    - Revert "(namespace) fs: Refuse uid/gid changes which don't map into
+      s_user_ns"
+    - Revert "(namespace) Revert "UBUNTU: SAUCE: fs: Refuse uid/gid changes which
+      don't map into s_user_ns""
+    - Revert "(namespace) mnt: Move the FS_USERNS_MOUNT check into sget_userns"
+
+ -- Luis Henriques <luis.henriques@canonical.com>  Wed, 23 Nov 2016 11:01:18 +0000
+
+linux (4.4.0-49.70) xenial; urgency=low
+
+  [ Luis Henriques ]
+
+  * Release Tracking Bug
+    - LP: #1640921
 
   * Infiniband driver (kernel module) needed for Azure (LP: #1641139)
     - SAUCE: RDMA Infiniband for Windows Azure
@@ -12,7 +62,7 @@ linux-lts-xenial (4.4.0-49.70~14.04.1) trusty; urgency=low
     - [Config] Add hv_network_direct.ko to generic inclusion list
     - SAUCE: RDMA Infiniband for Windows Azure is dependent on amd64
 
- -- Luis Henriques <luis.henriques@canonical.com>  Fri, 11 Nov 2016 16:42:32 +0000
+ -- Luis Henriques <luis.henriques@canonical.com>  Fri, 11 Nov 2016 15:36:20 +0000
 
 linux (4.4.0-48.69) xenial; urgency=low
 
