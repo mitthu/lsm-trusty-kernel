@@ -1,9 +1,23 @@
-linux-lts-xenial (4.4.0-50.71~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-51.72~14.04.1) trusty; urgency=low
 
   [ Luis Henriques ]
 
   * Release Tracking Bug
-    - LP: #1644185
+    - LP: #1644616
+
+  * 4.4.0-1037-snapdragon #41: kernel panic on boot (LP: #1644596)
+    - Revert "dma-mapping: introduce the DMA_ATTR_NO_WARN attribute"
+    - Revert "powerpc: implement the DMA_ATTR_NO_WARN attribute"
+    - Revert "nvme: use the DMA_ATTR_NO_WARN attribute"
+
+ -- Luis Henriques <luis.henriques@canonical.com>  Thu, 24 Nov 2016 18:46:52 +0000
+
+linux (4.4.0-50.71) xenial; urgency=low
+
+  [ Luis Henriques ]
+
+  * Release Tracking Bug
+    - LP: #1644169
 
   * xenial 4.4.0-49.70 kernel breaks LXD userspace (LP: #1644165)
     - Revert "UBUNTU: SAUCE: (namespace) fuse: Allow user namespace mounts by
@@ -46,7 +60,7 @@ linux-lts-xenial (4.4.0-50.71~14.04.1) trusty; urgency=low
       don't map into s_user_ns""
     - Revert "(namespace) mnt: Move the FS_USERNS_MOUNT check into sget_userns"
 
- -- Luis Henriques <luis.henriques@canonical.com>  Wed, 23 Nov 2016 11:01:18 +0000
+ -- Luis Henriques <luis.henriques@canonical.com>  Wed, 23 Nov 2016 10:16:31 +0000
 
 linux (4.4.0-49.70) xenial; urgency=low
 
