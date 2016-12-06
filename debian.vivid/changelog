@@ -1,9 +1,31 @@
-linux-lts-vivid (3.19.0-77.85~14.04.1) trusty; urgency=low
+linux-lts-vivid (3.19.0-78.86~14.04.1) trusty; urgency=low
+
+  [ Luis Henriques ]
+
+  * Release Tracking Bug
+    - LP: #1647788
+
+  * CVE-2016-7916
+    - proc: prevent accessing /proc/<PID>/environ until it's ready
+
+  * CVE-2016-6213
+    - mnt: Add a per mount namespace limit on the number of mounts
+
+  * [Hyper-V] do not lose pending heartbeat vmbus packets (LP: #1632786)
+    - hv: do not lose pending heartbeat vmbus packets
+
+  * ipv6: connected routes are missing after a down/up cycle on the loopback
+    (LP: #1634545)
+    - ipv6: correctly add local routes when lo goes up
+
+ -- Luis Henriques <luis.henriques@canonical.com>  Tue, 06 Dec 2016 17:17:21 +0000
+
+linux (3.19.0-77.85) vivid; urgency=low
 
   * CVE-2016-8655 (LP: #1646318)
     - packet: fix race condition in packet_set_ring
 
- -- Luis Henriques <luis.henriques@canonical.com>  Mon, 05 Dec 2016 10:51:53 +0000
+ -- Brad Figg <brad.figg@canonical.com>  Thu, 01 Dec 2016 12:10:11 -0800
 
 linux (3.19.0-75.83) vivid; urgency=low
 
