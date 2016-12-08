@@ -1,9 +1,21 @@
-linux-lts-xenial (4.4.0-54.75~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-55.76~14.04.1) trusty; urgency=low
 
   [ Luis Henriques ]
 
   * Release Tracking Bug
-    - LP: #1648023
+    - LP: #1648514
+
+  * NVMe driver accidentally reverted to use GSI instead of MSIX (LP: #1647887)
+    - (fix) NVMe: restore code to always use MSI/MSI-x interrupts
+
+ -- Luis Henriques <luis.henriques@canonical.com>  Thu, 08 Dec 2016 16:12:43 +0000
+
+linux (4.4.0-54.75) xenial; urgency=low
+
+  [ Luis Henriques ]
+
+  * Release Tracking Bug
+    - LP: #1648017
 
   * Update hio driver to 2.1.0.28 (LP: #1646643)
     - SAUCE: hio: update to Huawei ES3000_V2 (2.1.0.28)
@@ -320,7 +332,7 @@ linux-lts-xenial (4.4.0-54.75~14.04.1) trusty; urgency=low
   * CVE-2016-7039 and CVE-2016-8666 (LP: #1631287)
     - Revert "UBUNTU: SAUCE: net: add recursion limit to GRO"
 
- -- Luis Henriques <luis.henriques@canonical.com>  Wed, 07 Dec 2016 14:17:39 +0000
+ -- Luis Henriques <luis.henriques@canonical.com>  Wed, 07 Dec 2016 10:13:50 +0000
 
 linux (4.4.0-53.74) xenial; urgency=low
 
