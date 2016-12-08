@@ -1,14 +1,28 @@
-linux-lts-xenial (4.4.0-55.76~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-56.77~14.04.1) trusty; urgency=low
+
+  * Release Tracking Bug
+    - LP: #1648586
+
+  * CONFIG_NR_CPUS=256 is too low (LP: #1579205)
+    - [Config] Increase the NR_CPUS to 512 for amd64 to support systems with a
+      large number of cores.
+
+  * NVMe drives in Amazon AWS instance fail to initialize (LP: #1648449)
+    - SAUCE: (no-up) NVMe: only setup MSIX once
+
+ -- Brad Figg <brad.figg@canonical.com>  Thu, 08 Dec 2016 10:50:49 -0800
+
+linux (4.4.0-55.76) xenial; urgency=low
 
   [ Luis Henriques ]
 
   * Release Tracking Bug
-    - LP: #1648514
+    - LP: #1648503
 
   * NVMe driver accidentally reverted to use GSI instead of MSIX (LP: #1647887)
     - (fix) NVMe: restore code to always use MSI/MSI-x interrupts
 
- -- Luis Henriques <luis.henriques@canonical.com>  Thu, 08 Dec 2016 16:12:43 +0000
+ -- Luis Henriques <luis.henriques@canonical.com>  Thu, 08 Dec 2016 14:34:40 +0000
 
 linux (4.4.0-54.75) xenial; urgency=low
 
