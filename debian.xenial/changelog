@@ -1,7 +1,20 @@
-linux-lts-xenial (4.4.0-56.77~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-57.78~14.04.1) trusty; urgency=low
 
   * Release Tracking Bug
-    - LP: #1648586
+    - LP: #1648876
+
+  * Miscellaneous Ubuntu changes
+    - SAUCE: Do not build the xr-usb-serial driver for s390
+
+ -- Brad Figg <brad.figg@canonical.com>  Fri, 09 Dec 2016 10:51:16 -0800
+
+linux (4.4.0-56.77) xenial; urgency=low
+
+  * Release Tracking Bug
+    - LP: #1648867
+
+  * Release Tracking Bug
+    - LP: #1648579
 
   * CONFIG_NR_CPUS=256 is too low (LP: #1579205)
     - [Config] Increase the NR_CPUS to 512 for amd64 to support systems with a
