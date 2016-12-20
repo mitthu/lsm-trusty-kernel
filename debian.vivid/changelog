@@ -1,9 +1,39 @@
-linux-lts-vivid (3.19.0-78.86~14.04.1) trusty; urgency=low
+linux-lts-vivid (3.19.0-79.87~14.04.1) trusty; urgency=low
+
+  [ Thadeu Lima de Souza Cascardo ]
+
+  * Release Tracking Bug
+    - LP: #1651539
+
+  [ Luis Henriques ]
+
+  * CVE-2016-9756
+    - KVM: x86: drop error recovery in em_jmp_far and em_ret_far
+
+  * CVE-2016-9806
+    - netlink: Fix dump skb leak/double free
+
+  * CVE-2016-9794
+    - ALSA: pcm : Call kill_fasync() in stream lock
+
+  * [Hyper-V] netvsc: fix incorrect receive checksum offloading (LP: #1636656)
+    - netvsc: fix incorrect receive checksum offloading
+
+  * CVE-2016-9793
+    - net: avoid signed overflows for SO_{SND|RCV}BUFFORCE
+
+  * Ubuntu16.10 - EEH on BELL3 adapter fails to recover (serial/tty)
+    (LP: #1646857)
+    - serial: 8250_pci: Detach low-level driver during PCI error recovery
+
+ -- Thadeu Lima de Souza Cascardo <cascardo@canonical.com>  Tue, 20 Dec 2016 18:43:23 -0200
+
+linux (3.19.0-78.86) vivid; urgency=low
 
   [ Luis Henriques ]
 
   * Release Tracking Bug
-    - LP: #1647788
+    - LP: #1647787
 
   * CVE-2016-7916
     - proc: prevent accessing /proc/<PID>/environ until it's ready
@@ -18,7 +48,7 @@ linux-lts-vivid (3.19.0-78.86~14.04.1) trusty; urgency=low
     (LP: #1634545)
     - ipv6: correctly add local routes when lo goes up
 
- -- Luis Henriques <luis.henriques@canonical.com>  Tue, 06 Dec 2016 17:17:21 +0000
+ -- Luis Henriques <luis.henriques@canonical.com>  Tue, 06 Dec 2016 16:25:45 +0000
 
 linux (3.19.0-77.85) vivid; urgency=low
 
