@@ -1,9 +1,21 @@
-linux-lts-xenial (4.4.0-58.79~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-59.80~14.04.1) trusty; urgency=low
+
+  [ John Donnelly ]
+
+  * Release Tracking Bug
+    - LP: #1654286
+
+  * [2.1.1] MAAS has nvme0n1 set as boot disk, curtin fails (LP: #1651602)
+    - (fix) nvme: only require 1 interrupt vector, not 2+
+
+ -- Luis Henriques <luis.henriques@canonical.com>  Fri, 06 Jan 2017 16:31:59 +0000
+
+linux (4.4.0-58.79) xenial; urgency=low
 
   [ Luis Henriques ]
 
   * Release Tracking Bug
-    - LP: #1651406
+    - LP: #1651402
 
   * Support ACPI probe for IIO sensor drivers from ST Micro (LP: #1650123)
     - SAUCE: iio: st_sensors: match sensors using ACPI handle
@@ -115,7 +127,7 @@ linux-lts-xenial (4.4.0-58.79~14.04.1) trusty; urgency=low
   * [Hyper-V] netvsc: fix incorrect receive checksum offloading (LP: #1636656)
     - netvsc: fix incorrect receive checksum offloading
 
- -- Luis Henriques <luis.henriques@canonical.com>  Tue, 20 Dec 2016 15:38:57 +0000
+ -- Luis Henriques <luis.henriques@canonical.com>  Tue, 20 Dec 2016 10:54:41 +0000
 
 linux (4.4.0-57.78) xenial; urgency=low
 
