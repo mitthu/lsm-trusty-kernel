@@ -1,4 +1,16 @@
-linux-lts-vivid (3.19.0-79.87~14.04.1) trusty; urgency=low
+linux-lts-vivid (3.19.0-80.88~14.04.1) trusty; urgency=low
+
+  [ John Donnelly ]
+
+  * Release Tracking Bug
+    - LP: #1655748
+
+  * CVE-2016-9555
+    - sctp: validate chunk len before actually using it
+
+ -- John Donnelly <John.Donnelly@canonical.com>  Thu, 12 Jan 2017 09:37:17 +0000
+
+linux (3.19.0-79.87) vivid; urgency=low
 
   [ Thadeu Lima de Souza Cascardo ]
 
