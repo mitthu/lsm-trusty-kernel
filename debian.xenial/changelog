@@ -1,9 +1,25 @@
-linux-lts-xenial (4.4.0-61.82~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-62.83~14.04.1) trusty; urgency=low
 
   [ Thadeu Lima de Souza Cascardo ]
 
   * Release Tracking Bug
-    - LP: #1656815
+    - LP: #1657434
+
+  * Backport DP MST fixes to i915 (LP: #1657353)
+    - SAUCE: i915_bpo: Fix DP link rate math
+    - SAUCE: i915_bpo: Validate mode against max. link data rate for DP MST
+
+  * Ubuntu xenial - 4.4.0-59-generic i3 I/O performance issue (LP: #1657281)
+    - blk-mq: really fix plug list flushing for nomerge queues
+
+ -- Thadeu Lima de Souza Cascardo <cascardo@canonical.com>  Wed, 18 Jan 2017 09:34:07 -0200
+
+linux (4.4.0-61.82) xenial; urgency=low
+
+  [ Thadeu Lima de Souza Cascardo ]
+
+  * Release Tracking Bug
+    - LP: #1656810
 
   * Xen MSI setup code incorrectly re-uses cached pirq (LP: #1656381)
     - SAUCE: xen: do not re-use pirq number cached in pci device msi msg data
