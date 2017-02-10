@@ -1,9 +1,21 @@
-linux-lts-xenial (4.4.0-63.84~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-63.84~14.04.2) trusty; urgency=low
 
   [ Thadeu Lima de Souza Cascardo ]
 
   * Release Tracking Bug
-    - LP: #1660729
+    - LP: #1663662
+
+  * linux headers packages empty (LP: #1663558)
+    - Revert "UBUNTU: [debian] derive indep_hdrs_pkg_name from src_pkg_name"
+
+ -- Thadeu Lima de Souza Cascardo <cascardo@canonical.com>  Fri, 10 Feb 2017 13:56:33 -0200
+
+linux (4.4.0-63.84) xenial; urgency=low
+
+  [ Thadeu Lima de Souza Cascardo ]
+
+  * Release Tracking Bug
+    - LP: #1660704
 
   * Backport Dirty COW patch to prevent wineserver freeze (LP: #1658270)
     - SAUCE: mm: Respect FOLL_FORCE/FOLL_COW for thp
@@ -427,7 +439,7 @@ linux-lts-xenial (4.4.0-63.84~14.04.1) trusty; urgency=low
     - net: mvpp2: fix dma unmapping of TX buffers for fragments
     - Linux 4.4.41
 
- -- Thadeu Lima de Souza Cascardo <cascardo@canonical.com>  Thu, 02 Feb 2017 07:38:05 -0200
+ -- Thadeu Lima de Souza Cascardo <cascardo@canonical.com>  Wed, 01 Feb 2017 14:00:35 -0200
 
 linux (4.4.0-62.83) xenial; urgency=low
 
