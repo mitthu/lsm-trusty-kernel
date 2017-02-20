@@ -1,14 +1,9 @@
-linux-lts-xenial (4.4.0-63.84~14.04.2) trusty; urgency=low
+linux-lts-xenial (4.4.0-64.85~14.04.1) trusty; urgency=low
 
-  [ Thadeu Lima de Souza Cascardo ]
+  * CVE-2017-6074 (LP: #1665935)
+    - dccp: fix freeing skb too early for IPV6_RECVPKTINFO
 
-  * Release Tracking Bug
-    - LP: #1663662
-
-  * linux headers packages empty (LP: #1663558)
-    - Revert "UBUNTU: [debian] derive indep_hdrs_pkg_name from src_pkg_name"
-
- -- Thadeu Lima de Souza Cascardo <cascardo@canonical.com>  Fri, 10 Feb 2017 13:56:33 -0200
+ -- Stefan Bader <stefan.bader@canonical.com>  Mon, 20 Feb 2017 11:06:47 +0100
 
 linux (4.4.0-63.84) xenial; urgency=low
 
