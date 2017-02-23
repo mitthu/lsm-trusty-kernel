@@ -1,21 +1,44 @@
-linux-lts-vivid (3.19.0-80.88~14.04.1) trusty; urgency=low
+linux-lts-vivid (3.19.0-82.90~14.04.1) trusty; urgency=low
+
+  * CVE-2017-6074 (LP: #1665935)
+    - dccp: fix freeing skb too early for IPV6_RECVPKTINFO
+
+ -- Stefan Bader <stefan.bader@canonical.com>  Mon, 20 Feb 2017 17:54:27 +0100
+
+linux (3.19.0-81.89) vivid; urgency=low
+
+  [ Thadeu Lima de Souza Cascardo ]
+
+  * Release Tracking Bug
+    - LP: #1661699
+
+  [ Luis Henriques ]
+  * CVE-2016-7911
+    - block: fix use-after-free in sys_ioprio_get()
+
+  * CVE-2016-7910
+    - block: fix use-after-free in seq file
+
+ -- Thadeu Lima de Souza Cascardo <cascardo@canonical.com>  Fri, 03 Feb 2017 15:58:32 -0200
+
+linux (3.19.0-80.88) vivid; urgency=low
 
   [ John Donnelly ]
 
   * Release Tracking Bug
-    - LP: #1655748
+    - LP: #1655745
 
   * CVE-2016-9555
     - sctp: validate chunk len before actually using it
 
- -- John Donnelly <John.Donnelly@canonical.com>  Thu, 12 Jan 2017 09:37:17 +0000
+ -- John Donnelly <John.Donnelly@canonical.com>  Wed, 11 Jan 2017 13:43:17 +0000
 
 linux (3.19.0-79.87) vivid; urgency=low
 
   [ Thadeu Lima de Souza Cascardo ]
 
   * Release Tracking Bug
-    - LP: #1651539
+    - LP: #1651534
 
   [ Luis Henriques ]
 
@@ -38,7 +61,7 @@ linux (3.19.0-79.87) vivid; urgency=low
     (LP: #1646857)
     - serial: 8250_pci: Detach low-level driver during PCI error recovery
 
- -- Thadeu Lima de Souza Cascardo <cascardo@canonical.com>  Tue, 20 Dec 2016 18:43:23 -0200
+ -- Thadeu Lima de Souza Cascardo <cascardo@canonical.com>  Tue, 20 Dec 2016 15:35:23 -0200
 
 linux (3.19.0-78.86) vivid; urgency=low
 
