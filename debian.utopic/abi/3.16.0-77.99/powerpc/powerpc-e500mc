@@ -6158,6 +6158,7 @@ EXPORT_SYMBOL vmlinux 0x12da5bb2	__kmalloc
 EXPORT_SYMBOL vmlinux 0x12e910ee	i2c_smbus_read_byte_data
 EXPORT_SYMBOL vmlinux 0x12ec8418	inet_add_offload
 EXPORT_SYMBOL vmlinux 0x12fabc19	pci_set_master
+EXPORT_SYMBOL vmlinux 0x1319449d	secure_modules
 EXPORT_SYMBOL vmlinux 0x13243d4b	wl1251_get_platform_data
 EXPORT_SYMBOL vmlinux 0x132a384c	xfrm_sad_getinfo
 EXPORT_SYMBOL vmlinux 0x132ee2a5	jbd2_log_start_commit
@@ -7180,6 +7181,7 @@ EXPORT_SYMBOL vmlinux 0x528d0c0f	__break_lease
 EXPORT_SYMBOL vmlinux 0x5293208a	pci_get_class
 EXPORT_SYMBOL vmlinux 0x529a845b	__elv_add_request
 EXPORT_SYMBOL vmlinux 0x52b645e5	__smp_mb__after_atomic
+EXPORT_SYMBOL vmlinux 0x52bfa785	migrate_page
 EXPORT_SYMBOL vmlinux 0x52c0bde6	netif_napi_add
 EXPORT_SYMBOL vmlinux 0x52c0d637	neigh_seq_start
 EXPORT_SYMBOL vmlinux 0x52c46a42	lookup_bdev
@@ -8353,7 +8355,6 @@ EXPORT_SYMBOL vmlinux 0x9ba7089d	argv_split
 EXPORT_SYMBOL vmlinux 0x9bb21ec9	dev_addr_flush
 EXPORT_SYMBOL vmlinux 0x9be31be7	jbd2_journal_init_jbd_inode
 EXPORT_SYMBOL vmlinux 0x9be6d2cb	phy_register_fixup_for_uid
-EXPORT_SYMBOL vmlinux 0x9be6e4c8	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0x9be7bde4	security_tun_dev_attach
 EXPORT_SYMBOL vmlinux 0x9bf2e4f3	__nla_reserve_nohdr
 EXPORT_SYMBOL vmlinux 0x9bf48f86	tcf_hash_cleanup
@@ -8896,7 +8897,6 @@ EXPORT_SYMBOL vmlinux 0xbd83f369	tcp_md5_hash_key
 EXPORT_SYMBOL vmlinux 0xbd9074b1	blk_finish_plug
 EXPORT_SYMBOL vmlinux 0xbd93119c	thermal_cdev_update
 EXPORT_SYMBOL vmlinux 0xbd9e5d49	__lshrdi3
-EXPORT_SYMBOL vmlinux 0xbdaaee3c	migrate_page
 EXPORT_SYMBOL vmlinux 0xbdaf7f82	kblockd_schedule_delayed_work_on
 EXPORT_SYMBOL vmlinux 0xbdb74e9e	invalidate_inode_buffers
 EXPORT_SYMBOL vmlinux 0xbdba9828	hdmi_audio_infoframe_pack
@@ -9566,6 +9566,7 @@ EXPORT_SYMBOL vmlinux 0xe8bea3bc	qdisc_put_stab
 EXPORT_SYMBOL vmlinux 0xe8bfccfb	blk_queue_merge_bvec
 EXPORT_SYMBOL vmlinux 0xe8f7ad84	inet_csk_prepare_forced_close
 EXPORT_SYMBOL vmlinux 0xe8f96cdd	dmam_free_coherent
+EXPORT_SYMBOL vmlinux 0xe8fbf43e	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0xe90378a4	elv_dispatch_add_tail
 EXPORT_SYMBOL vmlinux 0xe914e41e	strcpy
 EXPORT_SYMBOL vmlinux 0xe921174a	I_BDEV

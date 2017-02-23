@@ -5963,6 +5963,7 @@ EXPORT_SYMBOL vmlinux 0x12da5bb2	__kmalloc
 EXPORT_SYMBOL vmlinux 0x12e09fcb	nf_log_register
 EXPORT_SYMBOL vmlinux 0x12e9b6fd	blkdev_get_by_path
 EXPORT_SYMBOL vmlinux 0x12ecb7d2	tcp_recvmsg
+EXPORT_SYMBOL vmlinux 0x1319449d	secure_modules
 EXPORT_SYMBOL vmlinux 0x131dfa0d	__nlmsg_put
 EXPORT_SYMBOL vmlinux 0x13243d4b	wl1251_get_platform_data
 EXPORT_SYMBOL vmlinux 0x132b8d09	napi_gro_flush
@@ -7595,6 +7596,7 @@ EXPORT_SYMBOL vmlinux 0x7205a84e	tcp_v4_mtu_reduced
 EXPORT_SYMBOL vmlinux 0x720e1700	snd_timer_resolution
 EXPORT_SYMBOL vmlinux 0x72350130	___ratelimit
 EXPORT_SYMBOL vmlinux 0x723f1b03	kunmap
+EXPORT_SYMBOL vmlinux 0x7251b3dc	migrate_page
 EXPORT_SYMBOL vmlinux 0x7253706c	rwsem_wake
 EXPORT_SYMBOL vmlinux 0x728155ff	blk_queue_update_dma_alignment
 EXPORT_SYMBOL vmlinux 0x7296d8a2	memcg_kmem_enabled_key
@@ -8231,7 +8233,6 @@ EXPORT_SYMBOL vmlinux 0x986e6135	fb_pad_unaligned_buffer
 EXPORT_SYMBOL vmlinux 0x987c11c7	__pv_phys_pfn_offset
 EXPORT_SYMBOL vmlinux 0x98831c13	udp_lib_setsockopt
 EXPORT_SYMBOL vmlinux 0x98a60334	ipv6_push_nfrag_opts
-EXPORT_SYMBOL vmlinux 0x98ae6ec8	migrate_page
 EXPORT_SYMBOL vmlinux 0x98d8f543	__dst_destroy_metrics_generic
 EXPORT_SYMBOL vmlinux 0x98fa21b0	mod_timer_pinned
 EXPORT_SYMBOL vmlinux 0x9938e324	mmc_cleanup_queue
@@ -9263,6 +9264,7 @@ EXPORT_SYMBOL vmlinux 0xd3de8290	is_bad_inode
 EXPORT_SYMBOL vmlinux 0xd3e254e5	pci_clear_master
 EXPORT_SYMBOL vmlinux 0xd3e6f60d	cpu_possible_mask
 EXPORT_SYMBOL vmlinux 0xd418e1c0	adjust_resource
+EXPORT_SYMBOL vmlinux 0xd43775d5	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0xd43aa6d9	bfifo_qdisc_ops
 EXPORT_SYMBOL vmlinux 0xd44dbba4	dss_mgr_set_lcd_config
 EXPORT_SYMBOL vmlinux 0xd46210ed	netlink_ns_capable
@@ -10049,7 +10051,6 @@ EXPORT_SYMBOL vmlinux 0xfefb6077	edma_alloc_channel
 EXPORT_SYMBOL vmlinux 0xff064fee	gen_pool_set_algo
 EXPORT_SYMBOL vmlinux 0xff08740d	sg_miter_skip
 EXPORT_SYMBOL vmlinux 0xff16c688	dev_get_by_index_rcu
-EXPORT_SYMBOL vmlinux 0xff18fc14	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0xff1e9dd8	seq_list_start
 EXPORT_SYMBOL vmlinux 0xff4d71a7	dev_change_flags
 EXPORT_SYMBOL vmlinux 0xff5b44ca	__quota_error

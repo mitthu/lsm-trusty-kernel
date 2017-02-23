@@ -6354,6 +6354,7 @@ EXPORT_SYMBOL vmlinux 0x12da5bb2	__kmalloc
 EXPORT_SYMBOL vmlinux 0x1305a28a	truncate_inode_pages
 EXPORT_SYMBOL vmlinux 0x130758d4	new_inode
 EXPORT_SYMBOL vmlinux 0x130b7123	mpage_writepage
+EXPORT_SYMBOL vmlinux 0x1319449d	secure_modules
 EXPORT_SYMBOL vmlinux 0x13243d4b	wl1251_get_platform_data
 EXPORT_SYMBOL vmlinux 0x13307fde	vsscanf
 EXPORT_SYMBOL vmlinux 0x13315729	flex_array_alloc
@@ -6618,6 +6619,7 @@ EXPORT_SYMBOL vmlinux 0x2328d422	deactivate_super
 EXPORT_SYMBOL vmlinux 0x23532c4d	ftrace_print_flags_seq
 EXPORT_SYMBOL vmlinux 0x2355e69e	generic_listxattr
 EXPORT_SYMBOL vmlinux 0x2367192a	scsi_remove_host
+EXPORT_SYMBOL vmlinux 0x237aab1e	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0x23908bbc	kobject_set_name
 EXPORT_SYMBOL vmlinux 0x2391e211	xfrm_state_update
 EXPORT_SYMBOL vmlinux 0x2396ea1c	thermal_cdev_update
@@ -7504,6 +7506,7 @@ EXPORT_SYMBOL vmlinux 0x593cfd96	sock_wmalloc
 EXPORT_SYMBOL vmlinux 0x594bf15b	ioport_map
 EXPORT_SYMBOL vmlinux 0x594c4204	netdev_printk
 EXPORT_SYMBOL vmlinux 0x5955faed	tcp_recvmsg
+EXPORT_SYMBOL vmlinux 0x596dc388	migrate_page
 EXPORT_SYMBOL vmlinux 0x599d488c	flock_lock_file_wait
 EXPORT_SYMBOL vmlinux 0x59a1e4ea	simple_write_begin
 EXPORT_SYMBOL vmlinux 0x59b72fed	eisa_bus_type
@@ -8339,7 +8342,6 @@ EXPORT_SYMBOL vmlinux 0x889ae9a6	d_tmpfile
 EXPORT_SYMBOL vmlinux 0x88a262de	brioctl_set
 EXPORT_SYMBOL vmlinux 0x88a27a57	kthread_stop
 EXPORT_SYMBOL vmlinux 0x88c5efbb	__mmc_claim_host
-EXPORT_SYMBOL vmlinux 0x88cef575	migrate_page
 EXPORT_SYMBOL vmlinux 0x88e7e9b9	scsi_release_buffers
 EXPORT_SYMBOL vmlinux 0x88ef9a19	input_mt_report_slot_state
 EXPORT_SYMBOL vmlinux 0x891e537b	skb_mac_gso_segment
@@ -8501,7 +8503,6 @@ EXPORT_SYMBOL vmlinux 0x91f5bbfa	abx500_register_ops
 EXPORT_SYMBOL vmlinux 0x9218206b	napi_gro_frags
 EXPORT_SYMBOL vmlinux 0x92277170	__pagevec_lru_add
 EXPORT_SYMBOL vmlinux 0x9236b294	ppp_unregister_channel
-EXPORT_SYMBOL vmlinux 0x923964e4	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0x923b1276	dmaengine_get
 EXPORT_SYMBOL vmlinux 0x9241d984	qdisc_watchdog_schedule_ns
 EXPORT_SYMBOL vmlinux 0x9272dff0	__ip_select_ident

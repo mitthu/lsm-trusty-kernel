@@ -4603,6 +4603,7 @@ EXPORT_SYMBOL vmlinux 0x12e5ef0c	rtas_set_power_level
 EXPORT_SYMBOL vmlinux 0x13019373	blk_rq_init
 EXPORT_SYMBOL vmlinux 0x13038a58	ip4_datagram_connect
 EXPORT_SYMBOL vmlinux 0x1313d396	agp_bind_memory
+EXPORT_SYMBOL vmlinux 0x1319449d	secure_modules
 EXPORT_SYMBOL vmlinux 0x131d8357	bdgrab
 EXPORT_SYMBOL vmlinux 0x13243d4b	wl1251_get_platform_data
 EXPORT_SYMBOL vmlinux 0x13307fde	vsscanf
@@ -5366,7 +5367,6 @@ EXPORT_SYMBOL vmlinux 0x42595e58	vgacon_text_force
 EXPORT_SYMBOL vmlinux 0x42606b9f	phy_ethtool_get_eee
 EXPORT_SYMBOL vmlinux 0x4273005c	mb_cache_shrink
 EXPORT_SYMBOL vmlinux 0x42784e2b	md_finish_reshape
-EXPORT_SYMBOL vmlinux 0x429f4ee6	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0x42a1b208	gen_pool_first_fit
 EXPORT_SYMBOL vmlinux 0x42d8f4e2	devm_gpiod_get_index
 EXPORT_SYMBOL vmlinux 0x42e66eb8	inet6_del_offload
@@ -6274,6 +6274,7 @@ EXPORT_SYMBOL vmlinux 0x7824cfc9	current_fs_time
 EXPORT_SYMBOL vmlinux 0x782912a4	vme_master_request
 EXPORT_SYMBOL vmlinux 0x782a892d	mfd_cell_disable
 EXPORT_SYMBOL vmlinux 0x7830b04f	hvc_put_chars
+EXPORT_SYMBOL vmlinux 0x7838227a	migrate_page
 EXPORT_SYMBOL vmlinux 0x783b3563	wake_up_atomic_t
 EXPORT_SYMBOL vmlinux 0x7846af3e	__kfifo_len_r
 EXPORT_SYMBOL vmlinux 0x784d0815	inode_dio_wait
@@ -6343,7 +6344,6 @@ EXPORT_SYMBOL vmlinux 0x7b1445cb	fsnotify_destroy_mark
 EXPORT_SYMBOL vmlinux 0x7b16235f	hdmi_vendor_infoframe_pack
 EXPORT_SYMBOL vmlinux 0x7b203c55	qdisc_list_add
 EXPORT_SYMBOL vmlinux 0x7b2aef6c	__krealloc
-EXPORT_SYMBOL vmlinux 0x7b3878e7	migrate_page
 EXPORT_SYMBOL vmlinux 0x7b9733ef	iw_handler_set_thrspy
 EXPORT_SYMBOL vmlinux 0x7bb756cc	neigh_proc_dointvec_jiffies
 EXPORT_SYMBOL vmlinux 0x7bbb8110	phy_device_free
@@ -7798,6 +7798,7 @@ EXPORT_SYMBOL vmlinux 0xd4ced51f	alloc_fcdev
 EXPORT_SYMBOL vmlinux 0xd4e41030	km_policy_notify
 EXPORT_SYMBOL vmlinux 0xd4ff8343	blk_recount_segments
 EXPORT_SYMBOL vmlinux 0xd5167613	node_data
+EXPORT_SYMBOL vmlinux 0xd5255391	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0xd53c1fd6	zpool_unregister_driver
 EXPORT_SYMBOL vmlinux 0xd5441fe9	of_get_min_tck
 EXPORT_SYMBOL vmlinux 0xd5510351	shrink_dcache_parent

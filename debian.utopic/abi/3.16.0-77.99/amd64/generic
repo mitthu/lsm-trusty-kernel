@@ -6109,6 +6109,7 @@ EXPORT_SYMBOL vmlinux 0x0d514343	agp3_generic_tlbflush
 EXPORT_SYMBOL vmlinux 0x0d542439	__ipv6_addr_type
 EXPORT_SYMBOL vmlinux 0x0d6434a0	kernel_connect
 EXPORT_SYMBOL vmlinux 0x0d80efb5	acpi_evaluate_ost
+EXPORT_SYMBOL vmlinux 0x0d88b743	migrate_page
 EXPORT_SYMBOL vmlinux 0x0d90803e	kernel_sock_ioctl
 EXPORT_SYMBOL vmlinux 0x0d925eae	mmc_can_secure_erase_trim
 EXPORT_SYMBOL vmlinux 0x0d9cd1d5	pcim_iomap_table
@@ -6198,6 +6199,7 @@ EXPORT_SYMBOL vmlinux 0x12f9be70	phy_attach
 EXPORT_SYMBOL vmlinux 0x1305d532	ucs2_strncmp
 EXPORT_SYMBOL vmlinux 0x130b5d49	tty_port_free_xmit_buf
 EXPORT_SYMBOL vmlinux 0x1312a863	find_vma
+EXPORT_SYMBOL vmlinux 0x1319449d	secure_modules
 EXPORT_SYMBOL vmlinux 0x13243d4b	wl1251_get_platform_data
 EXPORT_SYMBOL vmlinux 0x13307fde	vsscanf
 EXPORT_SYMBOL vmlinux 0x13315729	flex_array_alloc
@@ -8159,7 +8161,6 @@ EXPORT_SYMBOL vmlinux 0x890f6c48	dquot_disable
 EXPORT_SYMBOL vmlinux 0x891af1b5	agp_find_bridge
 EXPORT_SYMBOL vmlinux 0x891bef26	vm_stat
 EXPORT_SYMBOL vmlinux 0x891d1cd8	xfrm_register_mode
-EXPORT_SYMBOL vmlinux 0x892944b6	migrate_page
 EXPORT_SYMBOL vmlinux 0x892b26a0	set_memory_nx
 EXPORT_SYMBOL vmlinux 0x892d0f14	pnp_device_detach
 EXPORT_SYMBOL vmlinux 0x893efb2f	md_check_no_bitmap
@@ -8222,6 +8223,7 @@ EXPORT_SYMBOL vmlinux 0x8beee1d8	input_inject_event
 EXPORT_SYMBOL vmlinux 0x8c183cbe	iowrite16
 EXPORT_SYMBOL vmlinux 0x8c1b8571	block_page_mkwrite
 EXPORT_SYMBOL vmlinux 0x8c332fac	__hw_addr_unsync_dev
+EXPORT_SYMBOL vmlinux 0x8c35bcd9	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0x8c591a7c	ioc_lookup_icq
 EXPORT_SYMBOL vmlinux 0x8c60b459	forget_all_cached_acls
 EXPORT_SYMBOL vmlinux 0x8c637d43	irq_cpu_rmap_add
@@ -9872,7 +9874,6 @@ EXPORT_SYMBOL vmlinux 0xeb739407	downgrade_write
 EXPORT_SYMBOL vmlinux 0xebd3121f	blk_init_tags
 EXPORT_SYMBOL vmlinux 0xebdb0ddf	devm_gpiod_put
 EXPORT_SYMBOL vmlinux 0xebecc806	d_move
-EXPORT_SYMBOL vmlinux 0xec255f8b	buffer_migrate_page
 EXPORT_SYMBOL vmlinux 0xec316c15	netdev_notify_peers
 EXPORT_SYMBOL vmlinux 0xec4d9e3a	clk_get_sys
 EXPORT_SYMBOL vmlinux 0xec5396ff	genl_notify
