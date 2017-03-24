@@ -1,6 +1,12 @@
-linux-lts-xenial (4.4.0-70.91~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-71.92~14.04.1) trusty; urgency=low
 
-  * linux-lts-xenial: 4.4.0-70.91~14.04.1 -proposed tracker (LP: #1674939)
+  * CVE-2017-7184
+    - xfrm_user: validate XFRM_MSG_NEWAE XFRMA_REPLAY_ESN_VAL replay_window
+    - xfrm_user: validate XFRM_MSG_NEWAE incoming ESN size harder
+
+ -- Thadeu Lima de Souza Cascardo <cascardo@canonical.com>  Fri, 24 Mar 2017 09:32:49 -0300
+
+linux (4.4.0-70.91) xenial; urgency=low
 
   * linux: 4.4.0-70.91 -proposed tracker (LP: #1674938)
 
