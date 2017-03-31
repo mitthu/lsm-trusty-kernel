@@ -1,4 +1,17 @@
-linux-lts-xenial (4.4.0-71.92~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-72.93~14.04.1) trusty; urgency=low
+
+  * linux-lts-xenial: 4.4.0-72.93~14.04.1 -proposed tracker (LP: #1678080)
+
+  * linux: 4.4.0-72.93 -proposed tracker (LP: #1678078)
+
+  * Fix CVE-2017-7308 (LP: #1678009)
+    - net/packet: fix overflow in check for priv area size
+    - net/packet: fix overflow in check for tp_frame_nr
+    - net/packet: fix overflow in check for tp_reserve
+
+ -- Stefan Bader <stefan.bader@canonical.com>  Fri, 31 Mar 2017 09:20:03 +0200
+
+linux (4.4.0-71.92) xenial; urgency=low
 
   * CVE-2017-7184
     - xfrm_user: validate XFRM_MSG_NEWAE XFRMA_REPLAY_ESN_VAL replay_window
