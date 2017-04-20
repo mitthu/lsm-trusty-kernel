@@ -1,6 +1,16 @@
-linux-lts-xenial (4.4.0-74.95~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-75.96~14.04.1) trusty; urgency=low
 
-  * linux-lts-xenial: 4.4.0-74.95~14.04.1 -proposed tracker (LP: #1682042)
+  * linux-lts-xenial: 4.4.0-75.96~14.04.1 -proposed tracker (LP: #1684443)
+
+  * linux: 4.4.0-75.96 -proposed tracker (LP: #1684441)
+
+  * [Hyper-V] hv: util: move waiting for release to hv_utils_transport itself
+    (LP: #1682561)
+    - Drivers: hv: util: move waiting for release to hv_utils_transport itself
+
+ -- Stefan Bader <stefan.bader@canonical.com>  Wed, 19 Apr 2017 17:14:23 +0200
+
+linux (4.4.0-74.95) xenial; urgency=low
 
   * linux: 4.4.0-74.95 -proposed tracker (LP: #1682041)
 
