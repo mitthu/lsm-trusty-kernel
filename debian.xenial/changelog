@@ -1,3 +1,9 @@
+linux-lts-xenial (4.4.0-78.99~14.04.2) trusty; urgency=low
+
+  * linux-lts-xenial: 4.4.0-78.99~14.04.2 -proposed tracker (LP: #1686646)
+
+ -- Thadeu Lima de Souza Cascardo <cascardo@canonical.com>  Thu, 27 Apr 2017 15:27:23 -0300
+
 linux-lts-xenial (4.4.0-78.99~14.04.1) trusty; urgency=low
 
   * linux: 4.4.0-78.99 -proposed tracker (LP: #1686645)
