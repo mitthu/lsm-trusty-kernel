@@ -1,6 +1,21 @@
-linux-lts-xenial (4.4.0-82.105~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-83.106~14.04.1) trusty; urgency=low
 
-  * linux-lts-xenial: 4.4.0-82.105~14.04.1 -proposed tracker (LP: #1699066)
+  * linux-lts-xenial: 4.4.0-83.106~14.04.1 -proposed tracker (LP: #1700542)
+
+  * linux: 4.4.0-83.106 -proposed tracker (LP: #1700541)
+
+  * CVE-2017-1000364
+    - Revert "UBUNTU: SAUCE: mm: Only expand stack if guard area is hit"
+    - Revert "mm: do not collapse stack gap into THP"
+    - Revert "mm: enlarge stack guard gap"
+    - mm: vma_adjust: remove superfluous confusing update in remove_next == 1 case
+    - mm: larger stack guard gap, between vmas
+    - mm: fix new crash in unmapped_area_topdown()
+    - Allow stack to grow up to address space limit
+
+ -- Thadeu Lima de Souza Cascardo <cascardo@canonical.com>  Mon, 26 Jun 2017 12:27:55 -0300
+
+linux (4.4.0-82.105) xenial; urgency=low
 
   * linux: 4.4.0-82.105 -proposed tracker (LP: #1699064)
 
@@ -354,7 +369,7 @@ linux-lts-xenial (4.4.0-82.105~14.04.1) trusty; urgency=low
   * linux xenial derivatives fail to build (LP: #1691814)
     - [Packaging] Set do_tools_common in common vars
 
- -- Juerg Haefliger <juerg.haefliger@canonical.com>  Fri, 23 Jun 2017 10:15:57 +0200
+ -- Kleber Sacilotto de Souza <kleber.souza@canonical.com>  Tue, 20 Jun 2017 15:47:03 +0200
 
 linux (4.4.0-81.104) xenial; urgency=low
 
