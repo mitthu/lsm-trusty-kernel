@@ -1,6 +1,20 @@
-linux-lts-xenial (4.4.0-86.109~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-87.110~14.04.1) trusty; urgency=low
 
-  * linux-lts-xenial: 4.4.0-86.109~14.04.1 -proposed tracker (LP: #1703996)
+  * linux-lts-xenial: 4.4.0-87.110~14.04.1 -proposed tracker (LP: #1704985)
+
+  * linux: 4.4.0-87.110 -proposed tracker (LP: #1704982)
+
+  * CVE-2017-1000364
+    - mm/mmap.c: do not blow on PROT_NONE MAP_FIXED holes in the stack
+    - mm/mmap.c: expand_downwards: don't require the gap if !vm_prev
+
+  * CIFS causes oops (LP: #1704857)
+    - CIFS: Fix null pointer deref during read resp processing
+    - CIFS: Fix some return values in case of error in 'crypt_message'
+
+ -- Kleber Sacilotto de Souza <kleber.souza@canonical.com>  Tue, 18 Jul 2017 13:58:43 +0200
+
+linux (4.4.0-86.109) xenial; urgency=low
 
   * linux: 4.4.0-86.109 -proposed tracker (LP: #1703995)
 
