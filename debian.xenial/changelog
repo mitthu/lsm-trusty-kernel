@@ -1,6 +1,11 @@
-linux-lts-xenial (4.4.0-88.111~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-89.112~14.04.1) trusty; urgency=low
 
-  * linux-lts-xenial: 4.4.0-88.111~14.04.1 -proposed tracker (LP: #1705272)
+  * CVE-2017-7533
+    - dentry name snapshots
+
+ -- Thadeu Lima de Souza Cascardo <cascardo@canonical.com>  Mon, 31 Jul 2017 14:50:32 -0300
+
+linux (4.4.0-88.111) xenial; urgency=low
 
   * linux: 4.4.0-88.111 -proposed tracker (LP: #1705270)
 
