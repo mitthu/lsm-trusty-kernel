@@ -1,6 +1,16 @@
-linux-lts-xenial (4.4.0-94.117~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-95.118~14.04.1) trusty; urgency=low
 
-  * linux-lts-xenial: 4.4.0-94.117~14.04.1 -proposed tracker (LP: #1713463)
+  * linux-lts-xenial: 4.4.0-95.118~14.04.1 -proposed tracker (LP: #1715652)
+
+  * linux: 4.4.0-95.118 -proposed tracker (LP: #1715651)
+
+  * Xenial update to 4.4.78 stable release broke Address Sanitizer
+    (LP: #1715636)
+    - mm: revert x86_64 and arm64 ELF_ET_DYN_BASE base changes
+
+ -- Kleber Sacilotto de Souza <kleber.souza@canonical.com>  Fri, 08 Sep 2017 15:14:32 +0200
+
+linux (4.4.0-94.117) xenial; urgency=low
 
   * linux: 4.4.0-94.117 -proposed tracker (LP: #1713462)
 
