@@ -1,6 +1,20 @@
-linux-lts-xenial (4.4.0-95.118~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-96.119~14.04.1) trusty; urgency=low
 
-  * linux-lts-xenial: 4.4.0-95.118~14.04.1 -proposed tracker (LP: #1715652)
+  * linux-lts-xenial: 4.4.0-96.119~14.04.1 -proposed tracker (LP: #1716614)
+
+  * linux: 4.4.0-96.119 -proposed tracker (LP: #1716613)
+
+  * kernel panic -not syncing: Fatal exception: panic_on_oops (LP: #1708399)
+    - s390/mm: no local TLB flush for clearing-by-ASCE IDTE
+    - SAUCE: s390/mm: fix local TLB flushing vs. detach of an mm address space
+    - SAUCE: s390/mm: fix race on mm->context.flush_mm
+
+  * CVE-2017-1000251
+    - Bluetooth: Properly check L2CAP config option output buffer length
+
+ -- Stefan Bader <stefan.bader@canonical.com>  Tue, 12 Sep 2017 15:40:01 +0200
+
+linux (4.4.0-95.118) xenial; urgency=low
 
   * linux: 4.4.0-95.118 -proposed tracker (LP: #1715651)
 
@@ -8,7 +22,7 @@ linux-lts-xenial (4.4.0-95.118~14.04.1) trusty; urgency=low
     (LP: #1715636)
     - mm: revert x86_64 and arm64 ELF_ET_DYN_BASE base changes
 
- -- Kleber Sacilotto de Souza <kleber.souza@canonical.com>  Fri, 08 Sep 2017 15:14:32 +0200
+ -- Kleber Sacilotto de Souza <kleber.souza@canonical.com>  Thu, 07 Sep 2017 17:26:15 +0200
 
 linux (4.4.0-94.117) xenial; urgency=low
 
