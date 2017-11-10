@@ -1,6 +1,15 @@
-linux-lts-xenial (4.4.0-100.123~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-101.124~14.04.1) trusty; urgency=low
 
-  * linux-lts-xenial: 4.4.0-100.123~14.04.1 -proposed tracker (LP: #1729275)
+  * linux-lts-xenial: 4.4.0-101.124~14.04.1 -proposed tracker (LP: #1731266)
+
+  * linux: 4.4.0-101.124 -proposed tracker (LP: #1731264)
+
+  * s390/mm: fix write access check in gup_huge_pmd() (LP: #1730596)
+    - s390/mm: fix write access check in gup_huge_pmd()
+
+ -- Thadeu Lima de Souza Cascardo <cascardo@canonical.com>  Fri, 10 Nov 2017 08:24:10 -0200
+
+linux (4.4.0-100.123) xenial; urgency=low
 
   * linux: 4.4.0-100.123 -proposed tracker (LP: #1729273)
 
