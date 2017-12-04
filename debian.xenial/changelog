@@ -1,6 +1,19 @@
-linux-lts-xenial (4.4.0-102.125~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-103.126~14.04.1) trusty; urgency=low
 
-  * linux-lts-xenial: 4.4.0-102.125~14.04.1 -proposed tracker (LP: #1733542)
+  * linux-lts-xenial: 4.4.0-103.126~14.04.1 -proposed tracker (LP: #1736183)
+
+  * linux: 4.4.0-103.126 -proposed tracker (LP: #1736181)
+
+  * CVE-2017-1000405
+    - mm, thp: Do not make page table dirty unconditionally in touch_p[mu]d()
+
+  * CVE-2017-16939
+    - netlink: add a start callback for starting a netlink dump
+    - ipsec: Fix aborted xfrm policy dump crash
+
+ -- Stefan Bader <stefan.bader@canonical.com>  Mon, 04 Dec 2017 16:50:53 +0100
+
+linux (4.4.0-102.125) xenial; urgency=low
 
   * linux: 4.4.0-102.125 -proposed tracker (LP: #1733541)
 
