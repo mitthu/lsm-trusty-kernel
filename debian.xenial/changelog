@@ -1,6 +1,34 @@
-linux-lts-xenial (4.4.0-104.127~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-105.128~14.04.1) trusty; urgency=low
 
-  * linux-lts-xenial: 4.4.0-104.127~14.04.1 -proposed tracker (LP: #1737514)
+  * linux-lts-xenial: 4.4.0-105.128~14.04.1 -proposed tracker (LP: #1737919)
+
+  * linux: 4.4.0-105.128 -proposed tracker (LP: #1737916)
+
+  * CVE-CVE-2017-12190
+    - more bio_map_user_iov() leak fixes
+
+  * CVE-2015-8952
+    - mbcache2: reimplement mbcache
+    - ext2: convert to mbcache2
+    - ext4: convert to mbcache2
+    - mbcache2: limit cache size
+    - mbcache2: Use referenced bit instead of LRU
+    - ext4: kill ext4_mballoc_ready
+    - ext4: shortcut setting of xattr to the same value
+    - mbcache: remove mbcache
+    - mbcache2: rename to mbcache
+    - mbcache: get rid of _e_hash_list_head
+    - mbcache: add reusable flag to cache entries
+
+  * CVE-2017-15115
+    - sctp: do not peel off an assoc from one netns to another one
+
+  * CVE-2017-8824
+    - dccp: CVE-2017-8824: use-after-free in DCCP code
+
+ -- Thadeu Lima de Souza Cascardo <cascardo@canonical.com>  Wed, 13 Dec 2017 15:02:45 -0200
+
+linux (4.4.0-104.127) xenial; urgency=low
 
   * linux: 4.4.0-104.127 -proposed tracker (LP: #1737511)
 
