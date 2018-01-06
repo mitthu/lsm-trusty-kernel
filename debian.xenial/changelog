@@ -1,32 +1,55 @@
-linux-lts-xenial (4.4.0-105.128~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-106.129~14.04.1) trusty; urgency=low
 
-  * linux-lts-xenial: 4.4.0-105.128~14.04.1 -proposed tracker (LP: #1737919)
+  * linux-lts-xenial: 4.4.0-106.129~14.04.1 -proposed tracker (LP: #1741530)
 
-  * linux: 4.4.0-105.128 -proposed tracker (LP: #1737916)
+  * linux: 4.4.0-106.129 -proposed tracker (LP: #1741528)
 
-  * CVE-CVE-2017-12190
-    - more bio_map_user_iov() leak fixes
+  * CVE-2017-5754
+    - KAISER: Kernel Address Isolation
+    - kaiser: merged update
+    - kaiser: do not set _PAGE_NX on pgd_none
+    - kaiser: stack map PAGE_SIZE at THREAD_SIZE-PAGE_SIZE
+    - kaiser: fix build and FIXME in alloc_ldt_struct()
+    - kaiser: KAISER depends on SMP
+    - kaiser: fix regs to do_nmi() ifndef CONFIG_KAISER
+    - kaiser: fix perf crashes
+    - kaiser: ENOMEM if kaiser_pagetable_walk() NULL
+    - kaiser: tidied up asm/kaiser.h somewhat
+    - kaiser: tidied up kaiser_add/remove_mapping slightly
+    - kaiser: kaiser_remove_mapping() move along the pgd
+    - kaiser: cleanups while trying for gold link
+    - kaiser: name that 0x1000 KAISER_SHADOW_PGD_OFFSET
+    - kaiser: delete KAISER_REAL_SWITCH option
+    - kaiser: vmstat show NR_KAISERTABLE as nr_overhead
+    - x86/mm: Enable CR4.PCIDE on supported systems
+    - x86/mm: Build arch/x86/mm/tlb.c even on !SMP
+    - x86/mm, sched/core: Uninline switch_mm()
+    - x86/mm: Add INVPCID helpers
+    - x86/mm: If INVPCID is available, use it to flush global mappings
+    - kaiser: enhanced by kernel and user PCIDs
+    - kaiser: load_new_mm_cr3() let SWITCH_USER_CR3 flush user
+    - kaiser: PCID 0 for kernel and 128 for user
+    - kaiser: x86_cr3_pcid_noflush and x86_cr3_pcid_user
+    - kaiser: paranoid_entry pass cr3 need to paranoid_exit
+    - kaiser: _pgd_alloc() without __GFP_REPEAT to avoid stalls
+    - kaiser: fix unlikely error in alloc_ldt_struct()
+    - kaiser: add "nokaiser" boot option, using ALTERNATIVE
+    - x86/kaiser: Rename and simplify X86_FEATURE_KAISER handling
+    - x86/boot: Add early cmdline parsing for options with arguments
+    - x86/kaiser: Check boottime cmdline params
+    - kaiser: use ALTERNATIVE instead of x86_cr3_pcid_noflush
+    - kaiser: drop is_atomic arg to kaiser_pagetable_walk()
+    - kaiser: asm/tlbflush.h handle noPGE at lower level
+    - kaiser: kaiser_flush_tlb_on_return_to_user() check PCID
+    - x86/paravirt: Dont patch flush_tlb_single
+    - x86/kaiser: Reenable PARAVIRT
+    - kaiser: disabled on Xen PV
+    - x86/kaiser: Move feature detection up
+    - kvm: x86: fix RSM when PCID is non-zero
+    - SAUCE: arch/x86/entry/vdso: temporarily disable vdso
+    - [Config]: CONFIG_KAISER=y
 
-  * CVE-2015-8952
-    - mbcache2: reimplement mbcache
-    - ext2: convert to mbcache2
-    - ext4: convert to mbcache2
-    - mbcache2: limit cache size
-    - mbcache2: Use referenced bit instead of LRU
-    - ext4: kill ext4_mballoc_ready
-    - ext4: shortcut setting of xattr to the same value
-    - mbcache: remove mbcache
-    - mbcache2: rename to mbcache
-    - mbcache: get rid of _e_hash_list_head
-    - mbcache: add reusable flag to cache entries
-
-  * CVE-2017-15115
-    - sctp: do not peel off an assoc from one netns to another one
-
-  * CVE-2017-8824
-    - dccp: CVE-2017-8824: use-after-free in DCCP code
-
- -- Thadeu Lima de Souza Cascardo <cascardo@canonical.com>  Wed, 13 Dec 2017 15:02:45 -0200
+ -- Kleber Sacilotto de Souza <kleber.souza@canonical.com>  Fri, 05 Jan 2018 19:53:41 +0100
 
 linux (4.4.0-104.127) xenial; urgency=low
 
