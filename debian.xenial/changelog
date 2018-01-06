@@ -1,6 +1,20 @@
-linux-lts-xenial (4.4.0-106.129~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-107.130~14.04.1) trusty; urgency=low
 
-  * linux-lts-xenial: 4.4.0-106.129~14.04.1 -proposed tracker (LP: #1741530)
+  * linux-lts-xenial: 4.4.0-107.130~14.04.1 -proposed tracker (LP: #1741645)
+
+  * linux: 4.4.0-107.130 -proposed tracker (LP: #1741643)
+
+  * CVE-2017-5754
+    - Revert "UBUNTU: SAUCE: arch/x86/entry/vdso: temporarily disable vdso"
+    - KPTI: Report when enabled
+    - x86, vdso, pvclock: Simplify and speed up the vdso pvclock reader
+    - x86/vdso: Get pvclock data from the vvar VMA instead of the fixmap
+    - x86/kasan: Clear kasan_zero_page after TLB flush
+    - kaiser: Set _PAGE_NX only if supported
+
+ -- Kleber Sacilotto de Souza <kleber.souza@canonical.com>  Sat, 06 Jan 2018 18:26:40 +0100
+
+linux (4.4.0-106.129) xenial; urgency=low
 
   * linux: 4.4.0-106.129 -proposed tracker (LP: #1741528)
 
