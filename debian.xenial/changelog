@@ -1,6 +1,15 @@
-linux-lts-xenial (4.4.0-107.130~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-108.131~14.04.1) trusty; urgency=low
 
-  * linux-lts-xenial: 4.4.0-107.130~14.04.1 -proposed tracker (LP: #1741645)
+  * linux-lts-xenial: 4.4.0-108.131~14.04.1 -proposed tracker (LP: #1741729)
+
+  * linux: 4.4.0-108.131 -proposed tracker (LP: #1741727)
+
+  * CVE-2017-5754
+    - x86/mm: Disable PCID on 32-bit kernels
+
+ -- Kleber Sacilotto de Souza <kleber.souza@canonical.com>  Sun, 07 Jan 2018 16:27:38 +0100
+
+linux (4.4.0-107.130) xenial; urgency=low
 
   * linux: 4.4.0-107.130 -proposed tracker (LP: #1741643)
 
@@ -12,7 +21,7 @@ linux-lts-xenial (4.4.0-107.130~14.04.1) trusty; urgency=low
     - x86/kasan: Clear kasan_zero_page after TLB flush
     - kaiser: Set _PAGE_NX only if supported
 
- -- Kleber Sacilotto de Souza <kleber.souza@canonical.com>  Sat, 06 Jan 2018 18:26:40 +0100
+ -- Kleber Sacilotto de Souza <kleber.souza@canonical.com>  Sat, 06 Jan 2018 17:13:03 +0100
 
 linux (4.4.0-106.129) xenial; urgency=low
 
