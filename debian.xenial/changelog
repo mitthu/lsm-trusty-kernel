@@ -1,13 +1,23 @@
-linux-lts-xenial (4.4.0-108.131~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-109.132~14.04.1) trusty; urgency=low
 
-  * linux-lts-xenial: 4.4.0-108.131~14.04.1 -proposed tracker (LP: #1741729)
+  * linux-lts-xenial: 4.4.0-109.132~14.04.1 -proposed tracker (LP: #1742255)
+
+  * linux: 4.4.0-109.132 -proposed tracker (LP: #1742252)
+
+  * Kernel trace with xenial 4.4  (4.4.0-108.131, Candidate kernels for PTI fix)
+    (LP: #1741934)
+    - SAUCE: kaiser: fix perf crashes - fix to original commit
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Tue, 09 Jan 2018 15:56:26 -0200
+
+linux (4.4.0-108.131) xenial; urgency=low
 
   * linux: 4.4.0-108.131 -proposed tracker (LP: #1741727)
 
   * CVE-2017-5754
     - x86/mm: Disable PCID on 32-bit kernels
 
- -- Kleber Sacilotto de Souza <kleber.souza@canonical.com>  Sun, 07 Jan 2018 16:27:38 +0100
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Sun, 07 Jan 2018 11:46:05 -0200
 
 linux (4.4.0-107.130) xenial; urgency=low
 
