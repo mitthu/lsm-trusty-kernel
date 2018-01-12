@@ -1,6 +1,6 @@
-linux-lts-xenial (4.4.0-110.133~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-110.133~14.04.2) trusty; urgency=low
 
-  * linux-lts-xenial: 4.4.0-110.133~14.04.1 -proposed tracker (LP: #1742996)
+  * linux-lts-xenial: 4.4.0-110.133~14.04.2 -proposed tracker (LP: #1742996)
 
   * linux: 4.4.0-110.133 -proposed tracker (LP: #1742995)
 
@@ -181,8 +181,9 @@ linux-lts-xenial (4.4.0-110.133~14.04.1) trusty; urgency=low
     - SAUCE: rfi-flush: Fix the 32-bit KVM build
     - SAUCE: rfi-flush: Fix some RFI conversions in the KVM code
     - SAUCE: UBUNTU: [Config] Disable CONFIG_PPC_DEBUG_RFI
+    - UBUNTU: SAUCE: powerpc: use sync instead of hwsync mnemonic
 
- -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Fri, 12 Jan 2018 14:47:54 -0200
+ -- Seth Forshee <seth.forshee@canonical.com>  Fri, 12 Jan 2018 14:54:58 -0600
 
 linux (4.4.0-109.132) xenial; urgency=low
 
