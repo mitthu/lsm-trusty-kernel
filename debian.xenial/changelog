@@ -1,6 +1,19 @@
-linux-lts-xenial (4.4.0-111.134~14.04.1) trusty; urgency=low
+linux-lts-xenial (4.4.0-112.135~14.04.1) trusty; urgency=low
 
-  * linux-lts-xenial: 4.4.0-111.134~14.04.1 -proposed tracker (LP: #1743364)
+  * linux-lts-xenial: 4.4.0-112.135~14.04.1 -proposed tracker (LP: #1745011)
+
+  * linux: 4.4.0-112.135 -proposed tracker (LP: #1744244)
+
+  * CVE-2017-5715 // CVE-2017-5753
+    - x86/cpuid: Provide get_scattered_cpuid_leaf()
+    - SAUCE: Fix spec_ctrl support in KVM
+    - SAUCE: s390: improve cpu alternative handling for gmb and nobp
+    - SAUCE: s390: print messages for gmb and nobp
+    - [Config] KERNEL_NOBP=y
+
+ -- Stefan Bader <stefan.bader@canonical.com>  Fri, 19 Jan 2018 11:03:51 +0100
+
+linux (4.4.0-111.134) xenial; urgency=low
 
   * linux: 4.4.0-111.134 -proposed tracker (LP: #1743362)
 
@@ -17,7 +30,7 @@ linux-lts-xenial (4.4.0-111.134~14.04.1) trusty; urgency=low
   * CVE-2017-5754
     - SAUCE: powerpc: use sync instead of hwsync mnemonic
 
- -- Kleber Sacilotto de Souza <kleber.souza@canonical.com>  Mon, 15 Jan 2018 16:00:49 +0100
+ -- Kleber Sacilotto de Souza <kleber.souza@canonical.com>  Mon, 15 Jan 2018 15:05:02 +0100
 
 linux (4.4.0-110.133) xenial; urgency=low
 
