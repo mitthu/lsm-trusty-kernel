@@ -1,6 +1,28 @@
-linux-lts-xenial (4.4.0-117.141~14.04.1) trusty; urgency=medium
+linux-lts-xenial (4.4.0-119.143~14.04.1) trusty; urgency=medium
 
-  * linux-lts-xenial: 4.4.0-117.141~14.04.1 -proposed tracker (LP: #1755209)
+  * linux-lts-xenial: 4.4.0-119.143~14.04.1 -proposed tracker (LP: #1760641)
+
+  * linux: 4.4.0-119.143 -proposed tracker (LP: #1760327)
+
+  * Dell XPS 13 9360 bluetooth scan can not detect any device (LP: #1759821)
+    - Revert "Bluetooth: btusb: fix QCA Rome suspend/resume"
+
+ -- Kamal Mostafa <kamal@canonical.com>  Mon, 02 Apr 2018 09:59:19 -0700
+
+linux (4.4.0-118.142) xenial; urgency=medium
+
+  * linux: 4.4.0-118.142 -proposed tracker (LP: #1759607)
+
+  * Kernel panic with AWS 4.4.0-1053 / 4.4.0-1015 (Trusty) (LP: #1758869)
+    - x86/microcode/AMD: Do not load when running on a hypervisor
+
+  * CVE-2018-8043
+    - net: phy: mdio-bcm-unimac: fix potential NULL dereference in
+      unimac_mdio_probe()
+
+ -- Khalid Elmously <khalid.elmously@canonical.com>  Wed, 28 Mar 2018 14:15:10 -0400
+
+linux (4.4.0-117.141) xenial; urgency=medium
 
   * linux: 4.4.0-117.141 -proposed tracker (LP: #1755208)
 
