@@ -1,6 +1,15 @@
-linux-lts-xenial (4.4.0-120.144~14.04.1) trusty; urgency=medium
+linux-lts-xenial (4.4.0-121.145~14.04.1) trusty; urgency=medium
 
-  * linux-lts-xenial: 4.4.0-120.144~14.04.1 -proposed tracker (LP: #1761441)
+  * linux-lts-xenial: 4.4.0-121.145~14.04.1 -proposed tracker (LP: #1763688)
+
+  * linux: 4.4.0-121.145 -proposed tracker (LP: #1763687)
+
+  * Ubuntu-4.4.0-120.144 fails to boot on arm64* hardware (LP: #1763644)
+    - [Config] arm64: disable BPF_JIT_ALWAYS_ON
+
+ -- Kleber Sacilotto de Souza <kleber.souza@canonical.com>  Fri, 13 Apr 2018 14:42:14 +0200
+
+linux (4.4.0-120.144) xenial; urgency=medium
 
   * linux: 4.4.0-120.144 -proposed tracker (LP: #1761438)
 
@@ -308,7 +317,7 @@ linux-lts-xenial (4.4.0-120.144~14.04.1) trusty; urgency=medium
   * retpoline: ignore %cs:0xNNN constant indirections (LP: #1752655)
     - [Packaging] retpoline -- elide %cs:0xNNNN constants on i386
 
- -- Kleber Sacilotto de Souza <kleber.souza@canonical.com>  Fri, 06 Apr 2018 08:35:46 +0200
+ -- Kleber Sacilotto de Souza <kleber.souza@canonical.com>  Thu, 05 Apr 2018 15:03:15 +0200
 
 linux (4.4.0-119.143) xenial; urgency=medium
 
