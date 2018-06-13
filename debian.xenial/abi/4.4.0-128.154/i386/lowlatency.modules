@@ -1949,6 +1949,7 @@ ix2505v
 ixgb
 ixgbe
 ixgbevf
+ixx_usb
 janz-cmodio
 janz-ican3
 jc42
@@ -4210,7 +4211,6 @@ touchwin
 tpci200
 tpm-rng
 tpm_atmel
-tpm_crb
 tpm_i2c_atmel
 tpm_i2c_infineon
 tpm_i2c_nuvoton
