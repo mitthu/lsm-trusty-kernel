@@ -1626,6 +1626,7 @@ i7300_edac
 i7300_idle
 i740fb
 i7core_edac
+i810
 i82092
 i82975x_edac
 i915
@@ -1910,6 +1911,7 @@ ix2505v
 ixgb
 ixgbe
 ixgbevf
+ixx_usb
 janz-cmodio
 janz-ican3
 jc42
@@ -2064,6 +2066,9 @@ libsas
 lightning
 lineage-pem
 linear
+linux-bcm-knet
+linux-kernel-bde
+linux-user-bde
 liquidio
 lirc_bt829
 lirc_dev
@@ -4067,7 +4072,6 @@ touchwin
 tpci200
 tpm-rng
 tpm_atmel
-tpm_crb
 tpm_i2c_atmel
 tpm_i2c_infineon
 tpm_i2c_nuvoton
