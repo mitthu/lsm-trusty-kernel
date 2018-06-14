@@ -1,6 +1,21 @@
-linux-lts-xenial (4.4.0-129.155~14.04.1) trusty; urgency=medium
+linux-lts-xenial (4.4.0-130.156~14.04.1) trusty; urgency=medium
 
-  * linux-lts-xenial: 4.4.0-129.155~14.04.1 -proposed tracker (LP: #1776355)
+  * linux-lts-xenial: 4.4.0-130.156~14.04.1 -proposed tracker (LP: #1776823)
+
+  * linux: 4.4.0-130.156 -proposed tracker (LP: #1776822)
+
+  * CVE-2018-3665 (x86)
+    - x86/fpu: Fix early FPU command-line parsing
+    - x86/fpu: Fix 'no387' regression
+    - x86/fpu: Disable MPX when eagerfpu is off
+    - x86/fpu: Default eagerfpu=on on all CPUs
+    - x86/fpu: Fix FNSAVE usage in eagerfpu mode
+    - x86/fpu: Fix math emulation in eager fpu mode
+    - x86/fpu: Fix eager-FPU handling on legacy FPU machines
+
+ -- Stefan Bader <stefan.bader@canonical.com>  Thu, 14 Jun 2018 06:53:41 +0200
+
+linux (4.4.0-129.155) xenial; urgency=medium
 
   * linux: 4.4.0-129.155 -proposed tracker (LP: #1776352)
 
