@@ -1,6 +1,16 @@
-linux-lts-xenial (4.4.0-130.156~14.04.1) trusty; urgency=medium
+linux-lts-xenial (4.4.0-131.157~14.04.1) trusty; urgency=medium
 
-  * linux-lts-xenial: 4.4.0-130.156~14.04.1 -proposed tracker (LP: #1776823)
+  * linux-lts-xenial: 4.4.0-131.157~14.04.1 -proposed tracker (LP: #1779378)
+
+  * linux: 4.4.0-131.157 -proposed tracker (LP: #1779376)
+
+  * Cannot set MTU higher than 1500 in Xen instance (LP: #1781413)
+    - xen-netfront: Fix mismatched rtnl_unlock
+    - xen-netfront: Update features after registering netdev
+
+ -- Khalid Elmously <khalid.elmously@canonical.com>  Thu, 12 Jul 2018 01:46:32 -0400
+
+linux (4.4.0-130.156) xenial; urgency=medium
 
   * linux: 4.4.0-130.156 -proposed tracker (LP: #1776822)
 
