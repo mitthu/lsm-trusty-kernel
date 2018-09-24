@@ -1,6 +1,14 @@
-linux-lts-xenial (4.4.0-136.162~14.04.1) trusty; urgency=medium
+linux-lts-xenial (4.4.0-137.163~14.04.1) trusty; urgency=medium
 
-  * linux-lts-xenial: 4.4.0-136.162~14.04.1 -proposed tracker (LP: #1791747)
+  * CVE-2018-14633
+    - iscsi target: Use hex2bin instead of a re-implementation
+
+  * CVE-2018-17182
+    - mm: get rid of vmacache_flush_all() entirely
+
+ -- Stefan Bader <stefan.bader@canonical.com>  Mon, 24 Sep 2018 13:39:05 +0200
+
+linux (4.4.0-136.162) xenial; urgency=medium
 
   * linux: 4.4.0-136.162 -proposed tracker (LP: #1791745)
 
@@ -183,7 +191,7 @@ linux-lts-xenial (4.4.0-136.162~14.04.1) trusty; urgency=medium
     - partitions/aix: fix usage of uninitialized lv_info and lvname structures
     - partitions/aix: append null character to print data from disk
 
- -- Khalid Elmously <khalid.elmously@canonical.com>  Wed, 12 Sep 2018 02:24:01 -0400
+ -- Kleber Sacilotto de Souza <kleber.souza@canonical.com>  Tue, 11 Sep 2018 15:50:12 +0200
 
 linux (4.4.0-135.161) xenial; urgency=medium
 
