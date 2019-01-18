@@ -122,32 +122,36 @@ sed -i -e 's/^\(do_zfs[ \t]*=[ \t]\)true\(.*\)$/\1false\2/' debian.xenial/rules.
 #
 rsync -av --delete ${DEBIAN_SOURCE}/modprobe.d/ ${DEBIAN_TARGET}/modprobe.d
 
-#
-# Get the master branch ABI files, which can be mostly ignored since
-# the build is skipabi and skipmodule.
-# We can ignore ABI changes with the assurance that the origin
-# will change ABI when required.
-#
-rsync -av --delete ${DEBIAN_SOURCE}/abi/ ${DEBIAN_TARGET}/abi
-for i in ${FOREIGN_ARCHES}
-do
-        rm -rf ${DEBIAN_TARGET}/abi/*/${i}
-done
-
 cp -p ${DEBIAN_SOURCE}/control.d/*.inclusion-list ${DEBIAN_TARGET}/control.d
 
 cp -p ${DEBIAN_SOURCE}/reconstruct ${DEBIAN_TARGET}/reconstruct
 
 fakeroot debian/rules clean updateconfigs
 
+#
+# A little hack to avoid touching the ABI files if we are called from
+# cranky (which sets SKIP_REBASE_IF_UPTODATE).
+#
+if [ -z "$SKIP_REBASE_IF_UPTODATE" ]; then
+	#
+	# Download the ABI files from the previous build
+	#
+	PREV_VERSION=$(dpkg-parsechangelog -l${DEBIAN_TARGET}/changelog \
+			-SVersion)
+	echo "prev abi ver ${PREV_VERSION}"
+	./debian/scripts/misc/getabis ${PREV_VERSION} || exit 1
+	git add ${DEBIAN_TARGET}/abi
+fi
+
 # Stage the bits we changed.
 rm -f ${DEBIAN_TARGET}/d-i/kernel-versions
-git add ${DEBIAN_TARGET}/abi ${DEBIAN_TARGET}/d-i ${DEBIAN_TARGET}/config \
+git add ${DEBIAN_TARGET}/d-i ${DEBIAN_TARGET}/config \
 	${DEBIAN_TARGET}/rules.d/*.mk ${DEBIAN_TARGET}/reconstruct \
 	${DEBIAN_TARGET}/modprobe.d
 
 #
-# Update changelog from the source release changelog. Change the release pocket and ABI.
+# Update changelog from the source release changelog.
+# Change the release pocket and ABI.
 #
 cp ${DEBIAN_SOURCE}/changelog ${DEBIAN_TARGET}/changelog
 sed -i -e '1s/'${SOURCE_RELEASE}'.*;/'${TARGET_RELEASE}${POCKET}';/' -e '1s/^linux /linux-lts-'${SOURCE_RELEASE}' /' -e '1s/)/~'${TARGET_RELEASE_NUMBER}'.1)/' ${DEBIAN_TARGET}/changelog
