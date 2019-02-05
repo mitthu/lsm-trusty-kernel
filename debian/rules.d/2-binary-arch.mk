@@ -39,7 +39,7 @@ prepare-%: $(stampdir)/stamp-prepare-%
 build-%: $(stampdir)/stamp-build-%
 	@echo Debug: $@
 
-define build_zfs =
+define build_zfs
 	#
 	# SPL/ZFS wants a fully built kernel before you can configure and build.
 	# It seems to be impossible to tease out the application configuration
@@ -74,14 +74,14 @@ $(stampdir)/stamp-build-%: $(stampdir)/stamp-prepare-%
 
 	@touch $@
 
-define install_zfs =
+define install_zfs
 	cd $(builddir)/build-$*/spl/module; \
 		$(kmake) -C $(builddir)/build-$* SUBDIRS=`pwd` modules_install $(splopts)
 	cd $(builddir)/build-$*/zfs/module; \
 		$(kmake) -C $(builddir)/build-$* SUBDIRS=`pwd` modules_install $(zfsopts)
 endef
 
-define install_control =
+define install_control
 	for which in $(3);							\
 	do									\
 		template="$(DROOT)/templates/$(2).$$which.in";			\
