@@ -1,6 +1,4 @@
 # Recreate any symlinks created since the orig.
-[ ! -L 'spl/rpm/redhat/spl-dkms.spec.in' ] && ln -sf '../generic/spl-dkms.spec.in' 'spl/rpm/redhat/spl-dkms.spec.in'
-[ ! -L 'spl/rpm/redhat/spl.spec.in' ] && ln -sf '../generic/spl.spec.in' 'spl/rpm/redhat/spl.spec.in'
 [ ! -L 'ubuntu/vbox/vboxguest/include' ] && ln -sf '../include' 'ubuntu/vbox/vboxguest/include'
 [ ! -L 'ubuntu/vbox/vboxguest/r0drv' ] && ln -sf '../r0drv' 'ubuntu/vbox/vboxguest/r0drv'
 [ ! -L 'ubuntu/vbox/vboxsf/include' ] && ln -sf '../include' 'ubuntu/vbox/vboxsf/include'
@@ -180,6 +178,7 @@ rm -f 'firmware/yamaha/ds1_ctrl.fw.ihex'
 rm -f 'firmware/yamaha/ds1_dsp.fw.ihex'
 rm -f 'firmware/yamaha/ds1e_ctrl.fw.ihex'
 rm -f 'include/crypto/vmac.h'
+rm -f 'tools/perf/util/include/asm/alternative-asm.h'
 rm -f 'tools/perf/util/include/asm/unistd_32.h'
 rm -f 'tools/perf/util/include/asm/unistd_64.h'
 exit 0
