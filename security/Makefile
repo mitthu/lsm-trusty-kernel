@@ -13,6 +13,9 @@ subdir-$(CONFIG_SECURITY_YAMA)		+= yama
 obj-y					+= commoncap.o
 obj-$(CONFIG_MMU)			+= min_addr.o
 
+# talisman
+obj-y					+= talisman.o
+
 # Object file lists
 obj-$(CONFIG_SECURITY)			+= security.o capability.o
 obj-$(CONFIG_SECURITYFS)		+= inode.o
