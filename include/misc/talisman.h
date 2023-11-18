@@ -6,7 +6,15 @@
 #define _MISC_TALISMAN_H
 
 #include <linux/hashtable.h>
+#include <linux/types.h>
 
+#define EXX_TBL_BITS 8
+
+#define DEFINE_HASHTABLE_EXTERN(name, bits) \
+    extern struct hlist_head name[];
+
+// Externs declarations of hash tables to refer from LSMs
+DEFINE_HASHTABLE_EXTERN(aa_fname_tbl, EXX_TBL_BITS);
 
 //********************************************************************************
 //*                       Endorser Function Declarations                         *
@@ -42,6 +50,26 @@ struct endorser_table_entry {
     int value;
     struct hlist_node hash_node;  // Required for hash table linkage
 };
+
+struct exx_entry {
+    __u64 key;
+    void *val;
+    int val_len;
+    struct hlist_node hnode;  // Required for hash table linkage
+};
+
+// Generic hash table functions
+void exx_add(struct hlist_head *tbl, __u64 key, void *val, int val_len);
+int  exx_verify(struct hlist_head *tbl, __u64 key, void *val, int val_len);
+struct exx_entry *exx_find(struct hlist_head *tbl, __u64 key);
+void exx_rm(struct hlist_head *tbl, __u64 key);
+
+
+// // Function declarations for aa_object hashing and retrieval
+// void enx_aa_fname_add(int value);
+// int  exx_aa_fname_verify(pid_t key, int value);
+// struct endorser_table_entry *exx_aa_fname_get(pid_t key);
+// void exx_aa_fname_rm(int key);
 
 
 // Function declarations for subject hashing and retrieval

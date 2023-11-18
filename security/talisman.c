@@ -1,14 +1,12 @@
 #include <misc/talisman.h>
 
+#include <linux/types.h>
 #include <linux/slab.h>
 #include <linux/hashtable.h>
 #include <linux/xxhash.h>
 
-// Define the hashtables
-#define DEFINE_HASHTABLE(name, bits) \
-    struct hlist_head name[1 << (bits)] = { \
-        [0 ... ((1 << (bits)) - 1)] = HLIST_HEAD_INIT \
-    }
+/* Hash-tables for endorsers */
+DEFINE_HASHTABLE(aa_fname_tbl, EXX_TBL_BITS);
 
 // TODO: Make below lsm specific
 DEFINE_HASHTABLE(subject_hash_table, 8);  // Note the size here is bits (i.e, 3 = 8 buckets)
@@ -25,6 +23,58 @@ DEFINE_HASHTABLE(shm_hash_table, 8);
 DEFINE_HASHTABLE(sem_hash_table, 8);
 DEFINE_HASHTABLE(ns_hash_table, 8);
 
+/* Generic hash table functions */
+
+// Add entry to hash table.
+// Caller needs to allocate storage for value using kalloc().
+// When removing the node kfree() will be called on the value.
+void exx_add(struct hlist_head *tbl, __u64 key, void *val, int val_len) {
+    struct exx_entry *new;
+
+    /* remove stale entry? */
+    exx_rm(tbl, key);
+
+    /* add new entry */
+    new = kmalloc(sizeof(struct exx_entry), GFP_KERNEL);
+    if (!new) {
+        printk(KERN_ERR "Memory allocation failed for subject endorser\n");
+        return;
+    }
+    new->key = key;
+    new->val = val;
+    new->val_len = val_len;
+
+    hlist_add_head(&new->hnode, &tbl[hash_min(key, EXX_TBL_BITS)]);
+}
+
+struct exx_entry *exx_find(struct hlist_head *tbl, __u64 key) {
+    struct exx_entry *entry;
+
+    hlist_for_each_entry(entry, &tbl[hash_min(key, EXX_TBL_BITS)], hnode) {
+        if (entry->key == key) {
+            return entry;
+        }
+    }
+    return NULL;  // Data not found
+}
+
+// Verify entry in hash table using memcmp().
+// Returns: 1 if found, else 0
+int exx_verify(struct hlist_head *tbl, __u64 key, void *val, int val_len) {
+    struct exx_entry *entry = exx_find(tbl, key);
+    if (!entry)
+        return 0;
+    return (entry->val_len == val_len) && memcmp(entry->val, val, val_len);
+}
+
+void exx_rm(struct hlist_head *tbl, __u64 key) {
+    struct exx_entry *entry = exx_find(tbl, key);
+    if (entry) {
+        hash_del(&entry->hnode);
+        kfree(entry->val);
+        kfree(entry);
+    }
+}
 
 // ********************************************************************************
 // *                       Endorser Insertion Functions                           *
@@ -203,16 +253,6 @@ void endorser_record_ns_data(char* name_space, int value) {
 //*                      Endorser Validation Functions                           *
 //********************************************************************************
 
-// Function that checks the value of a subject key with a given input
-int endorser_validate_subject_data(int key, int value) {
-    struct endorser_table_entry *data_entry = find_subject_data(key);
-	
-    if (data_entry->value == value) {
-    	return 1;
-    } else {
-    	return 0;
-    }
-}
 
 // Function that checks the value of an object key with a given input
 int endorser_validate_object_data(int key, int value) {
