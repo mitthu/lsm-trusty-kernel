@@ -5,6 +5,15 @@
 #include <linux/hashtable.h>
 #include <linux/xxhash.h>
 
+#include <linux/module.h>
+#include <linux/debugfs.h>
+
+static struct dentry *dir = NULL;
+static atomic_t stat_add = ATOMIC_INIT(0);
+static atomic_t stat_rm = ATOMIC_INIT(0);
+static atomic_t stat_vFail = ATOMIC_INIT(0);
+static atomic_t stat_vOkay = ATOMIC_INIT(0);
+
 /* Hash-tables for endorsers */
 DEFINE_HASHTABLE(aa_fname_tbl, EXX_TBL_BITS);
 DEFINE_HASHTABLE(task_tbl, EXX_TBL_BITS);
@@ -46,6 +55,7 @@ void exx_add(struct hlist_head *tbl, __u64 key, void *val, int val_len) {
     new->val_len = val_len;
 
     hlist_add_head(&new->hnode, &tbl[hash_min(key, EXX_TBL_BITS)]);
+    atomic_inc(&stat_add);
 }
 
 struct exx_entry *exx_find(struct hlist_head *tbl, __u64 key) {
@@ -64,8 +74,17 @@ struct exx_entry *exx_find(struct hlist_head *tbl, __u64 key) {
 int exx_verify(struct hlist_head *tbl, __u64 key, void *val, int val_len) {
     struct exx_entry *entry = exx_find(tbl, key);
     if (!entry)
-        return 0;
-    return (entry->val_len == val_len) && memcmp(entry->val, val, val_len);
+        goto fail;
+
+    /* compare result */
+    if ((entry->val_len == val_len) && memcmp(entry->val, val, val_len)) {
+        atomic_inc(&stat_vOkay);
+        return 1;
+    }
+
+fail:
+    atomic_inc(&stat_vFail);
+    return 0;
 }
 
 void exx_rm(struct hlist_head *tbl, __u64 key) {
@@ -75,6 +94,7 @@ void exx_rm(struct hlist_head *tbl, __u64 key) {
         kfree(entry->val);
         kfree(entry);
     }
+    atomic_inc(&stat_rm);
 }
 
 void *exx_dup(void *src, size_t n) {
@@ -90,6 +110,28 @@ void *exx_dup(void *src, size_t n) {
     memcpy(ptr, src, n);
     return ptr;
 }
+
+static int __init talisman_init(void)
+{
+    dir = debugfs_create_dir("talisman", NULL);
+    if (!dir)
+        return 0;
+
+    debugfs_create_atomic_t("add", 0666, dir, &stat_add);
+    debugfs_create_atomic_t("remove", 0666, dir, &stat_rm);
+    debugfs_create_atomic_t("vokay", 0666, dir, &stat_vOkay);
+    debugfs_create_atomic_t("vfail", 0666, dir, &stat_vFail);
+	return 0;
+}
+
+static void __exit talisman_exit(void)
+{
+    if (dir)
+        debugfs_remove_recursive(dir);
+}
+
+module_init(talisman_init);
+module_exit(talisman_exit);
 
 // ********************************************************************************
 // *                       Endorser Insertion Functions                           *
