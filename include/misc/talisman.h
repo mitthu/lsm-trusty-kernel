@@ -9,12 +9,17 @@
 #include <linux/types.h>
 
 #define EXX_TBL_BITS 8
+#define EXX_KEY_TASK(tsk) \
+	( (( (__u64)tsk->tgid ) << 32 ) | tsk->pid )
+#define EXX_KEY_INODE(inode) \
+	( (( (__u64)inode->i_rdev ) << 32) | (inode->i_ino) )
 
 #define DEFINE_HASHTABLE_EXTERN(name, bits) \
     extern struct hlist_head name[];
 
 // Externs declarations of hash tables to refer from LSMs
 DEFINE_HASHTABLE_EXTERN(aa_fname_tbl, EXX_TBL_BITS);
+DEFINE_HASHTABLE_EXTERN(task_tbl, EXX_TBL_BITS);
 
 //********************************************************************************
 //*                       Endorser Function Declarations                         *
@@ -64,6 +69,8 @@ int  exx_verify(struct hlist_head *tbl, __u64 key, void *val, int val_len);
 struct exx_entry *exx_find(struct hlist_head *tbl, __u64 key);
 void exx_rm(struct hlist_head *tbl, __u64 key);
 
+/* duplicate memory to store as value */
+void *exx_dup(void *src, size_t len);
 
 // // Function declarations for aa_object hashing and retrieval
 // void enx_aa_fname_add(int value);

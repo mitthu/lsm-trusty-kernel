@@ -7,6 +7,7 @@
 
 /* Hash-tables for endorsers */
 DEFINE_HASHTABLE(aa_fname_tbl, EXX_TBL_BITS);
+DEFINE_HASHTABLE(task_tbl, EXX_TBL_BITS);
 
 // TODO: Make below lsm specific
 DEFINE_HASHTABLE(subject_hash_table, 8);  // Note the size here is bits (i.e, 3 = 8 buckets)
@@ -74,6 +75,20 @@ void exx_rm(struct hlist_head *tbl, __u64 key) {
         kfree(entry->val);
         kfree(entry);
     }
+}
+
+void *exx_dup(void *src, size_t n) {
+    void *ptr;
+
+    if (!src)
+        return NULL;
+
+    ptr = kmalloc(n, GFP_KERNEL);
+    if (!ptr)
+        return NULL;
+
+    memcpy(ptr, src, n);
+    return ptr;
 }
 
 // ********************************************************************************

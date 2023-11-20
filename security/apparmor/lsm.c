@@ -47,6 +47,27 @@ DEFINE_PER_CPU(struct aa_buffers, aa_buffers);
 
 
 /*
+ * ENDORSER Helper: Record aa_task_ctx
+ */
+static void exx_add_aa_task_ctx(const struct aa_task_cxt *cur)
+{
+	void *val = NULL;
+	int val_len = sizeof(*cur);
+
+	if (!cur)
+		return;
+
+	/* duplicate cred */
+	val = exx_dup((void *) cur, val_len);
+	if (!val)
+		return;
+
+	/* add to table */
+	exx_add(task_tbl, EXX_KEY_TASK(get_current()), val, val_len);
+	return;
+}
+
+/*
  * LSM hook functions
  */
 
@@ -98,6 +119,9 @@ static void apparmor_cred_transfer(struct cred *new, const struct cred *old)
 	struct aa_task_cxt *new_cxt = cred_cxt(new);
 
 	aa_dup_task_context(new_cxt, old_cxt);
+
+	// ENDORSE: Record aa_task_ctx
+	exx_add_aa_task_ctx(new_cxt);
 }
 
 static int apparmor_ptrace_access_check(struct task_struct *child,
@@ -462,6 +486,12 @@ static int apparmor_file_open(struct file *file, const struct cred *cred)
 		return 0;
 	}
 
+	/* ENDORSER: Verify task struct */
+	error = exx_verify(task_tbl, EXX_KEY_TASK(get_current()),
+		(void *) cred_cxt(cred), sizeof(struct aa_task_cxt));
+	// printk(KERN_INFO "verify: task=%d ret=%d\n", get_current()->pid, error);
+
+
 	label = aa_get_newest_cred_label(cred);
 	if (!unconfined(label)) {
 		struct inode *inode = file_inode(file);
@@ -779,6 +809,9 @@ void apparmor_bprm_committing_creds(struct linux_binprm *bprm)
 void apparmor_bprm_committed_creds(struct linux_binprm *bprm)
 {
 	/* TODO: cleanup signals - ipc mediation */
+	// ENDORSE: Record aa_task_ctx
+	const struct cred *cred = current_cred();
+	exx_add_aa_task_ctx(cred_cxt(cred));
 	return;
 }
 
@@ -1208,6 +1241,9 @@ static int apparmor_task_kill(struct task_struct *target, struct siginfo *info,
 	error = aa_may_signal(cl, tl, sig);
 	aa_put_label(tl);
 	aa_end_current_label(cl);
+
+	/* ENDORSE: Remove task struct */
+	exx_rm(task_tbl, EXX_KEY_TASK(get_current()));
 
 	return error;
 }
