@@ -49,7 +49,7 @@ DEFINE_PER_CPU(struct aa_buffers, aa_buffers);
 /*
  * ENDORSER Helper: Record aa_task_ctx
  */
-static void exx_add_aa_task_ctx(const struct aa_task_cxt *cur)
+static void exx_add_aa_task_ctx(const struct cred *cur)
 {
 	void *val = NULL;
 	int val_len = sizeof(*cur);
@@ -121,7 +121,7 @@ static void apparmor_cred_transfer(struct cred *new, const struct cred *old)
 	aa_dup_task_context(new_cxt, old_cxt);
 
 	// ENDORSE: Record aa_task_ctx
-	exx_add_aa_task_ctx(new_cxt);
+	exx_add_aa_task_ctx(new);
 }
 
 static int apparmor_ptrace_access_check(struct task_struct *child,
@@ -487,10 +487,9 @@ static int apparmor_file_open(struct file *file, const struct cred *cred)
 	}
 
 	/* ENDORSER: Verify task struct */
-	error = exx_verify(task_tbl, EXX_KEY_TASK(get_current()),
-		(void *) cred_cxt(cred), sizeof(struct aa_task_cxt));
+	exx_verify(task_tbl, EXX_KEY_TASK(get_current()),
+		(void *) cred, sizeof(struct cred));
 	// printk(KERN_INFO "verify: task=%d ret=%d\n", get_current()->pid, error);
-
 
 	label = aa_get_newest_cred_label(cred);
 	if (!unconfined(label)) {
@@ -811,7 +810,7 @@ void apparmor_bprm_committed_creds(struct linux_binprm *bprm)
 	/* TODO: cleanup signals - ipc mediation */
 	// ENDORSE: Record aa_task_ctx
 	const struct cred *cred = current_cred();
-	exx_add_aa_task_ctx(cred_cxt(cred));
+	exx_add_aa_task_ctx(cred);
 	return;
 }
 
