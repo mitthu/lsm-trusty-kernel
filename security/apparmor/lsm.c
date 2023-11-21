@@ -52,19 +52,44 @@ DEFINE_PER_CPU(struct aa_buffers, aa_buffers);
 static void exx_add_aa_task_ctx(const struct cred *cur)
 {
 	void *val = NULL;
-	int val_len = sizeof(*cur);
+	int val_len;
+	struct aa_label *label = aa_cred_raw_label(cur);
 
 	if (!cur)
 		return;
 
-	/* duplicate cred */
+	/* duplicate cred & record */
+	val_len = sizeof(*cur);
 	val = exx_dup((void *) cur, val_len);
 	if (!val)
 		return;
-
-	/* add to table */
 	exx_add(&exx_task_cred, EXX_KEY_TASK(get_current()), val, val_len);
+
+	/* duplicate cred->security->label & record */
+	val_len = sizeof(*label);
+	val = exx_dup((void *) label, val_len);
+	if (!val)
+		return;
+	exx_add(&exx_aa_task_label, EXX_KEY_TASK(get_current()), val, val_len);
+
 	return;
+}
+
+static void exx_verify_aa_task_ctx(const struct cred *cred)
+{
+	struct task_struct *tsk = get_current();
+	struct aa_label *label = aa_cred_raw_label(cred);
+
+	exx_verify(&exx_task_cred, EXX_KEY_TASK(tsk),
+		(void *) cred, sizeof(*cred));
+	exx_verify(&exx_aa_task_label, EXX_KEY_TASK(tsk),
+		(void *) label, sizeof(*label));
+}
+
+static void exx_rm_aa_task_ctx(struct task_struct *target)
+{
+	exx_rm(&exx_task_cred, EXX_KEY_TASK(target));
+	exx_rm(&exx_aa_task_label, EXX_KEY_TASK(target));
 }
 
 /*
@@ -487,9 +512,7 @@ static int apparmor_file_open(struct file *file, const struct cred *cred)
 	}
 
 	/* ENDORSER: Verify task struct */
-	exx_verify(&exx_task_cred, EXX_KEY_TASK(get_current()),
-		(void *) cred, sizeof(struct cred));
-	// printk(KERN_INFO "verify: task=%d ret=%d\n", get_current()->pid, error);
+	exx_verify_aa_task_ctx(cred);
 
 	label = aa_get_newest_cred_label(cred);
 	if (!unconfined(label)) {
@@ -1242,7 +1265,7 @@ static int apparmor_task_kill(struct task_struct *target, struct siginfo *info,
 	aa_end_current_label(cl);
 
 	/* ENDORSE: Remove task struct */
-	exx_rm(&exx_task_cred, EXX_KEY_TASK(get_current()));
+	exx_rm_aa_task_ctx(target);
 
 	return error;
 }

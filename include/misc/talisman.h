@@ -37,6 +37,7 @@ struct exx_meta {
 // Externs declarations of hash tables to refer from LSMs
 DECLARE_ENDORSER(aa_fname_tbl);
 DECLARE_ENDORSER(exx_task_cred);
+DECLARE_ENDORSER(exx_aa_task_label);
 
 //********************************************************************************
 //*                       Endorser Function Declarations                         *

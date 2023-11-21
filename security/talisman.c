@@ -18,6 +18,7 @@ static atomic_t stat_vOkay = ATOMIC_INIT(0);
 /* Hash-tables for endorsers */
 DEFINE_ENDORSER(aa_fname_tbl, 8);
 DEFINE_ENDORSER(exx_task_cred, 8);
+DEFINE_ENDORSER(exx_aa_task_label, 8);
 
 // TODO: Make below lsm specific
 DEFINE_HASHTABLE(subject_hash_table, 8);  // Note the size here is bits (i.e, 3 = 8 buckets)
@@ -163,6 +164,7 @@ static int __init talisman_init(void)
     /* load endorser specific macros */
     mount_endorser_debugfs(&aa_fname_tbl);
     mount_endorser_debugfs(&exx_task_cred);
+    mount_endorser_debugfs(&exx_aa_task_label);
 
 	return 0;
 }
