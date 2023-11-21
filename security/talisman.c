@@ -16,9 +16,10 @@ static atomic_t stat_vOkay = ATOMIC_INIT(0);
 
 
 /* Hash-tables for endorsers */
-DEFINE_ENDORSER(aa_fname_tbl, 8);
-DEFINE_ENDORSER(exx_task_cred, 8);
-DEFINE_ENDORSER(exx_aa_task_label, 8);
+DEFINE_ENDORSER(aa_fname_tbl, 8, EXX_TYPE_MEMCPY);
+DEFINE_ENDORSER(exx_task_cred, 8, EXX_TYPE_MEMCPY);
+DEFINE_ENDORSER(exx_aa_task_label, 8, EXX_TYPE_MEMCPY);
+DEFINE_ENDORSER(exx_aa_iname, 11, EXX_TYPE_INAME);
 
 // TODO: Make below lsm specific
 DEFINE_HASHTABLE(subject_hash_table, 8);  // Note the size here is bits (i.e, 3 = 8 buckets)
@@ -41,34 +42,156 @@ DEFINE_HASHTABLE(ns_hash_table, 8);
 // Caller needs to allocate storage for value using kalloc().
 // When removing the node kfree() will be called on the value.
 void exx_add(struct exx_meta *meta, __u64 key, void *val, int val_len) {
-    struct exx_entry *new;
+    struct hlist_node *node;
 
-    /* remove stale entry? */
-    // __exx_rm(meta, key);
+    /* which type? */
+    switch (meta->type)
+    {
+    case EXX_TYPE_MEMCPY:
+        node = __exx_generic_alloc(meta, key, val, val_len);
+        break;
+
+    case EXX_TYPE_INAME:
+        node = __exx_iname_alloc(meta, key, val);
+        break;
+
+    default:
+        printk(KERN_ERR "exx_add: unknown type\n");
+        return;
+    }
+
+    if (!node) {
+        printk(KERN_ERR "exx_add: cannot allocate memory\n");
+        return;
+    }
 
     /* add new entry */
-    new = kmalloc(sizeof(struct exx_entry), GFP_KERNEL);
-    if (!new)
-        goto fail;
-    new->key = key;
-    new->val = val;
-    new->val_len = val_len;
-
     write_lock(&meta->lck);
-    hlist_add_head(&new->hnode, &meta->tbl[hash_min(key, meta->bits)]);
+    hlist_add_head(node, &meta->tbl[hash_min(key, meta->bits)]);
     write_unlock(&meta->lck);
 
     /* update stats */
     atomic_inc(&meta->cAdd);
     atomic_inc(&stat_add);
     return;
-
-fail:
-    write_unlock(&meta->lck);
-    printk(KERN_ERR "Memory allocation failed for subject endorser\n");
 }
 
-struct exx_entry *__exx_find(struct exx_meta *meta, __u64 key) {
+// Verify entry in hash table
+// Returns: 1 if found, else 0
+int exx_verify(struct exx_meta *meta, __u64 key, void *val, int val_len) {
+    int ret = 0;
+
+    /* call appropriate function */
+    read_lock(&meta->lck);
+    switch (meta->type)
+    {
+    case EXX_TYPE_MEMCPY:
+        ret = __exx_generic_verify(meta, key, val, val_len);
+        break;
+
+    case EXX_TYPE_INAME:
+        ret = __exx_iname_verify(meta, key, val);
+        break;
+
+    default:
+        read_unlock(&meta->lck);
+        printk(KERN_ERR "exx_verify: unknown type\n");
+        return 0;
+    }
+    read_unlock(&meta->lck);
+
+    /* update stats */
+    if (ret) {
+        atomic_inc(&meta->cVokay);
+        atomic_inc(&stat_vOkay);
+        return 1;
+    } else {
+        atomic_inc(&meta->cVfail);
+        atomic_inc(&stat_vFail);
+        return 0;
+    }
+}
+
+void exx_rm(struct exx_meta *meta, __u64 key) {
+    int ret = 0;
+
+    /* remove which type? */
+    write_lock(&meta->lck);
+    switch (meta->type)
+    {
+    case EXX_TYPE_MEMCPY:
+        ret = __exx_generic_rm(meta, key);
+        break;
+
+    case EXX_TYPE_INAME:
+        ret = __exx_iname_rm(meta, key);
+        break;
+
+    default:
+        printk(KERN_ERR "exx_rm: unknown type\n");
+        break;
+    }
+    write_unlock(&meta->lck);
+
+    /* update stats */
+    if (ret) {
+        atomic_inc(&meta->cDel);
+        atomic_inc(&stat_rm);
+    }
+}
+
+// return 1 if found; else 0
+void *exx_find(struct exx_meta *meta, __u64 key) {
+    void *node = NULL;
+
+    /* which type? */
+    read_lock(&meta->lck);
+    switch (meta->type)
+    {
+    case EXX_TYPE_MEMCPY:
+        node = __exx_generic_find(meta, key);
+        break;
+
+    case EXX_TYPE_INAME:
+        node = __exx_iname_find(meta, key);
+        break;
+
+    default:
+        read_unlock(&meta->lck);
+        printk(KERN_ERR "exx_find: unknown type\n");
+        return NULL;
+    }
+    read_unlock(&meta->lck);
+    return node;
+}
+
+
+// NOTE: Only works if we never remove entries.
+//       Otherwise, we will have a race condition.
+void exx_add_if_absent(struct exx_meta *meta, __u64 key, void *val, int val_len) {
+    if (!exx_find(meta, key))
+        exx_add(meta, key, val, val_len);
+}
+
+
+///////////////////////////////////////////////////
+// generic type
+///////////////////////////////////////////////////
+
+struct hlist_node *__exx_generic_alloc(struct exx_meta *meta, __u64 key, void *val, int val_len) {
+    struct exx_entry *new;
+
+    new = kmalloc(sizeof(struct exx_entry), GFP_KERNEL);
+    if (!new)
+        return NULL;
+    new->key = key;
+    new->val = val;
+    new->val_len = val_len;
+
+    return &new->hnode;
+}
+
+struct exx_entry *__exx_generic_find(struct exx_meta *meta, __u64 key) {
     struct exx_entry *entry;
 
     hlist_for_each_entry(entry, &meta->tbl[hash_min(key, meta->bits)], hnode) {
@@ -79,50 +202,86 @@ struct exx_entry *__exx_find(struct exx_meta *meta, __u64 key) {
     return NULL;  // Data not found
 }
 
-// Verify entry in hash table using memcmp().
-// Returns: 1 if found, else 0
-// int exx_verify(struct rwlock_t *lck, struct hlist_head *tbl,
-int exx_verify(struct exx_meta *meta, __u64 key, void *val, int val_len) {
-    struct exx_entry *entry;
-
-    read_lock(&meta->lck);
-    entry = __exx_find(meta, key);
-    if (!entry)
-        goto fail;
+int __exx_generic_verify(struct exx_meta *meta, __u64 key, void *val, int val_len) {
+    struct exx_entry *ent = __exx_generic_find(meta, key);
+    if (!ent)
+        return 0;
 
     /* compare result */
-    if ((entry->val_len == val_len) && memcmp(entry->val, val, val_len)) {
-        read_unlock(&meta->lck);
-        atomic_inc(&meta->cVokay);
-        atomic_inc(&stat_vOkay);
+    if ((ent->val_len == val_len) && memcmp(ent->val, val, val_len))
         return 1;
-    }
 
-fail:
-    read_unlock(&meta->lck);
-    atomic_inc(&meta->cVfail);
-    atomic_inc(&stat_vFail);
     return 0;
 }
 
-void __exx_rm(struct exx_meta *meta, __u64 key) {
-    struct exx_entry *entry = __exx_find(meta, key);
+/* 1 on success; 0 on fail */
+int __exx_generic_rm(struct exx_meta *meta, __u64 key) {
+    struct exx_entry *entry = __exx_generic_find(meta, key);
     if (entry) {
         hash_del(&entry->hnode);
         kfree(entry->val);
         kfree(entry);
-
-        /* update stats */
-        atomic_inc(&meta->cDel);
-        atomic_inc(&stat_rm);
+        return 1;
     }
+    return 0;
 }
 
-void exx_rm(struct exx_meta *meta, __u64 key) {
-    write_lock(&meta->lck);
-    __exx_rm(meta, key);
-    write_unlock(&meta->lck);
+
+///////////////////////////////////////////////////
+// iname type
+///////////////////////////////////////////////////
+
+struct hlist_node *__exx_iname_alloc(struct exx_meta *meta, __u64 key, char *val) {
+    struct exx_entry_iname *new;
+
+    new = kmalloc(sizeof(struct exx_entry), GFP_KERNEL);
+    if (!new)
+        return NULL;
+    new->key = key;
+    strncpy(new->iname, val, sizeof(new->iname));
+    new->iname[sizeof(new->iname)-1] = '\0';
+
+    return &new->hnode;
 }
+
+struct exx_entry_iname *__exx_iname_find(struct exx_meta *meta, __u64 key) {
+    struct exx_entry_iname *entry;
+
+    hlist_for_each_entry(entry, &meta->tbl[hash_min(key, meta->bits)], hnode) {
+        if (entry->key == key) {
+            return entry;
+        }
+    }
+    return NULL;  // Data not found
+}
+
+int __exx_iname_verify(struct exx_meta *meta, __u64 key, char *val) {
+    struct exx_entry_iname *ent = __exx_iname_find(meta, key);
+    if (!ent)
+        return 0;
+
+    /* compare result */
+    if (strncmp(ent->iname, val, sizeof(ent->iname)) == 0)
+        return 1;
+
+    return 0;
+}
+
+/* 1 on success; 0 on fail */
+int __exx_iname_rm(struct exx_meta *meta, __u64 key) {
+    struct exx_entry_iname *entry = __exx_iname_find(meta, key);
+    if (entry) {
+        hash_del(&entry->hnode);
+        kfree(entry);
+        return 1;
+    }
+    return 0;
+}
+
+
+///////////////////////////////////////////////////
+// Misc.
+///////////////////////////////////////////////////
 
 void *exx_dup(void *src, size_t n) {
     void *ptr;
@@ -165,6 +324,7 @@ static int __init talisman_init(void)
     mount_endorser_debugfs(&aa_fname_tbl);
     mount_endorser_debugfs(&exx_task_cred);
     mount_endorser_debugfs(&exx_aa_task_label);
+    mount_endorser_debugfs(&exx_aa_iname);
 
 	return 0;
 }
