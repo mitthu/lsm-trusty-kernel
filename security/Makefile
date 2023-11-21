@@ -14,6 +14,7 @@ obj-y					+= commoncap.o
 obj-$(CONFIG_MMU)			+= min_addr.o
 
 # talisman
+CFLAGS_talisman.o			:= -save-temps=obj
 obj-y					+= talisman.o
 
 # Object file lists

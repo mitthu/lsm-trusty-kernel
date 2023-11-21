@@ -14,9 +14,10 @@ static atomic_t stat_rm = ATOMIC_INIT(0);
 static atomic_t stat_vFail = ATOMIC_INIT(0);
 static atomic_t stat_vOkay = ATOMIC_INIT(0);
 
+
 /* Hash-tables for endorsers */
-DEFINE_HASHTABLE(aa_fname_tbl, EXX_TBL_BITS);
-DEFINE_HASHTABLE(task_tbl, EXX_TBL_BITS);
+DEFINE_ENDORSER(aa_fname_tbl, 8);
+DEFINE_ENDORSER(exx_task_cred, 8);
 
 // TODO: Make below lsm specific
 DEFINE_HASHTABLE(subject_hash_table, 8);  // Note the size here is bits (i.e, 3 = 8 buckets)
@@ -38,30 +39,38 @@ DEFINE_HASHTABLE(ns_hash_table, 8);
 // Add entry to hash table.
 // Caller needs to allocate storage for value using kalloc().
 // When removing the node kfree() will be called on the value.
-void exx_add(struct hlist_head *tbl, __u64 key, void *val, int val_len) {
+void exx_add(struct exx_meta *meta, __u64 key, void *val, int val_len) {
     struct exx_entry *new;
 
     /* remove stale entry? */
-    exx_rm(tbl, key);
+    // __exx_rm(meta, key);
 
     /* add new entry */
     new = kmalloc(sizeof(struct exx_entry), GFP_KERNEL);
-    if (!new) {
-        printk(KERN_ERR "Memory allocation failed for subject endorser\n");
-        return;
-    }
+    if (!new)
+        goto fail;
     new->key = key;
     new->val = val;
     new->val_len = val_len;
 
-    hlist_add_head(&new->hnode, &tbl[hash_min(key, EXX_TBL_BITS)]);
+    write_lock(&meta->lck);
+    hlist_add_head(&new->hnode, &meta->tbl[hash_min(key, meta->bits)]);
+    write_unlock(&meta->lck);
+
+    /* update stats */
+    atomic_inc(&meta->cAdd);
     atomic_inc(&stat_add);
+    return;
+
+fail:
+    write_unlock(&meta->lck);
+    printk(KERN_ERR "Memory allocation failed for subject endorser\n");
 }
 
-struct exx_entry *exx_find(struct hlist_head *tbl, __u64 key) {
+struct exx_entry *__exx_find(struct exx_meta *meta, __u64 key) {
     struct exx_entry *entry;
 
-    hlist_for_each_entry(entry, &tbl[hash_min(key, EXX_TBL_BITS)], hnode) {
+    hlist_for_each_entry(entry, &meta->tbl[hash_min(key, meta->bits)], hnode) {
         if (entry->key == key) {
             return entry;
         }
@@ -71,30 +80,47 @@ struct exx_entry *exx_find(struct hlist_head *tbl, __u64 key) {
 
 // Verify entry in hash table using memcmp().
 // Returns: 1 if found, else 0
-int exx_verify(struct hlist_head *tbl, __u64 key, void *val, int val_len) {
-    struct exx_entry *entry = exx_find(tbl, key);
+// int exx_verify(struct rwlock_t *lck, struct hlist_head *tbl,
+int exx_verify(struct exx_meta *meta, __u64 key, void *val, int val_len) {
+    struct exx_entry *entry;
+
+    read_lock(&meta->lck);
+    entry = __exx_find(meta, key);
     if (!entry)
         goto fail;
 
     /* compare result */
     if ((entry->val_len == val_len) && memcmp(entry->val, val, val_len)) {
+        read_unlock(&meta->lck);
+        atomic_inc(&meta->cVokay);
         atomic_inc(&stat_vOkay);
         return 1;
     }
 
 fail:
+    read_unlock(&meta->lck);
+    atomic_inc(&meta->cVfail);
     atomic_inc(&stat_vFail);
     return 0;
 }
 
-void exx_rm(struct hlist_head *tbl, __u64 key) {
-    struct exx_entry *entry = exx_find(tbl, key);
+void __exx_rm(struct exx_meta *meta, __u64 key) {
+    struct exx_entry *entry = __exx_find(meta, key);
     if (entry) {
         hash_del(&entry->hnode);
         kfree(entry->val);
         kfree(entry);
+
+        /* update stats */
+        atomic_inc(&meta->cDel);
+        atomic_inc(&stat_rm);
     }
-    atomic_inc(&stat_rm);
+}
+
+void exx_rm(struct exx_meta *meta, __u64 key) {
+    write_lock(&meta->lck);
+    __exx_rm(meta, key);
+    write_unlock(&meta->lck);
 }
 
 void *exx_dup(void *src, size_t n) {
@@ -111,6 +137,18 @@ void *exx_dup(void *src, size_t n) {
     return ptr;
 }
 
+void mount_endorser_debugfs(struct exx_meta *meta)
+{
+    struct dentry *this = debugfs_create_dir(meta->namestr, dir);
+    if (!this)
+        return;
+
+    debugfs_create_atomic_t("add", 0666, this, &meta->cAdd);
+    debugfs_create_atomic_t("remove", 0666, this, &meta->cDel);
+    debugfs_create_atomic_t("vokay", 0666, this, &meta->cVokay);
+    debugfs_create_atomic_t("vfail", 0666, this, &meta->cVfail);
+}
+
 static int __init talisman_init(void)
 {
     dir = debugfs_create_dir("talisman", NULL);
@@ -121,6 +159,11 @@ static int __init talisman_init(void)
     debugfs_create_atomic_t("remove", 0666, dir, &stat_rm);
     debugfs_create_atomic_t("vokay", 0666, dir, &stat_vOkay);
     debugfs_create_atomic_t("vfail", 0666, dir, &stat_vFail);
+
+    /* load endorser specific macros */
+    mount_endorser_debugfs(&aa_fname_tbl);
+    mount_endorser_debugfs(&exx_task_cred);
+
 	return 0;
 }
 

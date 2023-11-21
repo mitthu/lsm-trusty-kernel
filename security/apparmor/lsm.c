@@ -63,7 +63,7 @@ static void exx_add_aa_task_ctx(const struct cred *cur)
 		return;
 
 	/* add to table */
-	exx_add(task_tbl, EXX_KEY_TASK(get_current()), val, val_len);
+	exx_add(&exx_task_cred, EXX_KEY_TASK(get_current()), val, val_len);
 	return;
 }
 
@@ -121,7 +121,7 @@ static void apparmor_cred_transfer(struct cred *new, const struct cred *old)
 	aa_dup_task_context(new_cxt, old_cxt);
 
 	// ENDORSE: Record aa_task_ctx
-	exx_add_aa_task_ctx(new);
+	// exx_add_aa_task_ctx(new);
 }
 
 static int apparmor_ptrace_access_check(struct task_struct *child,
@@ -487,7 +487,7 @@ static int apparmor_file_open(struct file *file, const struct cred *cred)
 	}
 
 	/* ENDORSER: Verify task struct */
-	exx_verify(task_tbl, EXX_KEY_TASK(get_current()),
+	exx_verify(&exx_task_cred, EXX_KEY_TASK(get_current()),
 		(void *) cred, sizeof(struct cred));
 	// printk(KERN_INFO "verify: task=%d ret=%d\n", get_current()->pid, error);
 
@@ -1242,7 +1242,7 @@ static int apparmor_task_kill(struct task_struct *target, struct siginfo *info,
 	aa_end_current_label(cl);
 
 	/* ENDORSE: Remove task struct */
-	exx_rm(task_tbl, EXX_KEY_TASK(get_current()));
+	exx_rm(&exx_task_cred, EXX_KEY_TASK(get_current()));
 
 	return error;
 }

@@ -8,18 +8,35 @@
 #include <linux/hashtable.h>
 #include <linux/types.h>
 
-#define EXX_TBL_BITS 8
 #define EXX_KEY_TASK(tsk) \
 	( (( (__u64)tsk->tgid ) << 32 ) | tsk->pid )
 #define EXX_KEY_INODE(inode) \
 	( (( (__u64)inode->i_rdev ) << 32) | (inode->i_ino) )
 
-#define DEFINE_HASHTABLE_EXTERN(name, bits) \
-    extern struct hlist_head name[];
+
+/* Endorser metadata */
+struct exx_meta {
+	rwlock_t lck;
+	const char *namestr;
+	const u8 bits;
+	struct hlist_head *tbl;
+	atomic_t cAdd, cDel, cVfail, cVokay;
+};
+
+/* Macros to declare  */
+#define DEFINE_ENDORSER(name, _bits)                      \
+        DEFINE_HASHTABLE(__exx_##name, _bits);            \
+        struct exx_meta name = {                          \
+            __RW_LOCK_UNLOCKED(lck), #name, _bits, __exx_##name,            \
+            ATOMIC_INIT(0), ATOMIC_INIT(0), ATOMIC_INIT(0), ATOMIC_INIT(0), \
+        };
+
+#define DECLARE_ENDORSER(name)   \
+	extern struct exx_meta name;
 
 // Externs declarations of hash tables to refer from LSMs
-DEFINE_HASHTABLE_EXTERN(aa_fname_tbl, EXX_TBL_BITS);
-DEFINE_HASHTABLE_EXTERN(task_tbl, EXX_TBL_BITS);
+DECLARE_ENDORSER(aa_fname_tbl);
+DECLARE_ENDORSER(exx_task_cred);
 
 //********************************************************************************
 //*                       Endorser Function Declarations                         *
@@ -64,10 +81,13 @@ struct exx_entry {
 };
 
 // Generic hash table functions
-void exx_add(struct hlist_head *tbl, __u64 key, void *val, int val_len);
-int  exx_verify(struct hlist_head *tbl, __u64 key, void *val, int val_len);
-struct exx_entry *exx_find(struct hlist_head *tbl, __u64 key);
-void exx_rm(struct hlist_head *tbl, __u64 key);
+void exx_add(struct exx_meta *meta, __u64 key, void *val, int val_len);
+int  exx_verify(struct exx_meta *meta, __u64 key, void *val, int val_len);
+void exx_rm(struct exx_meta *meta, __u64 key);
+
+// Internal functions (w/o locking)
+struct exx_entry *__exx_find(struct exx_meta *meta, __u64 key);
+void __exx_rm(struct exx_meta *meta, __u64 key);
 
 /* duplicate memory to store as value */
 void *exx_dup(void *src, size_t len);
