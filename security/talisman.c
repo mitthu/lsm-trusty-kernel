@@ -16,7 +16,6 @@ static atomic_t stat_vOkay = ATOMIC_INIT(0);
 
 
 /* Hash-tables for endorsers */
-DEFINE_ENDORSER(aa_fname_tbl, 8, EXX_TYPE_MEMCPY);
 DEFINE_ENDORSER(exx_task_cred, 8, EXX_TYPE_MEMCPY);
 DEFINE_ENDORSER(exx_aa_task_label, 8, EXX_TYPE_MEMCPY);
 DEFINE_ENDORSER(exx_aa_iname, 11, EXX_TYPE_INAME);
@@ -278,6 +277,13 @@ int __exx_iname_rm(struct exx_meta *meta, __u64 key) {
     return 0;
 }
 
+#pragma GCC push_options
+#pragma GCC optimize ("O0")
+void inline exx_iname_verify_emulation(char *pathname) {
+	if (pathname)
+		strlen(pathname);
+}
+#pragma GCC pop_options
 
 ///////////////////////////////////////////////////
 // Misc.
@@ -321,7 +327,6 @@ static int __init talisman_init(void)
     debugfs_create_atomic_t("vfail", 0666, dir, &stat_vFail);
 
     /* load endorser specific macros */
-    mount_endorser_debugfs(&aa_fname_tbl);
     mount_endorser_debugfs(&exx_task_cred);
     mount_endorser_debugfs(&exx_aa_task_label);
     mount_endorser_debugfs(&exx_aa_iname);

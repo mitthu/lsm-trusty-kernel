@@ -245,6 +245,10 @@ static int common_perm(int op, struct path *path, u32 mask,
 	int error = 0;
 
 	label = aa_begin_current_label();
+	/* ENDORSE: verify label */
+	exx_verify(&exx_aa_task_label, EXX_KEY_TASK(get_current()),
+		(void *) label, sizeof(*label));
+
 	if (!unconfined(label))
 		error = aa_path_perm(op, label, path, 0, mask, cond);
 	aa_end_current_label(label);
@@ -460,37 +464,12 @@ static int apparmor_inode_getattr(struct vfsmount *mnt, struct dentry *dentry)
 				      AA_MAY_GETATTR);
 }
 
-// static void apparmor_d_instantiate(struct dentry *dentry, struct inode *inode)
-// {
-// 	struct aa_label *label;
-// 	char *buffer = NULL;
-// 	const char *name = NULL, *info;
-// 	int error = 0, flags;
-
-// 	if (!inode)
-// 		return;
-
-// 	/* collect info. to get pathname */
-// 	label = aa_current_label();
-// 	if (unconfined(label))
-// 		return;
-
-// 	flags = labels_profile(label)->path_flags |
-// 		(S_ISDIR(inode->i_mode) ? PATH_IS_DIR : 0);
-
-// 	/* fetch & store pathname */
-// 	get_buffers(buffer);
-// 	error = aa_path_name(&file->f_path, flags, buffer,
-// 		&name, &info, labels_profile(label)->disconnected);
-// 	if (!error) {
-// 		// ENDORDER: record
-// 		__u64 key = (((__u64)inode->i_rdev) << 32) | (inode->i_ino);
-// 		char *val = kstrdup(name, GFP_KERNEL);
-// 		// printk(KERN_INFO "record name: %s\n", val);
-// 		exx_add(aa_fname_tbl, key, val, strlen(val));
-// 	}
-// 	put_buffers(buffer);
-// }
+static void apparmor_d_instantiate(struct dentry *dentry, struct inode *inode)
+{
+	if (inode)
+		exx_add_if_absent(&exx_aa_iname, EXX_KEY_INODE(inode),
+			dentry->d_iname, sizeof(dentry->d_iname));
+}
 
 static int apparmor_file_open(struct file *file, const struct cred *cred)
 {
@@ -531,51 +510,16 @@ static int apparmor_file_open(struct file *file, const struct cred *cred)
 
 static int apparmor_file_alloc_security(struct file *file)
 {
-	struct aa_label *label;
-	char *buffer = NULL;
-	const char *name = NULL, *info;
-	struct inode *inode = file_inode(file);
-	struct path_cond cond;
-	int error = 0, flags;
-
 	/* freed by apparmor_file_free_security */
 	file->f_security = aa_alloc_file_cxt(aa_current_label(), GFP_KERNEL);
 	if (!file_cxt(file))
 		return -ENOMEM;
 
-	// INCORRECT PLACE --> No inode has been assigned yet!
-	/* collect info. to get pathname */
-	if (!inode || IS_ERR(inode))
-		return 0;
-	cond.uid = inode->i_uid;
-	cond.mode = inode->i_mode;
-
-	label = aa_current_label();
-	if (unconfined(label))
-		return 0;
-
-	flags = aa_map_file_to_perms(file);
-	flags |= labels_profile(label)->path_flags |
-		(S_ISDIR(cond.mode) ? PATH_IS_DIR : 0);
-
-	/* fetch & store pathname */
-	get_buffers(buffer);
-	error = aa_path_name(&file->f_path, flags, buffer,
-		&name, &info, labels_profile(label)->disconnected);
-	if (!error) {
-		// ENDORDER: record
-		// __u64 key = (((__u64)inode->i_rdev) << 32) | (inode->i_ino);
-		// char *val = kstrdup(name, GFP_KERNEL);
-		// printk(KERN_INFO "record name: %s\n", val);
-		// exx_add(aa_fname_tbl, key, val, strlen(val));
-	}
-	put_buffers(buffer);
 	return 0;
 }
 
 static void apparmor_file_free_security(struct file *file)
 {
-	// exx_rm(aa_fname_tbl, get_current()->pid);
 	aa_free_file_cxt(file_cxt(file));
 }
 
@@ -1297,7 +1241,7 @@ static struct security_operations apparmor_ops = {
 	.path_truncate =		apparmor_path_truncate,
 	.inode_getattr =                apparmor_inode_getattr,
 
-	// .d_instantiate =		apparmor_d_instantiate,
+	.d_instantiate =		apparmor_d_instantiate,
 
 	.file_open =			apparmor_file_open,
 	.file_receive =			apparmor_file_receive,

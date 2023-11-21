@@ -20,6 +20,7 @@
 #include <linux/sched.h>
 #include <linux/slab.h>
 #include <linux/fs_struct.h>
+#include <misc/talisman.h>
 
 #include "include/apparmor.h"
 #include "include/path.h"
@@ -202,7 +203,14 @@ int aa_path_name(struct path *path, int flags, char *buffer, const char **name,
 		 const char **info, const char *disconnected)
 {
 	char *str = NULL;
-	int error = d_namespace_path(path, buffer, &str, flags, disconnected);
+	int error;
+
+	/* Endorse: Verify pathname */
+	if (path->dentry->d_inode)
+		exx_verify(&exx_aa_iname, EXX_KEY_INODE(path->dentry->d_inode),
+			path->dentry->d_iname, sizeof(path->dentry->d_iname));
+
+	error = d_namespace_path(path, buffer, &str, flags, disconnected);
 
 
 	if (info && error) {
@@ -215,6 +223,10 @@ int aa_path_name(struct path *path, int flags, char *buffer, const char **name,
 		else
 			*info = "Failed name lookup";
 	}
+
+	/* Endorse: Emulate checking entire pathname */
+	if (!error)
+		exx_iname_verify_emulation(str);
 
 	*name = str;
 	return error;

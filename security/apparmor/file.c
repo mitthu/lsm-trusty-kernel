@@ -319,14 +319,10 @@ int aa_path_perm(int op, struct aa_label *label, struct path *path,
 		(S_ISDIR(cond->mode) ? PATH_IS_DIR : 0);
 	get_buffers(buffer);
 
+
 	error = path_name(op, label, path, flags, buffer, &name, cond,
 			  request, true);
 	if (!error)
-		// ENDORSER: VERIFY!
-		// int ret;
-		// __u64 key = (((__u64)inode->i_rdev) << 32) | (inode->i_ino);
-		// ret = exx_verify(aa_fname_tbl, key, (void *) name, strlen(name));
-		// printk(KERN_INFO "verify ret=%d name: %s\n", ret, val);
 		error = fn_for_each_confined(label, profile,
 				__aa_path_perm(op, profile, name, request, cond,
 					       flags, &perms));

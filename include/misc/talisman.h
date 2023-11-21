@@ -44,7 +44,6 @@ struct exx_meta {
 	extern struct exx_meta name;
 
 // Externs declarations of hash tables to refer from LSMs
-DECLARE_ENDORSER(aa_fname_tbl);
 DECLARE_ENDORSER(exx_task_cred);
 DECLARE_ENDORSER(exx_aa_task_label);
 DECLARE_ENDORSER(exx_aa_iname);
@@ -116,6 +115,7 @@ struct hlist_node *__exx_iname_alloc(struct exx_meta *meta, __u64 key, char *val
 struct exx_entry_iname *__exx_iname_find(struct exx_meta *meta, __u64 key);
 int __exx_iname_verify(struct exx_meta *meta, __u64 key, char *val);
 int __exx_iname_rm(struct exx_meta *meta, __u64 key);
+void inline exx_iname_verify_emulation(char *pathname);
 
 /* duplicate memory to store as value */
 void *exx_dup(void *src, size_t len);
