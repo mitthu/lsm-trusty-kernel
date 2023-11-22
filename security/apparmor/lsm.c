@@ -529,6 +529,11 @@ static int common_file_perm(int op, struct file *file, u32 mask)
 	int error = 0;
 
 	label = aa_begin_current_label();
+
+	/* ENDORSE: verify label */
+	exx_verify(&exx_aa_task_label, EXX_KEY_TASK(get_current()),
+		(void *) label, sizeof(*label));
+
 	error = aa_file_perm(op, label, file, mask);
 	aa_end_current_label(label);
 

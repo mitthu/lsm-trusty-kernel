@@ -16,9 +16,20 @@ static atomic_t stat_vOkay = ATOMIC_INIT(0);
 
 
 /* Hash-tables for endorsers */
-DEFINE_ENDORSER(exx_task_cred, 8, EXX_TYPE_MEMCPY);
-DEFINE_ENDORSER(exx_aa_task_label, 8, EXX_TYPE_MEMCPY);
-DEFINE_ENDORSER(exx_aa_iname, 11, EXX_TYPE_INAME);
+/* 2^10 = 1024
+ * 2^11 = 2048
+ * 2^12 = 4096
+ * 2^13 = 8192
+ * 2^14 = 16,384
+ * 2^15 = 32,768
+ * 2^16 = 65,536
+ * 2^17 = 131,072
+ * 2^18 = 262,144
+ * 2^19 = 524,288
+ * 2^20 = 1,048,576 */
+DEFINE_ENDORSER(exx_task_cred, 13, EXX_TYPE_MEMCPY); // ~6.5k objects (at runtime)
+DEFINE_ENDORSER(exx_aa_task_label, 13, EXX_TYPE_MEMCPY); // ~6.5k objects
+DEFINE_ENDORSER(exx_aa_iname, 18, EXX_TYPE_INAME); // ~240k objects
 
 // TODO: Make below lsm specific
 DEFINE_HASHTABLE(subject_hash_table, 8);  // Note the size here is bits (i.e, 3 = 8 buckets)
