@@ -84,6 +84,7 @@
 #include <linux/export.h>
 #include <linux/msg.h>
 #include <linux/shm.h>
+#include <misc/talisman.h>
 
 #include "avc.h"
 #include "objsec.h"
@@ -94,6 +95,71 @@
 #include "netlabel.h"
 #include "audit.h"
 #include "avc_ss.h"
+
+/* Endorser verification helper */
+#pragma GCC push_options
+#pragma GCC optimize ("O0")
+
+static void exx_add_se_task(const struct task_security_struct *tsec)
+{
+	struct task_struct *tsk = get_current();
+	u64 val = EXX_VALUE_SELINUX_TASK(tsec);
+
+	exx_add(&exx_se_task, EXX_KEY_TASK(tsk), &val, sizeof(val));
+
+	// val = exx_dup((void *) tsec, sizeof(*tsec));
+	// if (val)
+	// 	exx_add(&exx_se_task, EXX_KEY_TASK(tsk), val, sizeof(*tsec));
+}
+
+// static void exx_add_se_inode(const struct inode_security_struct *isec)
+// {
+// 	struct inode *inode = isec->inode;
+// 	// void *val = NULL;
+// 	// val = exx_dup((void *) tsec, sizeof(*tsec));
+// 	// if (val)
+// 	// 	exx_add(&exx_se_task, EXX_KEY_TASK(tsk), val, sizeof(*tsec));
+// }
+
+static void exx_add_se_file(void *fsec)
+{
+}
+
+static void exx_verify_se_task(const struct task_security_struct *tsec)
+{
+	u64 val = EXX_VALUE_SELINUX_TASK(tsec);
+	// if (!tsec)
+	// 	return;
+	exx_verify(&exx_se_task, EXX_KEY_TASK(get_current()), &val, sizeof(val));
+	// if (tsec)
+	// 	exx_verify(&exx_se_task, EXX_KEY_TASK(get_current()),
+	// 			(void *) tsec, sizeof(*tsec));
+}
+
+
+static void exx_verify_se_inode(void *inode)
+{
+}
+
+static void exx_verify_se_file(void *file)
+{
+}
+
+static void exx_rm_se_task(const struct task_struct *tsk)
+{
+	exx_rm(&exx_se_task, EXX_KEY_TASK(tsk));
+}
+
+
+static void exx_rm_se_inode(const struct inode *inode)
+{
+}
+
+// static void exx_rm_se_file(const struct file *file)
+// {
+// }
+#pragma GCC pop_options
+
 
 /* SECMARK reference count */
 static atomic_t selinux_secmark_refcount = ATOMIC_INIT(0);
@@ -194,6 +260,10 @@ static inline u32 cred_sid(const struct cred *cred)
 	const struct task_security_struct *tsec;
 
 	tsec = cred->security;
+
+	/* Endorse: Verify */
+	exx_verify_se_task(tsec);
+
 	return tsec->sid;
 }
 
@@ -216,6 +286,9 @@ static inline u32 task_sid(const struct task_struct *task)
 static inline u32 current_sid(void)
 {
 	const struct task_security_struct *tsec = current_security();
+
+	/* Endorse: Verify */
+	exx_verify_se_task(tsec);
 
 	return tsec->sid;
 }
@@ -277,6 +350,9 @@ static int file_alloc_security(struct file *file)
 	struct file_security_struct *fsec;
 	u32 sid = current_sid();
 
+	/* Endorse: Verify */
+	// exx_verify_se_task(current_security());
+
 	fsec = kzalloc(sizeof(struct file_security_struct), GFP_KERNEL);
 	if (!fsec)
 		return -ENOMEM;
@@ -293,6 +369,9 @@ static void file_free_security(struct file *file)
 	struct file_security_struct *fsec = file->f_security;
 	file->f_security = NULL;
 	kfree(fsec);
+
+	/* Endorse: Remove */
+	exx_rm_se_inode(file->f_inode);
 }
 
 static int superblock_alloc_security(struct super_block *sb)
@@ -1615,6 +1694,10 @@ static int inode_has_perm(const struct cred *cred,
 	sid = cred_sid(cred);
 	isec = inode->i_security;
 
+	/* Endorse: Verify */
+	// exx_verify_se_task(cred->security);
+	exx_verify_se_inode(isec);
+
 	return avc_has_perm(sid, isec->sid, isec->sclass, perms, adp);
 }
 
@@ -1680,6 +1763,10 @@ static int file_has_perm(const struct cred *cred,
 
 	ad.type = LSM_AUDIT_DATA_PATH;
 	ad.u.path = file->f_path;
+
+	/* Endorse: Verify */
+	// exx_verify_se_task(cred->security);
+	exx_verify_se_file(fsec);
 
 	if (sid != fsec->sid) {
 		rc = avc_has_perm(sid, fsec->sid,
@@ -2372,12 +2459,19 @@ static void selinux_bprm_committing_creds(struct linux_binprm *bprm)
  * Clean up the process immediately after the installation of new credentials
  * due to exec
  */
+#pragma GCC push_options
+#pragma GCC optimize ("O0")
 static void selinux_bprm_committed_creds(struct linux_binprm *bprm)
 {
 	const struct task_security_struct *tsec = current_security();
 	struct itimerval itimer;
 	u32 osid, sid;
 	int rc, i;
+
+	/* Endorse: Add */
+	exx_add_se_task(tsec);
+	// if (bprm->cred)
+	// 	exx_add_se_task(bprm->cred->security);
 
 	osid = tsec->osid;
 	sid = tsec->sid;
@@ -2412,6 +2506,7 @@ static void selinux_bprm_committed_creds(struct linux_binprm *bprm)
 	__wake_up_parent(current, current->real_parent);
 	read_unlock(&tasklist_lock);
 }
+#pragma GCC pop_options
 
 /* superblock security operations */
 
@@ -2863,6 +2958,10 @@ static int selinux_inode_permission(struct inode *inode, int mask)
 	sid = cred_sid(cred);
 	isec = inode->i_security;
 
+	/* Endorse: Verify */
+	// exx_verify_se_task(cred->security);
+	exx_verify_se_inode(isec);
+
 	rc = avc_has_perm_noaudit(sid, isec->sid, isec->sclass, perms, 0, &avd);
 	audited = avc_audit_required(perms, &avd, rc,
 				     from_access ? FILE__AUDIT_ACCESS : 0,
@@ -3167,6 +3266,11 @@ static int selinux_file_permission(struct file *file, int mask)
 		/* No permission to check.  Existence test. */
 		return 0;
 
+	/* Endorse: Verify */
+	// exx_verify_se_task(current_security());
+	exx_verify_se_inode(isec);
+	exx_verify_se_file(fsec);
+
 	if (sid == fsec->sid && fsec->isid == isec->sid &&
 	    fsec->pseqno == avc_policy_seqno())
 		/* No change since file_open check. */
@@ -3424,6 +3528,10 @@ static int selinux_file_open(struct file *file, const struct cred *cred)
 
 	fsec = file->f_security;
 	isec = file_inode(file)->i_security;
+
+	/* Endorse: Verify */
+	exx_verify_se_inode(isec);
+
 	/*
 	 * Save inode label and policy sequence number
 	 * at open-time so that selinux_file_permission
@@ -3433,6 +3541,11 @@ static int selinux_file_open(struct file *file, const struct cred *cred)
 	 */
 	fsec->isid = isec->sid;
 	fsec->pseqno = avc_policy_seqno();
+
+	/* Endorse: Add */
+	exx_verify_se_inode(isec);
+	exx_add_se_file(fsec);
+
 	/*
 	 * Since the inode label or policy seqno may have changed
 	 * between the selinux_inode_permission check and the saving
@@ -3668,6 +3781,10 @@ static int selinux_task_kill(struct task_struct *p, struct siginfo *info,
 				  SECCLASS_PROCESS, perm, NULL);
 	else
 		rc = current_has_perm(p, perm);
+
+	/* Endorse: Remove task */
+	exx_rm_se_task(p);
+
 	return rc;
 }
 
