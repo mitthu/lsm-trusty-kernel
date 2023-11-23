@@ -14,12 +14,15 @@
 #define EXX_KEY_INODE(inode) \
 	( (( (__u64)inode->i_rdev ) << 32) | (inode->i_ino) )
 
+#define EXX_VALUE_SELINUX_TASK(tsec) \
+	( (( (__u64)tsec->create_sid ) << 32) | (tsec->sid) )
 
 /* Entry types */
 enum exx_type {
 	EXX_TYPE_INVALID = 0,
 	EXX_TYPE_MEMCPY = 1,  // compare by memcpy
 	EXX_TYPE_INAME = 2,   // compare by strncmp
+	EXX_TYPE_INT64 = 3,   // compare O(1)
 };
 
 /* Endorser metadata */
@@ -48,6 +51,10 @@ DECLARE_ENDORSER(exx_task_cred);
 DECLARE_ENDORSER(exx_aa_task_label);
 DECLARE_ENDORSER(exx_aa_iname);
 
+DECLARE_ENDORSER(exx_se_task);
+DECLARE_ENDORSER(exx_se_file);
+DECLARE_ENDORSER(exx_se_inode);
+
 
 // Define a structure for key value storage
 struct exx_entry {
@@ -62,6 +69,13 @@ struct exx_entry_iname {
     unsigned char iname[DNAME_INLINE_LEN];
     struct hlist_node hnode;  // Required for hash table linkage
 };
+
+struct exx_entry_int64 {
+    __u64 key;
+    __u64 val;
+    struct hlist_node hnode;  // Required for hash table linkage
+};
+
 
 // Generic hash table functions
 void exx_add(struct exx_meta *meta, __u64 key, void *val, int val_len);
@@ -82,6 +96,13 @@ struct exx_entry_iname *__exx_iname_find(struct exx_meta *meta, __u64 key);
 int __exx_iname_verify(struct exx_meta *meta, __u64 key, char *val);
 int __exx_iname_rm(struct exx_meta *meta, __u64 key);
 void inline exx_iname_verify_emulation(char *pathname);
+
+// int64 type
+struct hlist_node *__exx_int64_alloc(struct exx_meta *meta, __u64 key, __u64 val);
+struct exx_entry_int64 *__exx_int64_find(struct exx_meta *meta, __u64 key);
+int __exx_int64_verify(struct exx_meta *meta, __u64 key, __u64 val);
+int __exx_int64_rm(struct exx_meta *meta, __u64 key);
+
 
 /* duplicate memory to store as value */
 void *exx_dup(void *src, size_t len);

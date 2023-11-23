@@ -31,6 +31,9 @@ DEFINE_ENDORSER(exx_task_cred, 13, EXX_TYPE_MEMCPY); // ~6.5k objects (at runtim
 DEFINE_ENDORSER(exx_aa_task_label, 13, EXX_TYPE_MEMCPY); // ~6.5k objects
 DEFINE_ENDORSER(exx_aa_iname, 18, EXX_TYPE_INAME); // ~240k objects
 
+DEFINE_ENDORSER(exx_se_task, 13, EXX_TYPE_INT64); // ~6.5k objects
+DEFINE_ENDORSER(exx_se_file, 13, EXX_TYPE_MEMCPY); // ? objects
+DEFINE_ENDORSER(exx_se_inode, 13, EXX_TYPE_MEMCPY); // ~240k objects
 
 /* Generic hash table functions */
 
@@ -49,6 +52,10 @@ void exx_add(struct exx_meta *meta, __u64 key, void *val, int val_len) {
 
     case EXX_TYPE_INAME:
         node = __exx_iname_alloc(meta, key, val);
+        break;
+
+    case EXX_TYPE_INT64:
+        node = __exx_int64_alloc(meta, key, *(__u64 *) val);
         break;
 
     default:
@@ -89,6 +96,10 @@ int exx_verify(struct exx_meta *meta, __u64 key, void *val, int val_len) {
         ret = __exx_iname_verify(meta, key, val);
         break;
 
+    case EXX_TYPE_INT64:
+        ret = __exx_int64_verify(meta, key, *(__u64 *) val);
+        break;
+
     default:
         read_unlock(&meta->lck);
         printk(KERN_ERR "exx_verify: unknown type\n");
@@ -123,6 +134,10 @@ void exx_rm(struct exx_meta *meta, __u64 key) {
         ret = __exx_iname_rm(meta, key);
         break;
 
+    case EXX_TYPE_INT64:
+        ret = __exx_int64_rm(meta, key);
+        break;
+
     default:
         printk(KERN_ERR "exx_rm: unknown type\n");
         break;
@@ -150,6 +165,10 @@ void *exx_find(struct exx_meta *meta, __u64 key) {
 
     case EXX_TYPE_INAME:
         node = __exx_iname_find(meta, key);
+        break;
+
+    case EXX_TYPE_INT64:
+        node = __exx_int64_find(meta, key);
         break;
 
     default:
@@ -230,7 +249,7 @@ int __exx_generic_rm(struct exx_meta *meta, __u64 key) {
 struct hlist_node *__exx_iname_alloc(struct exx_meta *meta, __u64 key, char *val) {
     struct exx_entry_iname *new;
 
-    new = kmalloc(sizeof(struct exx_entry), GFP_KERNEL);
+    new = kmalloc(sizeof(struct exx_entry_iname), GFP_KERNEL);
     if (!new)
         return NULL;
     new->key = key;
@@ -274,13 +293,71 @@ int __exx_iname_rm(struct exx_meta *meta, __u64 key) {
     return 0;
 }
 
+
 #pragma GCC push_options
 #pragma GCC optimize ("O0")
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-value"
+
 void inline exx_iname_verify_emulation(char *pathname) {
 	if (pathname)
 		strlen(pathname);
 }
+
+#pragma GCC diagnostic pop
 #pragma GCC pop_options
+
+
+///////////////////////////////////////////////////
+// int64 type
+///////////////////////////////////////////////////
+
+struct hlist_node *__exx_int64_alloc(struct exx_meta *meta, __u64 key, __u64 val) {
+    struct exx_entry_int64 *new;
+
+    new = kmalloc(sizeof(struct exx_entry_int64), GFP_KERNEL);
+    if (!new)
+        return NULL;
+    new->key = key;
+    new->val = val;
+
+    return &new->hnode;
+}
+
+struct exx_entry_int64 *__exx_int64_find(struct exx_meta *meta, __u64 key) {
+    struct exx_entry_int64 *entry;
+
+    hlist_for_each_entry(entry, &meta->tbl[hash_min(key, meta->bits)], hnode) {
+        if (entry->key == key) {
+            return entry;
+        }
+    }
+    return NULL;  // Data not found
+}
+
+int __exx_int64_verify(struct exx_meta *meta, __u64 key, __u64 val) {
+    struct exx_entry_int64 *ent = __exx_int64_find(meta, key);
+    if (!ent)
+        return 0;
+
+    /* compare result */
+    if (val == ent->val)
+        return 1;
+
+    return 0;
+}
+
+/* 1 on success; 0 on fail */
+int __exx_int64_rm(struct exx_meta *meta, __u64 key) {
+    struct exx_entry_int64 *entry = __exx_int64_find(meta, key);
+    if (entry) {
+        hash_del(&entry->hnode);
+        kfree(entry);
+        return 1;
+    }
+    return 0;
+}
+
 
 ///////////////////////////////////////////////////
 // Misc.
@@ -327,6 +404,10 @@ static int __init talisman_init(void)
     mount_endorser_debugfs(&exx_task_cred);
     mount_endorser_debugfs(&exx_aa_task_label);
     mount_endorser_debugfs(&exx_aa_iname);
+
+    mount_endorser_debugfs(&exx_se_task);
+    mount_endorser_debugfs(&exx_se_file);
+    mount_endorser_debugfs(&exx_se_inode);
 
 	return 0;
 }
