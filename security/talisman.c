@@ -33,7 +33,7 @@ DEFINE_ENDORSER(exx_aa_iname, 18, EXX_TYPE_INAME); // ~240k objects
 
 DEFINE_ENDORSER(exx_se_task, 13, EXX_TYPE_INT64); // ~6.5k objects
 DEFINE_ENDORSER(exx_se_file, 13, EXX_TYPE_MEMCPY); // ? objects
-DEFINE_ENDORSER(exx_se_inode, 13, EXX_TYPE_MEMCPY); // ~240k objects
+DEFINE_ENDORSER(exx_se_inode, 18, EXX_TYPE_INT64); // ~240k objects
 
 /* Generic hash table functions */
 

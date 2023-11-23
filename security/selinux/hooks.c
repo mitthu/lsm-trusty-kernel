@@ -103,23 +103,18 @@
 static void exx_add_se_task(const struct task_security_struct *tsec)
 {
 	struct task_struct *tsk = get_current();
-	u64 val = EXX_VALUE_SELINUX_TASK(tsec);
+	__u64 val = EXX_VALUE_SELINUX_TASK(tsec);
 
 	exx_add(&exx_se_task, EXX_KEY_TASK(tsk), &val, sizeof(val));
-
-	// val = exx_dup((void *) tsec, sizeof(*tsec));
-	// if (val)
-	// 	exx_add(&exx_se_task, EXX_KEY_TASK(tsk), val, sizeof(*tsec));
 }
 
-// static void exx_add_se_inode(const struct inode_security_struct *isec)
-// {
-// 	struct inode *inode = isec->inode;
-// 	// void *val = NULL;
-// 	// val = exx_dup((void *) tsec, sizeof(*tsec));
-// 	// if (val)
-// 	// 	exx_add(&exx_se_task, EXX_KEY_TASK(tsk), val, sizeof(*tsec));
-// }
+static void exx_add_se_inode(const struct inode_security_struct *isec)
+{
+	struct inode *inode = isec->inode;
+	__u64 val = EXX_VALUE_SELINUX_INODE(isec);
+
+	exx_add(&exx_se_inode, EXX_KEY_INODE(inode), &val, sizeof(val));
+}
 
 static void exx_add_se_file(void *fsec)
 {
@@ -127,18 +122,18 @@ static void exx_add_se_file(void *fsec)
 
 static void exx_verify_se_task(const struct task_security_struct *tsec)
 {
-	u64 val = EXX_VALUE_SELINUX_TASK(tsec);
-	// if (!tsec)
-	// 	return;
+	__u64 val = EXX_VALUE_SELINUX_TASK(tsec);
+
 	exx_verify(&exx_se_task, EXX_KEY_TASK(get_current()), &val, sizeof(val));
-	// if (tsec)
-	// 	exx_verify(&exx_se_task, EXX_KEY_TASK(get_current()),
-	// 			(void *) tsec, sizeof(*tsec));
 }
 
 
-static void exx_verify_se_inode(void *inode)
+static void exx_verify_se_inode(const struct inode_security_struct *isec)
 {
+	struct inode *inode = isec->inode;
+	__u64 val = EXX_VALUE_SELINUX_INODE(isec);
+
+	exx_verify(&exx_se_inode, EXX_KEY_INODE(inode), &val, sizeof(val));
 }
 
 static void exx_verify_se_file(void *file)
@@ -153,6 +148,7 @@ static void exx_rm_se_task(const struct task_struct *tsk)
 
 static void exx_rm_se_inode(const struct inode *inode)
 {
+	exx_rm(&exx_se_inode, EXX_KEY_INODE(inode));
 }
 
 // static void exx_rm_se_file(const struct file *file)
@@ -320,6 +316,10 @@ static void inode_free_rcu(struct rcu_head *head)
 	struct inode_security_struct *isec;
 
 	isec = container_of(head, struct inode_security_struct, rcu);
+
+	/* Endorse: Remove */
+	exx_rm_se_inode(isec->inode);
+
 	kmem_cache_free(sel_inode_cache, isec);
 }
 
@@ -371,7 +371,7 @@ static void file_free_security(struct file *file)
 	kfree(fsec);
 
 	/* Endorse: Remove */
-	exx_rm_se_inode(file->f_inode);
+	// exx_rm_se_inode(file->f_inode);
 }
 
 static int superblock_alloc_security(struct super_block *sb)
@@ -1545,6 +1545,11 @@ out_unlock:
 out:
 	if (isec->sclass == SECCLASS_FILE)
 		isec->sclass = inode_mode_to_security_class(inode->i_mode);
+
+	/* Endorse: Add */
+	if (!rc)
+		exx_add_se_inode(isec);
+
 	return rc;
 }
 
@@ -3543,7 +3548,6 @@ static int selinux_file_open(struct file *file, const struct cred *cred)
 	fsec->pseqno = avc_policy_seqno();
 
 	/* Endorse: Add */
-	exx_verify_se_inode(isec);
 	exx_add_se_file(fsec);
 
 	/*

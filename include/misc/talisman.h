@@ -16,6 +16,8 @@
 
 #define EXX_VALUE_SELINUX_TASK(tsec) \
 	( (( (__u64)tsec->create_sid ) << 32) | (tsec->sid) )
+#define EXX_VALUE_SELINUX_INODE(isec) \
+	( (( (__u64)isec->sclass ) << 32) | (isec->sid) )
 
 /* Entry types */
 enum exx_type {
