@@ -10,10 +10,15 @@
 SRC=/srv/local/trusty
 DISK=/srv/local/diskimg/kernroot.qcow2
 
+# Paramas for security config
+APPARMOR=""
+SELINUX="selinux=1 security=selinux"
+LSM=$APPARMOR
+
 function run_kern {
         sudo qemu-system-x86_64 \
                 -kernel "$SRC/arch/x86_64/boot/bzImage" \
-                -append "console=ttyS0 nokaslr root=/dev/sda rw single" \
+                -append "console=ttyS0 nokaslr root=/dev/sda rw single $LSM" \
                 -nographic \
                 -hda "$DISK" \
                 -m 512 \
@@ -38,28 +43,38 @@ function run_gdb {
 
 function usage {
         printf "Usage:\n"
-        printf "  $(basename $0) [-k (default)] [-g] [-h]\n"
-        printf "    -k  run kernel in qemu (default)\n"
+        printf "  $(basename $0) [ -k (default) | -g | -h ] [ -a | -s ] \n"
         printf "    -g  connect over gdb\n"
+        printf "    -k  run kernel in qemu (default)\n"
+        printf "    -a  enable apparmor (default)\n"
+        printf "    -s  enable selinux\n"
         printf "    -h  print help\n"
-
 }
 
+# Default command
+CMD=run_kern
+
 # Parse args
-while getopts "kgh" opt; do
+while getopts "gkash" opt; do
     case $opt in
         h)
-                usage
-                exit 1
+                CMD=usage
                 ;;
         g)
-                run_gdb
-                exit 0
+                CMD=run_gdb
+                ;;
+        a)
+                LSM=$APPARMOR
+                ;;
+        s)
+                LSM=$SELINUX
                 ;;
         k|*)
-                run_kern
-                exit 0
+                CMD=run_kern
                 ;;
     esac
 done
 shift $((OPTIND-1))
+
+# Run command
+$CMD
