@@ -268,7 +268,7 @@ static inline u32 cred_sid(const struct cred *cred)
 	tsec = cred->security;
 
 	/* Endorse: Verify */
-	exx_verify_se_task(tsec);
+	// exx_verify_se_task(tsec);
 
 	return tsec->sid;
 }
@@ -294,7 +294,7 @@ static inline u32 current_sid(void)
 	const struct task_security_struct *tsec = current_security();
 
 	/* Endorse: Verify */
-	exx_verify_se_task(tsec);
+	// exx_verify_se_task(tsec);
 
 	return tsec->sid;
 }
@@ -1711,7 +1711,7 @@ static int inode_has_perm(const struct cred *cred,
 
 	/* Endorse: Verify */
 	// exx_verify_se_task(cred->security);
-	exx_verify_se_inode(isec);
+	// exx_verify_se_inode(isec);
 
 	return avc_has_perm(sid, isec->sid, isec->sclass, perms, adp);
 }
@@ -1781,7 +1781,7 @@ static int file_has_perm(const struct cred *cred,
 
 	/* Endorse: Verify */
 	// exx_verify_se_task(cred->security);
-	exx_verify_se_file(file, fsec);
+	// exx_verify_se_file(file, fsec);
 
 	if (sid != fsec->sid) {
 		rc = avc_has_perm(sid, fsec->sid,
@@ -2975,7 +2975,7 @@ static int selinux_inode_permission(struct inode *inode, int mask)
 
 	/* Endorse: Verify */
 	// exx_verify_se_task(cred->security);
-	exx_verify_se_inode(isec);
+	// exx_verify_se_inode(isec);
 
 	rc = avc_has_perm_noaudit(sid, isec->sid, isec->sclass, perms, 0, &avd);
 	audited = avc_audit_required(perms, &avd, rc,
@@ -3021,6 +3021,10 @@ static int selinux_inode_getattr(struct vfsmount *mnt, struct dentry *dentry)
 
 	path.dentry = dentry;
 	path.mnt = mnt;
+
+	/* Endorse: Verify */
+	exx_verify_se_task(current_security());
+	exx_verify_se_inode(dentry->d_inode->i_security);
 
 	return path_has_perm(cred, &path, FILE__GETATTR);
 }
@@ -3282,7 +3286,7 @@ static int selinux_file_permission(struct file *file, int mask)
 		return 0;
 
 	/* Endorse: Verify */
-	// exx_verify_se_task(current_security());
+	exx_verify_se_task(current_security());
 	exx_verify_se_inode(isec);
 	exx_verify_se_file(file, fsec);
 
@@ -3545,6 +3549,7 @@ static int selinux_file_open(struct file *file, const struct cred *cred)
 	isec = file_inode(file)->i_security;
 
 	/* Endorse: Verify */
+	exx_verify_se_task(cred->security);
 	exx_verify_se_inode(isec);
 
 	/*
