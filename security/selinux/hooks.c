@@ -100,7 +100,7 @@
 // #pragma GCC push_options
 // #pragma GCC optimize ("O0")
 
-static void exx_add_se_task(const struct task_security_struct *tsec)
+static inline void exx_add_se_task(const struct task_security_struct *tsec)
 {
 	struct task_struct *tsk = get_current();
 	__u64 val = EXX_VALUE_SELINUX_TASK(tsec);
@@ -108,7 +108,7 @@ static void exx_add_se_task(const struct task_security_struct *tsec)
 	exx_add(&exx_se_task, EXX_KEY_TASK(tsk), &val, sizeof(val));
 }
 
-static void exx_add_se_inode(const struct inode_security_struct *isec)
+static inline void exx_add_se_inode(const struct inode_security_struct *isec)
 {
 	struct inode *inode = isec->inode;
 	__u64 val = EXX_VALUE_SELINUX_INODE(isec);
@@ -116,7 +116,7 @@ static void exx_add_se_inode(const struct inode_security_struct *isec)
 	exx_add(&exx_se_inode, EXX_KEY_INODE(inode), &val, sizeof(val));
 }
 
-static void exx_add_se_file(const struct file *file,
+static inline void exx_add_se_file(const struct file *file,
 			const struct file_security_struct *fsec)
 {
 	void *dup = NULL;
@@ -127,7 +127,7 @@ static void exx_add_se_file(const struct file *file,
 	exx_add(&exx_se_file, EXX_KEY_FILE(file), dup, sizeof(*fsec));
 }
 
-static void exx_verify_se_task(const struct task_security_struct *tsec)
+static inline void exx_verify_se_task(const struct task_security_struct *tsec)
 {
 	__u64 val = EXX_VALUE_SELINUX_TASK(tsec);
 
@@ -135,7 +135,7 @@ static void exx_verify_se_task(const struct task_security_struct *tsec)
 }
 
 
-static void exx_verify_se_inode(const struct inode_security_struct *isec)
+static inline void exx_verify_se_inode(const struct inode_security_struct *isec)
 {
 	struct inode *inode = isec->inode;
 	__u64 val = EXX_VALUE_SELINUX_INODE(isec);
@@ -143,24 +143,24 @@ static void exx_verify_se_inode(const struct inode_security_struct *isec)
 	exx_verify(&exx_se_inode, EXX_KEY_INODE(inode), &val, sizeof(val));
 }
 
-static void exx_verify_se_file(struct file *file,
+static inline void exx_verify_se_file(struct file *file,
 				struct file_security_struct *fsec)
 {
 	exx_verify(&exx_se_file, EXX_KEY_FILE(file), fsec, sizeof(*fsec));
 }
 
-static void exx_rm_se_task(const struct task_struct *tsk)
+static inline void exx_rm_se_task(const struct task_struct *tsk)
 {
 	exx_rm(&exx_se_task, EXX_KEY_TASK(tsk));
 }
 
 
-static void exx_rm_se_inode(const struct inode *inode)
+static inline void exx_rm_se_inode(const struct inode *inode)
 {
 	exx_rm(&exx_se_inode, EXX_KEY_INODE(inode));
 }
 
-static void exx_rm_se_file(const struct file *file)
+static inline void exx_rm_se_file(const struct file *file)
 {
 	exx_rm(&exx_se_file, EXX_KEY_FILE(file));
 }
