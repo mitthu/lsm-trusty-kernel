@@ -32,7 +32,7 @@ DEFINE_ENDORSER(exx_aa_task_label, 13, EXX_TYPE_MEMCPY); // ~6.5k objects
 DEFINE_ENDORSER(exx_aa_iname, 18, EXX_TYPE_INAME); // ~240k objects
 
 DEFINE_ENDORSER(exx_se_task, 13, EXX_TYPE_INT64); // ~6.5k objects
-DEFINE_ENDORSER(exx_se_file, 13, EXX_TYPE_MEMCPY); // ? objects
+DEFINE_ENDORSER(exx_se_file, 13, EXX_TYPE_MEMCPY); // ~6.5k objects (# open files)
 DEFINE_ENDORSER(exx_se_inode, 18, EXX_TYPE_INT64); // ~240k objects
 
 /* Generic hash table functions */
@@ -223,7 +223,7 @@ int __exx_generic_verify(struct exx_meta *meta, __u64 key, void *val, int val_le
         return 0;
 
     /* compare result */
-    if ((ent->val_len == val_len) && memcmp(ent->val, val, val_len))
+    if ((ent->val_len == val_len) && (memcmp(ent->val, val, val_len) == 0))
         return 1;
 
     return 0;

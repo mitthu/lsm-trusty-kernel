@@ -13,6 +13,8 @@
 	( (( (__u64)tsk->tgid ) << 32 ) | tsk->pid )
 #define EXX_KEY_INODE(inode) \
 	( (( (__u64)inode->i_rdev ) << 32) | (inode->i_ino) )
+#define EXX_KEY_FILE(file) \
+	( (__u64) file )
 
 #define EXX_VALUE_SELINUX_TASK(tsec) \
 	( (( (__u64)tsec->create_sid ) << 32) | (tsec->sid) )

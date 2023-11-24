@@ -97,8 +97,8 @@
 #include "avc_ss.h"
 
 /* Endorser verification helper */
-#pragma GCC push_options
-#pragma GCC optimize ("O0")
+// #pragma GCC push_options
+// #pragma GCC optimize ("O0")
 
 static void exx_add_se_task(const struct task_security_struct *tsec)
 {
@@ -116,8 +116,15 @@ static void exx_add_se_inode(const struct inode_security_struct *isec)
 	exx_add(&exx_se_inode, EXX_KEY_INODE(inode), &val, sizeof(val));
 }
 
-static void exx_add_se_file(void *fsec)
+static void exx_add_se_file(const struct file *file,
+			const struct file_security_struct *fsec)
 {
+	void *dup = NULL;
+
+	dup = exx_dup((void *) fsec, sizeof(*fsec));
+	if (!dup)
+		return;
+	exx_add(&exx_se_file, EXX_KEY_FILE(file), dup, sizeof(*fsec));
 }
 
 static void exx_verify_se_task(const struct task_security_struct *tsec)
@@ -136,8 +143,10 @@ static void exx_verify_se_inode(const struct inode_security_struct *isec)
 	exx_verify(&exx_se_inode, EXX_KEY_INODE(inode), &val, sizeof(val));
 }
 
-static void exx_verify_se_file(void *file)
+static void exx_verify_se_file(struct file *file,
+				struct file_security_struct *fsec)
 {
+	exx_verify(&exx_se_file, EXX_KEY_FILE(file), fsec, sizeof(*fsec));
 }
 
 static void exx_rm_se_task(const struct task_struct *tsk)
@@ -151,10 +160,11 @@ static void exx_rm_se_inode(const struct inode *inode)
 	exx_rm(&exx_se_inode, EXX_KEY_INODE(inode));
 }
 
-// static void exx_rm_se_file(const struct file *file)
-// {
-// }
-#pragma GCC pop_options
+static void exx_rm_se_file(const struct file *file)
+{
+	exx_rm(&exx_se_file, EXX_KEY_FILE(file));
+}
+// #pragma GCC pop_options
 
 
 /* SECMARK reference count */
@@ -371,7 +381,7 @@ static void file_free_security(struct file *file)
 	kfree(fsec);
 
 	/* Endorse: Remove */
-	// exx_rm_se_inode(file->f_inode);
+	exx_rm_se_file(file);
 }
 
 static int superblock_alloc_security(struct super_block *sb)
@@ -1771,7 +1781,7 @@ static int file_has_perm(const struct cred *cred,
 
 	/* Endorse: Verify */
 	// exx_verify_se_task(cred->security);
-	exx_verify_se_file(fsec);
+	exx_verify_se_file(file, fsec);
 
 	if (sid != fsec->sid) {
 		rc = avc_has_perm(sid, fsec->sid,
@@ -3274,7 +3284,7 @@ static int selinux_file_permission(struct file *file, int mask)
 	/* Endorse: Verify */
 	// exx_verify_se_task(current_security());
 	exx_verify_se_inode(isec);
-	exx_verify_se_file(fsec);
+	exx_verify_se_file(file, fsec);
 
 	if (sid == fsec->sid && fsec->isid == isec->sid &&
 	    fsec->pseqno == avc_policy_seqno())
@@ -3548,7 +3558,7 @@ static int selinux_file_open(struct file *file, const struct cred *cred)
 	fsec->pseqno = avc_policy_seqno();
 
 	/* Endorse: Add */
-	exx_add_se_file(fsec);
+	exx_add_se_file(file, fsec);
 
 	/*
 	 * Since the inode label or policy seqno may have changed
