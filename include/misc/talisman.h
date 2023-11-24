@@ -21,6 +21,9 @@
 #define EXX_VALUE_SELINUX_INODE(isec) \
 	( (( (__u64)isec->sclass ) << 32) | (isec->sid) )
 
+/* function annotations */
+#define EXX_FN inline __attribute__((always_inline))
+
 /* Entry types */
 enum exx_type {
 	EXX_TYPE_INVALID = 0,

@@ -40,6 +40,7 @@ DEFINE_ENDORSER(exx_se_inode, 18, EXX_TYPE_INT64); // ~240k objects
 // Add entry to hash table.
 // Caller needs to allocate storage for value using kalloc().
 // When removing the node kfree() will be called on the value.
+EXX_FN
 void exx_add(struct exx_meta *meta, __u64 key, void *val, int val_len) {
     struct hlist_node *node;
 
@@ -81,6 +82,7 @@ void exx_add(struct exx_meta *meta, __u64 key, void *val, int val_len) {
 
 // Verify entry in hash table
 // Returns: 1 if found, else 0
+EXX_FN
 int exx_verify(struct exx_meta *meta, __u64 key, void *val, int val_len) {
     int ret = 0;
 
@@ -119,6 +121,7 @@ int exx_verify(struct exx_meta *meta, __u64 key, void *val, int val_len) {
     }
 }
 
+EXX_FN
 void exx_rm(struct exx_meta *meta, __u64 key) {
     int ret = 0;
 
@@ -152,6 +155,7 @@ void exx_rm(struct exx_meta *meta, __u64 key) {
 }
 
 // return 1 if found; else 0
+EXX_FN
 void *exx_find(struct exx_meta *meta, __u64 key) {
     void *node = NULL;
 
@@ -183,6 +187,7 @@ void *exx_find(struct exx_meta *meta, __u64 key) {
 
 // NOTE: Only works if we never remove entries.
 //       Otherwise, we will have a race condition.
+EXX_FN
 void exx_add_if_absent(struct exx_meta *meta, __u64 key, void *val, int val_len) {
     if (!exx_find(meta, key))
         exx_add(meta, key, val, val_len);
@@ -193,6 +198,7 @@ void exx_add_if_absent(struct exx_meta *meta, __u64 key, void *val, int val_len)
 // generic type
 ///////////////////////////////////////////////////
 
+EXX_FN
 struct hlist_node *__exx_generic_alloc(struct exx_meta *meta, __u64 key, void *val, int val_len) {
     struct exx_entry *new;
 
@@ -206,6 +212,7 @@ struct hlist_node *__exx_generic_alloc(struct exx_meta *meta, __u64 key, void *v
     return &new->hnode;
 }
 
+EXX_FN
 struct exx_entry *__exx_generic_find(struct exx_meta *meta, __u64 key) {
     struct exx_entry *entry;
 
@@ -217,6 +224,7 @@ struct exx_entry *__exx_generic_find(struct exx_meta *meta, __u64 key) {
     return NULL;  // Data not found
 }
 
+EXX_FN
 int __exx_generic_verify(struct exx_meta *meta, __u64 key, void *val, int val_len) {
     struct exx_entry *ent = __exx_generic_find(meta, key);
     if (!ent)
@@ -229,6 +237,7 @@ int __exx_generic_verify(struct exx_meta *meta, __u64 key, void *val, int val_le
     return 0;
 }
 
+EXX_FN
 /* 1 on success; 0 on fail */
 int __exx_generic_rm(struct exx_meta *meta, __u64 key) {
     struct exx_entry *entry = __exx_generic_find(meta, key);
@@ -246,6 +255,7 @@ int __exx_generic_rm(struct exx_meta *meta, __u64 key) {
 // iname type
 ///////////////////////////////////////////////////
 
+EXX_FN
 struct hlist_node *__exx_iname_alloc(struct exx_meta *meta, __u64 key, char *val) {
     struct exx_entry_iname *new;
 
@@ -259,6 +269,7 @@ struct hlist_node *__exx_iname_alloc(struct exx_meta *meta, __u64 key, char *val
     return &new->hnode;
 }
 
+EXX_FN
 struct exx_entry_iname *__exx_iname_find(struct exx_meta *meta, __u64 key) {
     struct exx_entry_iname *entry;
 
@@ -270,6 +281,7 @@ struct exx_entry_iname *__exx_iname_find(struct exx_meta *meta, __u64 key) {
     return NULL;  // Data not found
 }
 
+EXX_FN
 int __exx_iname_verify(struct exx_meta *meta, __u64 key, char *val) {
     struct exx_entry_iname *ent = __exx_iname_find(meta, key);
     if (!ent)
@@ -283,6 +295,7 @@ int __exx_iname_verify(struct exx_meta *meta, __u64 key, char *val) {
 }
 
 /* 1 on success; 0 on fail */
+EXX_FN
 int __exx_iname_rm(struct exx_meta *meta, __u64 key) {
     struct exx_entry_iname *entry = __exx_iname_find(meta, key);
     if (entry) {
@@ -299,7 +312,8 @@ int __exx_iname_rm(struct exx_meta *meta, __u64 key) {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-value"
 
-void inline exx_iname_verify_emulation(char *pathname) {
+EXX_FN
+void exx_iname_verify_emulation(char *pathname) {
 	if (pathname)
 		strlen(pathname);
 }
@@ -312,6 +326,7 @@ void inline exx_iname_verify_emulation(char *pathname) {
 // int64 type
 ///////////////////////////////////////////////////
 
+EXX_FN
 struct hlist_node *__exx_int64_alloc(struct exx_meta *meta, __u64 key, __u64 val) {
     struct exx_entry_int64 *new;
 
@@ -324,6 +339,7 @@ struct hlist_node *__exx_int64_alloc(struct exx_meta *meta, __u64 key, __u64 val
     return &new->hnode;
 }
 
+EXX_FN
 struct exx_entry_int64 *__exx_int64_find(struct exx_meta *meta, __u64 key) {
     struct exx_entry_int64 *entry;
 
@@ -335,6 +351,7 @@ struct exx_entry_int64 *__exx_int64_find(struct exx_meta *meta, __u64 key) {
     return NULL;  // Data not found
 }
 
+EXX_FN
 int __exx_int64_verify(struct exx_meta *meta, __u64 key, __u64 val) {
     struct exx_entry_int64 *ent = __exx_int64_find(meta, key);
     if (!ent)
@@ -348,6 +365,7 @@ int __exx_int64_verify(struct exx_meta *meta, __u64 key, __u64 val) {
 }
 
 /* 1 on success; 0 on fail */
+EXX_FN
 int __exx_int64_rm(struct exx_meta *meta, __u64 key) {
     struct exx_entry_int64 *entry = __exx_int64_find(meta, key);
     if (entry) {
@@ -363,6 +381,7 @@ int __exx_int64_rm(struct exx_meta *meta, __u64 key) {
 // Misc.
 ///////////////////////////////////////////////////
 
+EXX_FN
 void *exx_dup(void *src, size_t n) {
     void *ptr;
 
