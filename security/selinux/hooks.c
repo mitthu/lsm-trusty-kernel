@@ -119,12 +119,12 @@ static inline void exx_add_se_inode(const struct inode_security_struct *isec)
 static inline void exx_add_se_file(const struct file *file,
 			const struct file_security_struct *fsec)
 {
-	void *dup = NULL;
+	// void *dup = NULL;
 
-	dup = exx_dup((void *) fsec, sizeof(*fsec));
-	if (!dup)
-		return;
-	exx_add(&exx_se_file, EXX_KEY_FILE(file), dup, sizeof(*fsec));
+	// dup = exx_dup((void *) fsec, sizeof(*fsec));
+	// if (!dup)
+	// 	return;
+	// exx_add(&exx_se_file, EXX_KEY_FILE(file), dup, sizeof(*fsec));
 }
 
 static inline void exx_verify_se_task(const struct task_security_struct *tsec)
@@ -146,7 +146,7 @@ static inline void exx_verify_se_inode(const struct inode_security_struct *isec)
 static inline void exx_verify_se_file(struct file *file,
 				struct file_security_struct *fsec)
 {
-	exx_verify(&exx_se_file, EXX_KEY_FILE(file), fsec, sizeof(*fsec));
+	// exx_verify(&exx_se_file, EXX_KEY_FILE(file), fsec, sizeof(*fsec));
 }
 
 static inline void exx_rm_se_task(const struct task_struct *tsk)
@@ -162,7 +162,7 @@ static inline void exx_rm_se_inode(const struct inode *inode)
 
 static inline void exx_rm_se_file(const struct file *file)
 {
-	exx_rm(&exx_se_file, EXX_KEY_FILE(file));
+	// exx_rm(&exx_se_file, EXX_KEY_FILE(file));
 }
 // #pragma GCC pop_options
 
