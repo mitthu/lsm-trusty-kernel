@@ -13,6 +13,7 @@ DISK=/srv/local/diskimg/kernroot.qcow2
 # Paramas for security config
 APPARMOR=""
 SELINUX="selinux=1 security=selinux"
+TOMOYO="security=tomoyo"
 LSM=$APPARMOR
 
 function run_kern {
@@ -43,11 +44,12 @@ function run_gdb {
 
 function usage {
         printf "Usage:\n"
-        printf "  $(basename $0) [ -k (default) | -g | -h ] [ -a | -s ] \n"
+        printf "  $(basename $0) [ -k (default) | -g | -h ] [ -a | -s | -t ] \n"
         printf "    -g  connect over gdb\n"
         printf "    -k  run kernel in qemu (default)\n"
         printf "    -a  enable apparmor (default)\n"
         printf "    -s  enable selinux\n"
+        printf "    -t  enable tomoyo\n"
         printf "    -h  print help\n"
 }
 
@@ -55,7 +57,7 @@ function usage {
 CMD=run_kern
 
 # Parse args
-while getopts "gkash" opt; do
+while getopts "gkasth" opt; do
     case $opt in
         h)
                 CMD=usage
@@ -68,6 +70,9 @@ while getopts "gkash" opt; do
                 ;;
         s)
                 LSM=$SELINUX
+                ;;
+        t)
+                LSM=$TOMOYO
                 ;;
         k|*)
                 CMD=run_kern
