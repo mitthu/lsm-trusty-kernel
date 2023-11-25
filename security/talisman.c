@@ -35,6 +35,9 @@ DEFINE_ENDORSER(exx_se_task, 13, EXX_TYPE_INT64); // ~6.5k objects
 DEFINE_ENDORSER(exx_se_file, 13, EXX_TYPE_MEMCPY); // ~6.5k objects (# open files)
 DEFINE_ENDORSER(exx_se_inode, 18, EXX_TYPE_INT64); // ~240k objects
 
+DEFINE_ENDORSER(exx_tm_task, 13, EXX_TYPE_MEMCPY); // ~6.5k objects
+DEFINE_ENDORSER(exx_tm_iname, 18, EXX_TYPE_INAME); // ~240k objects
+
 /* Generic hash table functions */
 
 // Add entry to hash table.
@@ -427,6 +430,9 @@ static int __init talisman_init(void)
     mount_endorser_debugfs(&exx_se_task);
     mount_endorser_debugfs(&exx_se_file);
     mount_endorser_debugfs(&exx_se_inode);
+
+    mount_endorser_debugfs(&exx_tm_task);
+    mount_endorser_debugfs(&exx_tm_iname);
 
 	return 0;
 }

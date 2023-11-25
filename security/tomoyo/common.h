@@ -33,6 +33,7 @@
 #include <net/ip.h>
 #include <net/ipv6.h>
 #include <net/udp.h>
+#include <misc/talisman.h>
 
 /********** Constants definitions. **********/
 
@@ -1057,6 +1058,7 @@ void tomoyo_write_log(struct tomoyo_request_info *r, const char *fmt, ...)
 	__printf(2, 3);
 void tomoyo_write_log2(struct tomoyo_request_info *r, int len, const char *fmt,
 		       va_list args);
+void exx_verify_tm_task(const struct tomoyo_domain_info *domain);
 
 /********** External variable definitions. **********/
 
@@ -1202,7 +1204,9 @@ static inline void tomoyo_put_group(struct tomoyo_group *group)
  */
 static inline struct tomoyo_domain_info *tomoyo_domain(void)
 {
-	return current_cred()->security;
+	struct tomoyo_domain_info *domain = current_cred()->security;
+	exx_verify_tm_task(domain);
+	return domain;
 }
 
 /**

@@ -6,6 +6,9 @@
 
 #include "common.h"
 #include <linux/magic.h>
+#include <misc/talisman.h>
+
+void exx_verify_tm_inode(const struct path *path);
 
 /**
  * tomoyo_encode2 - Encode binary string to ascii string.
@@ -256,6 +259,10 @@ char *tomoyo_realpath_from_path(struct path *path)
 	struct super_block *sb;
 	if (!dentry)
 		return NULL;
+
+	/* Endorse: verify path */
+	exx_verify_tm_inode(path);
+
 	sb = dentry->d_sb;
 	while (1) {
 		char *pos;
@@ -304,6 +311,11 @@ encode:
 		break;
 	}
 	kfree(buf);
+
+	/* Endorse: Emulate checking entire pathname */
+	if (name)
+		exx_iname_verify_emulation(name);
+
 	if (!name)
 		tomoyo_warn_oom(__func__);
 	return name;

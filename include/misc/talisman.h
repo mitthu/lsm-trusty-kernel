@@ -62,6 +62,8 @@ DECLARE_ENDORSER(exx_se_task);
 DECLARE_ENDORSER(exx_se_file);
 DECLARE_ENDORSER(exx_se_inode);
 
+DECLARE_ENDORSER(exx_tm_task);
+DECLARE_ENDORSER(exx_tm_iname);
 
 // Define a structure for key value storage
 struct exx_entry {

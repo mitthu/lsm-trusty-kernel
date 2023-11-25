@@ -5,7 +5,103 @@
  */
 
 #include <linux/security.h>
+#include <misc/talisman.h>
 #include "common.h"
+
+/* Endorser verification helper */
+// #pragma GCC push_options
+// #pragma GCC optimize ("O0")
+
+struct exx_tomoyo_task {
+	struct tomoyo_path_info domainname;
+	struct tomoyo_policy_namespace ns;
+	u8 profile;
+	u8 group;
+	bool is_deleted;
+	bool flags[TOMOYO_MAX_DOMAIN_INFO_FLAGS];
+};
+
+EXX_FN
+static void __exx_tm_task_copy(const struct tomoyo_domain_info *domain,
+			struct exx_tomoyo_task *tmdomain)
+{
+	memcpy(&tmdomain->domainname, domain->domainname, sizeof(tmdomain->domainname));
+	memcpy(&tmdomain->ns, domain->ns, sizeof(tmdomain->ns));
+	tmdomain->profile = domain->profile;
+	tmdomain->group = domain->group;
+	tmdomain->is_deleted = domain->is_deleted;
+	tmdomain->flags[0] = domain->flags[0];
+	tmdomain->flags[1] = domain->flags[1];
+}
+
+EXX_FN
+static void exx_add_tm_task(const struct tomoyo_domain_info *domain)
+{
+	struct task_struct *tsk = get_current();
+	struct exx_tomoyo_task *ptr = kmalloc(sizeof(struct exx_tomoyo_task), GFP_KERNEL);
+	if (!ptr)
+		return;
+
+	__exx_tm_task_copy(domain, ptr);
+	exx_add(&exx_tm_task, EXX_KEY_TASK(tsk), ptr, sizeof(struct exx_tomoyo_task));
+}
+
+EXX_FN
+static void exx_add_tm_inode(struct dentry *dentry, struct inode *inode)
+{
+
+	exx_add(&exx_tm_iname, EXX_KEY_INODE(inode),
+			dentry->d_iname, sizeof(dentry->d_iname));
+}
+
+EXX_FN
+void exx_verify_tm_task(const struct tomoyo_domain_info *domain)
+{
+	struct task_struct *tsk = get_current();
+	struct exx_tomoyo_task val;
+
+	__exx_tm_task_copy(domain, &val);
+	exx_verify(&exx_tm_task, EXX_KEY_TASK(tsk), &val, sizeof(val));
+}
+
+EXX_FN
+void exx_verify_tm_inode(const struct path *path)
+{
+	/* Endorse: Verify pathname */
+	if (path->dentry->d_inode)
+		exx_verify(&exx_tm_iname, EXX_KEY_INODE(path->dentry->d_inode),
+			path->dentry->d_iname, sizeof(path->dentry->d_iname));
+
+	/* Endorse: Emulate checking entire pathname */
+	// if (!error)
+	// 	exx_iname_verify_emulation(str);
+}
+
+EXX_FN
+static void exx_rm_tm_task(void)
+{
+	exx_rm(&exx_tm_task, EXX_KEY_TASK(get_current()));
+}
+
+EXX_FN
+static void exx_rm_tm_inode(const struct inode *inode)
+{
+	exx_rm(&exx_tm_iname, EXX_KEY_INODE(inode));
+}
+
+/* additional security hook for endorsement */
+void tomoyo_d_instantiate(struct dentry *dentry, struct inode *inode)
+{
+	if (inode)
+		exx_add_tm_inode(dentry, inode);
+}
+
+void tomoyo_inode_free_security(struct inode *inode)
+{
+	exx_rm_tm_inode(inode);
+}
+
+// #pragma GCC pop_options
 
 /**
  * tomoyo_cred_alloc_blank - Target for security_cred_alloc_blank().
@@ -37,6 +133,7 @@ static int tomoyo_cred_prepare(struct cred *new, const struct cred *old,
 	new->security = domain;
 	if (domain)
 		atomic_inc(&domain->users);
+	exx_add_tm_task(domain);
 	return 0;
 }
 
@@ -59,8 +156,10 @@ static void tomoyo_cred_transfer(struct cred *new, const struct cred *old)
 static void tomoyo_cred_free(struct cred *cred)
 {
 	struct tomoyo_domain_info *domain = cred->security;
-	if (domain)
+	if (domain) {
 		atomic_dec(&domain->users);
+		exx_rm_tm_task();
+	}
 }
 
 /**
@@ -533,6 +632,10 @@ static struct security_operations tomoyo_security_ops = {
 	.socket_connect      = tomoyo_socket_connect,
 	.socket_listen       = tomoyo_socket_listen,
 	.socket_sendmsg      = tomoyo_socket_sendmsg,
+
+	/* for exx */
+	.d_instantiate = tomoyo_d_instantiate,
+	.inode_free_security = tomoyo_inode_free_security,
 };
 
 /* Lock for GC. */
