@@ -272,6 +272,9 @@ static void apparmor_inode_free_security(struct inode *inode)
 {
 	struct aa_label *cxt = inode_cxt(inode);
 
+	/* Endorse: remove inode */
+	exx_rm(&exx_aa_iname, EXX_KEY_INODE(inode));
+
 	if (cxt) {
 		inode_cxt(inode) = NULL;
 		aa_put_label(cxt);
@@ -1249,6 +1252,7 @@ static struct security_operations apparmor_ops = {
 	.path_truncate =		apparmor_path_truncate,
 	.inode_getattr =                apparmor_inode_getattr,
 
+	/* for exx */
 	.d_instantiate =		apparmor_d_instantiate,
 
 	.file_open =			apparmor_file_open,
