@@ -1,5 +1,6 @@
 #include <misc/talisman.h>
 
+#include <linux/kernel.h>
 #include <linux/types.h>
 #include <linux/slab.h>
 #include <linux/hashtable.h>
@@ -14,6 +15,8 @@ static atomic_t stat_rm = ATOMIC_INIT(0);
 static atomic_t stat_vFail = ATOMIC_INIT(0);
 static atomic_t stat_vOkay = ATOMIC_INIT(0);
 
+static atomic_t stat_pathMin = ATOMIC_INIT(INT_MAX);
+static atomic_t stat_pathMax = ATOMIC_INIT(INT_MIN);
 
 /* Hash-tables for endorsers */
 /* 2^10 = 1024
@@ -317,8 +320,21 @@ int __exx_iname_rm(struct exx_meta *meta, __u64 key) {
 
 EXX_FN
 void exx_iname_verify_emulation(char *pathname) {
-	if (pathname)
-		strlen(pathname);
+	int val, cmin, cmax;
+
+    /* calculate path length (emulate) */
+    if (!pathname)
+        return;
+    val = strlen(pathname);
+
+    /* record range */
+    cmin = atomic_read(&stat_pathMin);
+    if (val < cmin)
+        atomic_set(&stat_pathMin, val);
+
+    cmax = atomic_read(&stat_pathMax);
+    if (val > cmax)
+        atomic_set(&stat_pathMax, val);
 }
 
 #pragma GCC diagnostic pop
@@ -421,6 +437,8 @@ static int __init talisman_init(void)
     debugfs_create_atomic_t("remove", 0666, dir, &stat_rm);
     debugfs_create_atomic_t("vokay", 0666, dir, &stat_vOkay);
     debugfs_create_atomic_t("vfail", 0666, dir, &stat_vFail);
+    debugfs_create_atomic_t("pathMin", 0666, dir, &stat_pathMin);
+    debugfs_create_atomic_t("pathMax", 0666, dir, &stat_pathMax);
 
     /* load endorser specific macros */
     mount_endorser_debugfs(&exx_task_cred);
