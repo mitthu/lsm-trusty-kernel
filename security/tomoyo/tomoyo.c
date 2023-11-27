@@ -14,7 +14,7 @@
 
 struct exx_tomoyo_task {
 	struct tomoyo_path_info domainname;
-	struct tomoyo_policy_namespace ns;
+	// struct tomoyo_policy_namespace ns;
 	u8 profile;
 	u8 group;
 	bool is_deleted;
@@ -26,7 +26,7 @@ static void __exx_tm_task_copy(const struct tomoyo_domain_info *domain,
 			struct exx_tomoyo_task *tmdomain)
 {
 	memcpy(&tmdomain->domainname, domain->domainname, sizeof(tmdomain->domainname));
-	memcpy(&tmdomain->ns, domain->ns, sizeof(tmdomain->ns));
+	// memcpy(&tmdomain->ns, domain->ns, sizeof(tmdomain->ns));
 	tmdomain->profile = domain->profile;
 	tmdomain->group = domain->group;
 	tmdomain->is_deleted = domain->is_deleted;
