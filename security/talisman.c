@@ -49,6 +49,7 @@ DEFINE_ENDORSER(exx_tm_iname, 18, EXX_TYPE_INAME); // ~240k objects
 EXX_FN
 void exx_add(struct exx_meta *meta, __u64 key, void *val, int val_len) {
     struct hlist_node *node;
+    int bucket = hash_min(key, meta->bits);
 
     /* which type? */
     switch (meta->type)
@@ -76,9 +77,9 @@ void exx_add(struct exx_meta *meta, __u64 key, void *val, int val_len) {
     }
 
     /* add new entry */
-    write_lock(&meta->lck);
-    hlist_add_head(node, &meta->tbl[hash_min(key, meta->bits)]);
-    write_unlock(&meta->lck);
+    write_lock(&meta->lck[bucket]);
+    hlist_add_head(node, &meta->tbl[bucket]);
+    write_unlock(&meta->lck[bucket]);
 
     /* update stats */
     atomic_inc(&meta->cAdd);
@@ -91,9 +92,10 @@ void exx_add(struct exx_meta *meta, __u64 key, void *val, int val_len) {
 EXX_FN
 int exx_verify(struct exx_meta *meta, __u64 key, void *val, int val_len) {
     int ret = 0;
+    int bucket = hash_min(key, meta->bits);
 
     /* call appropriate function */
-    read_lock(&meta->lck);
+    read_lock(&meta->lck[bucket]);
     switch (meta->type)
     {
     case EXX_TYPE_MEMCPY:
@@ -109,11 +111,11 @@ int exx_verify(struct exx_meta *meta, __u64 key, void *val, int val_len) {
         break;
 
     default:
-        read_unlock(&meta->lck);
+        read_unlock(&meta->lck[bucket]);
         printk(KERN_ERR "exx_verify: unknown type\n");
         return 0;
     }
-    read_unlock(&meta->lck);
+    read_unlock(&meta->lck[bucket]);
 
     /* update stats */
     if (ret) {
@@ -130,9 +132,10 @@ int exx_verify(struct exx_meta *meta, __u64 key, void *val, int val_len) {
 EXX_FN
 void exx_rm(struct exx_meta *meta, __u64 key) {
     int ret = 0;
+    int bucket = hash_min(key, meta->bits);
 
     /* remove which type? */
-    write_lock(&meta->lck);
+    write_lock(&meta->lck[bucket]);
     switch (meta->type)
     {
     case EXX_TYPE_MEMCPY:
@@ -151,7 +154,7 @@ void exx_rm(struct exx_meta *meta, __u64 key) {
         printk(KERN_ERR "exx_rm: unknown type\n");
         break;
     }
-    write_unlock(&meta->lck);
+    write_unlock(&meta->lck[bucket]);
 
     /* update stats */
     if (ret) {
@@ -164,9 +167,10 @@ void exx_rm(struct exx_meta *meta, __u64 key) {
 EXX_FN
 void *exx_find(struct exx_meta *meta, __u64 key) {
     void *node = NULL;
+    int bucket = hash_min(key, meta->bits);
 
     /* which type? */
-    read_lock(&meta->lck);
+    read_lock(&meta->lck[bucket]);
     switch (meta->type)
     {
     case EXX_TYPE_MEMCPY:
@@ -182,11 +186,11 @@ void *exx_find(struct exx_meta *meta, __u64 key) {
         break;
 
     default:
-        read_unlock(&meta->lck);
+        read_unlock(&meta->lck[bucket]);
         printk(KERN_ERR "exx_find: unknown type\n");
         return NULL;
     }
-    read_unlock(&meta->lck);
+    read_unlock(&meta->lck[bucket]);
     return node;
 }
 
