@@ -34,7 +34,7 @@ enum exx_type {
 
 /* Endorser metadata */
 struct exx_meta {
-	rwlock_t *lck;
+	rwlock_t lck;
 	const char *namestr;
 	const u8 bits;
 	struct hlist_head *tbl;
@@ -43,15 +43,10 @@ struct exx_meta {
 };
 
 /* Macros to declare  */
-#define DEFINE_HASHTABLE_LCK(name, bits)                 \
-	rwlock_t name[1 << (bits)] =                     \
-		{ [0 ... ((1 << (bits)) - 1)] =	__RW_LOCK_UNLOCKED(name) }
-
 #define DEFINE_ENDORSER(name, _bits, _type)               \
-        DEFINE_HASHTABLE_LCK(__exx_lck_##name, _bits);    \
         DEFINE_HASHTABLE(__exx_##name, _bits);            \
         struct exx_meta name = {                          \
-            __exx_lck_##name, #name, _bits, __exx_##name, _type,            \
+            __RW_LOCK_UNLOCKED(lck), #name, _bits, __exx_##name, _type,     \
             ATOMIC_INIT(0), ATOMIC_INIT(0), ATOMIC_INIT(0), ATOMIC_INIT(0), \
         };
 
