@@ -5,6 +5,7 @@
 #include <linux/slab.h>
 #include <linux/hashtable.h>
 #include <linux/xxhash.h>
+#include <linux/limits.h>
 
 #include <linux/module.h>
 #include <linux/debugfs.h>
@@ -17,6 +18,8 @@ static atomic_t stat_vOkay = ATOMIC_INIT(0);
 
 static atomic_t stat_pathMin = ATOMIC_INIT(INT_MAX);
 static atomic_t stat_pathMax = ATOMIC_INIT(INT_MIN);
+
+static char pathcmpstr[2*PATH_MAX];
 
 /* Hash-tables for endorsers */
 /* 2^10 = 1024
@@ -324,12 +327,19 @@ int __exx_iname_rm(struct exx_meta *meta, __u64 key) {
 
 EXX_FN
 void exx_iname_verify_emulation(char *pathname) {
-	int val, cmin, cmax;
+    int val = 0, cmp = 0;
+    int cmin, cmax;
 
-    /* calculate path length (emulate) */
     if (!pathname)
         return;
-    val = strlen(pathname);
+
+    /* emulate checking */
+    val = 0;
+    while (*pathname != '\0') {
+        cmp = (*pathname == pathcmpstr[val]);
+        pathname++;
+        val++;
+    }
 
     /* record range */
     cmin = atomic_read(&stat_pathMin);
