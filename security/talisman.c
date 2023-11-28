@@ -85,8 +85,8 @@ void exx_add(struct exx_meta *meta, __u64 key, void *val, int val_len) {
     write_unlock(&meta->lck[bucket]);
 
     /* update stats */
-    atomic_inc(&meta->cAdd);
-    atomic_inc(&stat_add);
+    // atomic_inc(&meta->cAdd);
+    // atomic_inc(&stat_add);
     return;
 }
 
@@ -121,15 +121,14 @@ int exx_verify(struct exx_meta *meta, __u64 key, void *val, int val_len) {
     read_unlock(&meta->lck[bucket]);
 
     /* update stats */
-    if (ret) {
-        atomic_inc(&meta->cVokay);
-        atomic_inc(&stat_vOkay);
-        return 1;
-    } else {
-        atomic_inc(&meta->cVfail);
-        atomic_inc(&stat_vFail);
-        return 0;
-    }
+    // if (ret) {
+    //     atomic_inc(&meta->cVokay);
+    //     atomic_inc(&stat_vOkay);
+    // } else {
+    //     atomic_inc(&meta->cVfail);
+    //     atomic_inc(&stat_vFail);
+    // }
+    return ret;
 }
 
 EXX_FN
@@ -160,10 +159,10 @@ void exx_rm(struct exx_meta *meta, __u64 key) {
     write_unlock(&meta->lck[bucket]);
 
     /* update stats */
-    if (ret) {
-        atomic_inc(&meta->cDel);
-        atomic_inc(&stat_rm);
-    }
+    // if (ret) {
+    //     atomic_inc(&meta->cDel);
+    //     atomic_inc(&stat_rm);
+    // }
 }
 
 // return 1 if found; else 0
@@ -328,7 +327,7 @@ int __exx_iname_rm(struct exx_meta *meta, __u64 key) {
 EXX_FN
 void exx_iname_verify_emulation(char *pathname) {
     int val = 0, cmp = 0;
-    int cmin, cmax;
+    // int cmin, cmax;
 
     if (!pathname)
         return;
@@ -342,13 +341,13 @@ void exx_iname_verify_emulation(char *pathname) {
     }
 
     /* record range */
-    cmin = atomic_read(&stat_pathMin);
-    if (val < cmin)
-        atomic_set(&stat_pathMin, val);
+    // cmin = atomic_read(&stat_pathMin);
+    // if (val < cmin)
+    //     atomic_set(&stat_pathMin, val);
 
-    cmax = atomic_read(&stat_pathMax);
-    if (val > cmax)
-        atomic_set(&stat_pathMax, val);
+    // cmax = atomic_read(&stat_pathMax);
+    // if (val > cmax)
+    //     atomic_set(&stat_pathMax, val);
 }
 
 #pragma GCC diagnostic pop
