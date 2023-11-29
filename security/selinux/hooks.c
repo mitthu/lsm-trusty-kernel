@@ -2474,8 +2474,6 @@ static void selinux_bprm_committing_creds(struct linux_binprm *bprm)
  * Clean up the process immediately after the installation of new credentials
  * due to exec
  */
-#pragma GCC push_options
-#pragma GCC optimize ("O0")
 static void selinux_bprm_committed_creds(struct linux_binprm *bprm)
 {
 	const struct task_security_struct *tsec = current_security();
@@ -2521,7 +2519,6 @@ static void selinux_bprm_committed_creds(struct linux_binprm *bprm)
 	__wake_up_parent(current, current->real_parent);
 	read_unlock(&tasklist_lock);
 }
-#pragma GCC pop_options
 
 /* superblock security operations */
 
