@@ -3549,6 +3549,15 @@ static int selinux_file_open(struct file *file, const struct cred *cred)
 	exx_verify_se_task(cred->security);
 	exx_verify_se_inode(isec);
 
+	// /* Endorse: verify task */
+	// __u64 val;
+	// val = EXX_VALUE_SELINUX_TASK(tsec);
+	// exx_verify(&exx_se_task, EXX_KEY_TASK(get_current()), &val, sizeof(val));
+
+	// /* Endorse: verify inode */
+	// val = EXX_VALUE_SELINUX_INODE(isec);
+	// exx_verify(&exx_se_inode, EXX_KEY_INODE(isec->inode), &val, sizeof(val));
+
 	/*
 	 * Save inode label and policy sequence number
 	 * at open-time so that selinux_file_permission
@@ -3561,6 +3570,12 @@ static int selinux_file_open(struct file *file, const struct cred *cred)
 
 	/* Endorse: Add */
 	exx_add_se_file(file, fsec);
+
+	// /* Endorse: add file */
+	// void *dup = exx_dup((void *) fsec, sizeof(*fsec));
+	// if (dup)
+	// 	exx_add(&exx_se_file, EXX_KEY_FILE(file), dup, sizeof(*fsec));
+
 
 	/*
 	 * Since the inode label or policy seqno may have changed
