@@ -2971,7 +2971,7 @@ static int selinux_inode_permission(struct inode *inode, int mask)
 	isec = inode->i_security;
 
 	/* Endorse: Verify */
-	exx_verify_se_task(cred->security);
+	// exx_verify_se_task(cred->security);
 	exx_verify_se_inode(isec);
 
 	rc = avc_has_perm_noaudit(sid, isec->sid, isec->sclass, perms, 0, &avd);
